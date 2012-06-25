@@ -1,0 +1,56 @@
+{
+   "background": {
+      "page": "background/background.html"
+   },
+   "content_scripts": [
+      {
+         "all_frames": true,
+         "js": [ "misc/gen.js", "specific/sub_frame.js" ],
+         "matches": [ "<all_urls>" ],
+         "run_at": "document_start"
+      },
+      {
+         "all_frames": false,
+         "js": [ "misc/gen.js", "mod/messaging.js", "mod/cs_analytics.js", "mod/neif.js", "mod/preview.js", "mod/fresh.js", "misc/start.js" ],
+         "matches": [ "*://*.google.com/search*", "*://*.google.com/webhp*" ],
+         "run_at": "document_start"
+      },
+      {
+         "all_frames": true,
+         "js": [ "misc/gen.js", "specific/google.com.js" ],
+         "matches": [ "*://www.google.com/", "*://www.google.com/webhp*" ],
+         "run_at": "document_start"
+      },
+      {
+         "all_frames": true,
+         "js": [ "misc/gen.js", "specific/youtube.js" ],
+         "matches": [ "*://*.youtube.com/*", "*://youtube.com/*" ],
+         "run_at": "document_start"
+      }
+   ],
+   "description": "Scout - Google like a god",
+   "icons":
+   {
+      "128": "images/icon128.png",
+      "16": "images/icon16.png",
+      "48": "images/icon48.png"
+   },
+   "incognito": "spanning",
+   "minimum_chrome_version": "18",
+   "update_url": "http://thescoutapp.com/extension/update.xml",
+   "name": "Scout 3.4 Kalypso",
+   "homepage_url": "http://TheScoutApp.com",
+   "permissions": [
+     "<all_urls>",
+     "chrome://favicon/",
+     "clipboardWrite",
+     "contextMenus",
+     "cookies",
+     "idle",
+     "notifications",
+     "unlimitedStorage",
+     "webRequest",
+     "webRequestBlocking"
+   ],
+   "version": "3.4"
+}

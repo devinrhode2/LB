@@ -1,0 +1,5 @@
+Copyright Devin Rhode 2012.
+
+You are free to modify this source (outside of the dropbox folder) but not redistribute or share it
+
+If you rip off my codebase and release a competing version based on mine, you're gonna break my heart. I worked really hard on this, for literally 9 months before the first real beta, and will take every legal step possible towards stopping you, and regardless not make your life easy. If scout sucks and you want some change, or some feature, holla - DevinRhode2@gmail.com

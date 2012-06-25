@@ -1,0 +1,19 @@
+gen.js is my general javascript library, used for GET, POST, string.has, and a nifty each function
+
+manifest.json says to run code on google.com/search and /webhp pages, and 
+start.js figures out if we should actually run the extension or not. It examines url's closer because pattern matching is lame in manifest.json
+
+bg_init.js has some pusher, install, and setting default stuff. 
+background.html contains the messaging API.
+
+fresh.js is triggered by starting with htmlGroup, which start.js calls. It constructs and adds many dom elements. Very much the real beginning of the extension. Also adds hardStyleText as a stylesheet, which is solely responsible for reformatting google's search page into a sidebar.
+
+messaging.js holds the messaging API and provides a message function (I think)
+
+Also includes the setting api. (the set() and get() methods) The setting API uses both cookies and localStorage.
+
+neif.js stands for Never Ending InFinite loop. It loops every 200 milliseconds looking for a change in the first link, and then re-rigs links so that onclick the url is opened in the iframe. It uses preview(url, li) from preview.js to open them in the iframe.
+
+specific/google.com.js rigs the google.com homepage so instant searching doesn't trigger and all shit breaks loose.
+
+popup.html is for the browser button. manifest.json directs the button to this file.
