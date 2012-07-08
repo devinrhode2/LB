@@ -64,16 +64,16 @@ function trueSearchBarConfig() {
     setTimeout(function() {
       neif = null;
       console.error('neif nulled again');
-      d.getElementById('gbqfq').focus();
-      d.getElementById('gbqfq').addEventListener('keydown', function searchInputKeydown(e){
+      getId('gbqfq').focus();
+      getid('gbqfq').addEventListener('keydown', function searchInputKeydown(e){
         if (e.which === 13) {
-          d.getElementById('gbqf').submit();
+          getId('gbqf').submit();
         }
       }, false);
       
-      document.getElementById('gbqfba').outerHTML = '<input value="Google Search" name="btnK" type="submit" style="cursor: pointer;background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1); -webkit-border-radius: 2px; -webkit-user-select: none; background-color: #f5f5f5; background-image: linear-gradient(top,#f5f5f5,#f1f1f1); background-image: -o-linear-gradient(top,#f5f5f5,#f1f1f1); border: 1px solid #dcdcdc; border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 2px; color: #666; font-family: arial,sans-serif; font-size: 11px; font-weight: bold; height: 29px; line-height: 27px; margin: 11px 6px; min-width: 54px; padding: 0 8px; text-align: center;">';
+      getId('gbqfba').outerHTML = '<input value="Google Search" name="btnK" type="submit" style="cursor: pointer;background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1); -webkit-border-radius: 2px; -webkit-user-select: none; background-color: #f5f5f5; background-image: linear-gradient(top,#f5f5f5,#f1f1f1); background-image: -o-linear-gradient(top,#f5f5f5,#f1f1f1); border: 1px solid #dcdcdc; border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 2px; color: #666; font-family: arial,sans-serif; font-size: 11px; font-weight: bold; height: 29px; line-height: 27px; margin: 11px 6px; min-width: 54px; padding: 0 8px; text-align: center;">';
       
-      document.getElementById('gbqfbb').outerHTML = '<input value="I\'m Feeling Lucky" name="btnI" type="submit" style="cursor: pointer;background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1); -webkit-border-radius: 2px; -webkit-user-select: none; background-color: #f5f5f5; background-image: linear-gradient(top,#f5f5f5,#f1f1f1); background-image: -o-linear-gradient(top,#f5f5f5,#f1f1f1); border: 1px solid #dcdcdc; border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 2px; color: #666; font-family: arial,sans-serif; font-size: 11px; font-weight: bold; height: 29px; line-height: 27px; margin: 11px 6px; min-width: 54px; padding: 0 8px; text-align: center;">';
+      getId('gbqfbb').outerHTML = '<input value="I\'m Feeling Lucky" name="btnI" type="submit" style="cursor: pointer;background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1); -webkit-border-radius: 2px; -webkit-user-select: none; background-color: #f5f5f5; background-image: linear-gradient(top,#f5f5f5,#f1f1f1); background-image: -o-linear-gradient(top,#f5f5f5,#f1f1f1); border: 1px solid #dcdcdc; border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 2px; color: #666; font-family: arial,sans-serif; font-size: 11px; font-weight: bold; height: 29px; line-height: 27px; margin: 11px 6px; min-width: 54px; padding: 0 8px; text-align: center;">';
     }, 30);
   } else {
     document.documentElement.setAttribute('searchBarConfig', round++);
@@ -98,8 +98,8 @@ function hp_message() {
 }
 
 var curUrl = location.href;
-if (curUrl.has('/webhp')) {
-  if (curUrl.has('?q=') || curUrl.has('&q=') || curUrl.has('sourceid=chrome-instant')) {
+if (curUrl.contains('/webhp')) {
+  if (curUrl.contains('?q=') || curUrl.contains('&q=') || curUrl.contains('sourceid=chrome-instant')) {
     //then it is definitely a serp
     //and it's not the homepage so we are not doing google homepage script.
   } else {

@@ -3,8 +3,8 @@ var offScript = function offScript() {
   cache = getClass('gbtc')[0];
   if (cache && !getId('scoutOn')) {
     var turnOn = createElement('li', {
-      className: 'gbt'
-      onclick: function() {
+      className: 'gbt',
+      onclick: function turnOnOnClick() {
         set('on', 'yes');
         location.reload();
       },
@@ -19,11 +19,11 @@ var offScript = function offScript() {
 
 var webSearch = function webSearch(url) {
   var returnValue = 'default';
-  if (url.has('?sourceid=chrome-instant') || 
+  if (url.contains('?sourceid=chrome-instant') || 
   
-      url.has('&sourceid=chrome-instant') || 
-      url.has('&q=') || url.has('?q=') || 
-      url.has('&as_q=') || url.has('?as_q=')) {
+      url.contains('&sourceid=chrome-instant') || 
+      url.contains('&q=') || url.contains('?q=') || 
+      url.contains('&as_q=') || url.contains('?as_q=')) {
       /*Do nothing, continue*/
   } else {
     console.log('url doesnt have basic params indicating a web search...');
@@ -38,7 +38,7 @@ var webSearch = function webSearch(url) {
   var bailParams = ['&tbs=sbi:', '?tbs=sbi:']; /*tbs is for searching by inputting an image, either dragging to a images.google.com tab or uploading.*/
   /*[TECHNICALLY] the tbs param is base64 encoded image data.*/
   bailParams.forEach(function(param){
-    if (url.has(param)) {
+    if (url.contains(param)) {
       console.log('url has param:' + param + ' ');
       returnValue = false;
     }
@@ -47,7 +47,7 @@ var webSearch = function webSearch(url) {
   /*tbm is the magical param that basically indicates what type of search is being done, at this time, only plain web search is supported.*/
   var tbmBailParams = ['isch', 'shop', 'nws', 'vid', 'plcs', 'dsc', 'rcp', 'app', 'pts', 'blg', 'bus'];
   tbmBailParams.forEach(function(search){
-    if (url.has('tbm=' + search)) {
+    if (url.contains('tbm=' + search)) {
       console.log('url has tbm= param:' + search);
       returnValue = false; /*bail, don't run scout on this page.*/
     }

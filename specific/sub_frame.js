@@ -4,7 +4,7 @@ var runInPage;
 runInPage = function runInPage() {
   var script = document.createElement('script');
   script.innerHTML = '';
-  for (task in arguments) {
+  for (var task in arguments) {
     if (typeof arguments[task] === 'string') {
       script.innerHTML += arguments[task];
     } else if (typeof arguments[task] === 'function') {

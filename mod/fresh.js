@@ -102,11 +102,11 @@ var htmlGroup = function htmlGroup() {
         }
       },
       onerror: function() {
-        alert('iframe error!'); //never happens...
+        alert('iframe error!'); //never happens... but just in case...
       },
       onmouseover: function(){
         this.focus();
-      };
+      },
       className: 'rightPane',
       sandbox: 'allow-scripts allow-forms allow-same-origin',
     }, {
@@ -171,7 +171,7 @@ var htmlGroup = function htmlGroup() {
         //--ON/OFF BUTTON
         window.onOffButton = createElement('a', {
           innerHTML: 'Turn off Scout',
-          onclick = function onOffButtonOnClick(){
+          onclick: function onOffButtonOnClick(){
             set('on', 'false');
             location.reload();
           },
@@ -186,7 +186,7 @@ var htmlGroup = function htmlGroup() {
         //--BETA GROUP LINK
         window.betaGroup = createElement('a', {
           innerHTML: 'Check Beta Group',
-          onclick = function betaGroupOnclick(){
+          onclick: function betaGroupOnclick(){
             preview('https://www.facebook.com/groups/243105935781743/', 0);
           },
           className: 'bootstrappyGray'
@@ -307,7 +307,7 @@ var htmlGroup = function htmlGroup() {
     ///////
     //TITLE append, prevents flash of 'query - Google Search' or 'http://crap'
     var title = createElement('title', {
-      innerText = ' '
+      innerText: ' '
     });
     firstDomNodes.appendChild(title);
     
@@ -322,9 +322,8 @@ var htmlGroup = function htmlGroup() {
   }
 }
 
-titleEl.initialCall = true;
 var newTitle = function newTitle(currentTitle) {
-  if (currentTitle.has('- Google Search')) {
+  if (currentTitle.contains('- Google Search')) {
     document.title = currentTitle.replace('- Google Search', '');
   }
   if (document.title.indexOf(titlePrefix) !== 0) {
@@ -350,7 +349,9 @@ var titleEl = function titleEl(skipBody) {
   } else {
     setTimeout(titleEl, 5);
   }
-}
+};
+titleEl.initialCall = true;
+
 
 var secondDomNodes = document.createDocumentFragment();
 var body = function body() {

@@ -2,18 +2,15 @@ var message, saveData, get, set;
 (function messageJS(){
 'use strict';
 var port = chrome.extension.connect({name: 'scripts'});
-function message(data) {
+message = function message(data) {
   try {
     port.postMessage(data);
   } catch(e) {console.log('CAUGHT ERROR:', e); }
 }
 
-function saveData(data) {
+saveData = function saveData(data) {
   var settings = data.settings;
-  sites = data.sites;
-  localStorage.setItem('sites', JSON.stringify(data.sites));
-  
-  for (item in settings) {
+  for (var item in settings) {
     set(item, settings[item]);
   }
 }
@@ -25,7 +22,7 @@ var defaults = {
   width: 22, 
 };
 
-function getCookie(key) {
+var getCookie = function getCookie(key) {
   var i,x,y,ARRcookies = document.cookie.split(";");
   var done = 'false';
   for (i=0; i < ARRcookies.length; i++) {
@@ -53,7 +50,7 @@ function getCookie(key) {
  *    }
  */
 
-function get(setting) {
+get = function get(setting) {
   var getReturn = 'initial';
   
   //undefined check, cause cookies and w3schools code can do that to you.
@@ -86,15 +83,13 @@ function get(setting) {
   } 
 }
 
-function set(setting, value) {
+set = function set(setting, value) {
   //console.log('setting ' + setting + ' to: ' + value);
   localStorage.setItem(setting, value);
   
-  if (setting !== 'sites') {
-    var exdate = new Date();
-    exdate.setDate(exdate.getDate() + 365*1.5); //just in case I want Scout to beg my attention in a year and a half? why not..
-    document.cookie = ''+setting+'='+value+';domain=google.com;expires=' + exdate.toUTCString();
-  }
+  var exdate = new Date();
+  exdate.setDate(exdate.getDate() + 365*1.5); //just in case I want Scout to beg my attention in a year and a half? why not..
+  document.cookie = ''+setting+'='+value+';domain=google.com;expires=' + exdate.toUTCString();
   
   var update = {};
   update.set = {};

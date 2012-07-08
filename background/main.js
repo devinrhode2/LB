@@ -100,8 +100,8 @@ chrome.extension.onConnect.addListener(function(port) {
         for(key in msg.set) {
           set(key, msg.set[key]);
         }
-      } else if(msg.gaEvent) {
-        gaEvent(msg.gaEvent);
+      } else if(msg.trackEvent) {
+        trackEvent(msg.trackEvent);
       } else {
         alert('unhandled message to background.html: ' + JSON.stringify(msg));
       }
