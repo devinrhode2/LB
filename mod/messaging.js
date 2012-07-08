@@ -1,3 +1,6 @@
+var message, saveData, get, set;
+(function messageJS(){
+'use strict';
 var port = chrome.extension.connect({name: 'scripts'});
 function message(data) {
   try {
@@ -109,3 +112,4 @@ port.onMessage.addListener(function(msg) {
     alert('unhandled BACKGROUND message: ' + JSON.stringify(msg));
   }
 });
+}());

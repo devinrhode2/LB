@@ -5,25 +5,25 @@
    "content_scripts": [
       {
          "all_frames": true,
-         "js": [ "misc/gen.js", "specific/sub_frame.js" ],
+         "js": [ "node_modules/extension-include/extension-include.js", "specific/sub_frame.js" ],
          "matches": [ "<all_urls>" ],
          "run_at": "document_start"
       },
       {
          "all_frames": false,
-         "js": [ "misc/gen.js", "mod/messaging.js", "mod/cs_analytics.js", "mod/neif.js", "mod/preview.js", "mod/fresh.js", "misc/start.js" ],
+         "js": [ "node_modules/extension-include/extension-include.js", "mod/messaging.js", "mod/cs_analytics.js", "mod/neif.js", "mod/preview.js", "mod/fresh.js", "misc/start.js" ],
          "matches": [ "*://*.google.com/search*", "*://*.google.com/webhp*" ],
          "run_at": "document_start"
       },
       {
          "all_frames": true,
-         "js": [ "misc/gen.js", "specific/google.com.js" ],
+         "js": [ "node_modules/extension-include/extension-include.js", "specific/google.com.js" ],
          "matches": [ "*://www.google.com/", "*://www.google.com/webhp*" ],
          "run_at": "document_start"
       },
       {
          "all_frames": true,
-         "js": [ "misc/gen.js", "specific/youtube.js" ],
+         "js": [ "node_modules/extension-include/extension-include.js", "specific/youtube.js" ],
          "matches": [ "*://*.youtube.com/*", "*://youtube.com/*" ],
          "run_at": "document_start"
       }
@@ -38,7 +38,7 @@
    "incognito": "spanning",
    "minimum_chrome_version": "18",
    "update_url": "http://thescoutapp.com/extension/update.xml",
-   "name": "Scout 3.4 Kalypso",
+   "name": "Scout 4.0 Eros",
    "homepage_url": "http://TheScoutApp.com",
    "permissions": [
      "<all_urls>",
@@ -52,5 +52,5 @@
      "webRequest",
      "webRequestBlocking"
    ],
-   "version": "3.4"
+   "version": "4.0"
 }

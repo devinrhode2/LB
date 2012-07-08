@@ -11,16 +11,16 @@ window.initGa = function initGa(UA, nickname) {
         document.documentElement.appendChild(g)
       }(document,'script'));
     } else {
-      alert('analytics.js is not intended for use in content scripts. use cs_analytics.js and gaEvent(someEventIdString)');
+      alert('analytics.js is not intended for use in content scripts. use cs_analytics.js and trackEvent(someEventIdString)');
     }
 }
 
-//initGa('UA-31868209-1', 'NOTHA TEST');
+initGa('UA-31868209-1', 'NOTHA TEST');
 //initGa('UA-31828297-1', 'testing UA');
-initGa('UA-31831223-1', 'beta UA');
+//initGa('UA-31831223-1', 'beta UA');
 
-//USAGE: gaEvent('SOME DANK SHITZ HAPPENZ');
-window.gaEvent = function gaEvent(event_name){
+//USAGE: trackEvent('they clicked this menu!');
+window.trackEvent = function trackEvent(event_name){
   event_name = event_name.replace(/\s/gi, '_');
   window._gaq.push(['_trackPageview', event_name]);
 };

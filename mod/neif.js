@@ -27,8 +27,8 @@ function neif() {
     
     r = document.getElementsByClassName('r');
     if (r && r[r.length - 1]) {
-      linkNodes = byClass('r');
-      numLinks = byClass('r').length;
+      linkNodes = getClass('r');
+      numLinks = getClass('r').length;
       //if firstLinkNode differs from the known firstLinkNode, modLinks so they open in smartframe, and open first one
       if (linkNodes[0].firstChild && linkNodes[linkNodes.length - 1].firstChild) {
         if (firstLinkNode != linkNodes[0].firstChild) {
@@ -53,10 +53,10 @@ function neif() {
 //Same as Instant Update
 function linkMods() {
   console.log('linkMods');
-  var numLinks = byClass('r').length;
+  var numLinks = getClass('r').length;
   for (var i = 0; i < numLinks; i++) {
     (function(i){
-      byClass('r')[i].firstChild.onclick = function (e){
+      getClass('r')[i].firstChild.onclick = function (e){
         if (e.metaKey) {
           console.log('cmd is down, do nothing different, follow browser default');
         } else if(e.shiftKey) {
@@ -74,10 +74,10 @@ function linkMods() {
     }(i))
   }
   
-  var numLis = byClass('g').length;
+  var numLis = getClass('g').length;
   for (var i = 0; i < numLis; i++) { //rig onclick of all li's
     (function(i){
-      byClass('g')[i].onclick = function (e){
+      getClass('g')[i].onclick = function (e){
         if (e.metaKey) {
           console.log('cmd is down, do nothing different, follow browser default.');
         } else if(e.shiftKey) {
@@ -86,35 +86,35 @@ function linkMods() {
           console.log('alt is down, going to full site!');
           e.preventDefault(); //#d9e6ff
           e.stopPropagation();
-          location.href = byClass('g')[i].getElementsByClassName('r')[0].firstChild.href;
+          location.href = getClass('g')[i].getElementsByClassName('r')[0].firstChild.href;
           return false;
         } else {
           console.log('calling preview..');
           e.preventDefault(); //#d9e6ff
           e.stopPropagation();
-          preview(byClass('g')[i].getElementsByClassName('r')[0].firstChild.href, i);
+          preview(getClass('g')[i].getElementsByClassName('r')[0].firstChild.href, i);
           return false;
         }
       };
-      byClass('g')[i].setAttribute('class', byClass('g')[i].getAttribute('class') + ' result');
+      getClass('g')[i].setAttribute('class', getClass('g')[i].getAttribute('class') + ' result');
     }(i))
   }
   
-  if (byClass('ts')[0] 
-      && byClass('ts')[0].childNodes[0] 
-      && byClass('ts')[0].childNodes[0].childNodes[1] 
-      && byClass('ts')[0].childNodes[0].childNodes[1].childNodes[0] 
-      && byClass('ts')[0].childNodes[0].childNodes[1].childNodes[0].childNodes[0]) {
-    var numVids = byClass('ts').length;
+  if (getClass('ts')[0] 
+      && getClass('ts')[0].childNodes[0] 
+      && getClass('ts')[0].childNodes[0].childNodes[1] 
+      && getClass('ts')[0].childNodes[0].childNodes[1].childNodes[0] 
+      && getClass('ts')[0].childNodes[0].childNodes[1].childNodes[0].childNodes[0]) {
+    var numVids = getClass('ts').length;
     for (var i = 0; i < numVids; i++) { //rig onclick for video li's
       (function(i){
-        if (byClass('ts')[i] 
-        && byClass('ts')[i].childNodes[0] 
-        && byClass('ts')[i].childNodes[0].childNodes[1] 
-        && byClass('ts')[i].childNodes[0].childNodes[1].childNodes[0] 
-        && byClass('ts')[i].childNodes[0].childNodes[1].childNodes[0].childNodes[0]) {
+        if (getClass('ts')[i] 
+        && getClass('ts')[i].childNodes[0] 
+        && getClass('ts')[i].childNodes[0].childNodes[1] 
+        && getClass('ts')[i].childNodes[0].childNodes[1].childNodes[0] 
+        && getClass('ts')[i].childNodes[0].childNodes[1].childNodes[0].childNodes[0]) {
           console.log('hit video unit:');
-          var vidThumb = byClass('ts')[i].childNodes[0].childNodes[1].childNodes[0].childNodes[0];
+          var vidThumb = getClass('ts')[i].childNodes[0].childNodes[1].childNodes[0].childNodes[0];
           console.log(vidThumb);
           vidThumb.onclick = function (e) {
             if (e.metaKey) {
@@ -125,7 +125,7 @@ function linkMods() {
               console.log('alt is down, full screen!');
               e.preventDefault(); //#d9e6ff
               e.stopPropagation();
-              location.href = byClass('g')[i].getElementsByClassName('r')[0].firstChild.href;
+              location.href = getClass('g')[i].getElementsByClassName('r')[0].firstChild.href;
               return false;
             } else {
               console.log('calling preview..');

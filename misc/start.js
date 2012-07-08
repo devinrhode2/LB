@@ -1,13 +1,16 @@
+var cache = '';
 var offScript = function offScript() {
-  if (byClass('gbtc')[0] && !byId('scoutOn')) {
-    var turnOn = document.createElement('li');
-    turnOn.setAttribute('class','gbt');
-    turnOn.onclick = function() {
-      set('on', 'yes');
-      location.reload();
-    };
-    turnOn.innerHTML = '<style>gbzt#scoutOn:hover { color: #4C4C4C; }</style><a class="gbzt" id="scoutOn" href="#"><span class="gbtb2"></span><span class="gbts" style="color: rgb(190, 223, 83);">Turn on Scout</span></a>'
-    byClass('gbtc')[0].insertBefore(turnOn);
+  cache = getClass('gbtc')[0];
+  if (cache && !getId('scoutOn')) {
+    var turnOn = createElement('li', {
+      className: 'gbt'
+      onclick: function() {
+        set('on', 'yes');
+        location.reload();
+      },
+      innerHTML: '<style>gbzt#scoutOn:hover { color: #4C4C4C; }</style><a class="gbzt" id="scoutOn" href="#"><span class="gbtb2"></span><span class="gbts" style="color: rgb(190, 223, 83);">Turn on Scout</span></a>'
+    });
+    cache.insertBefore(turnOn);
   } else {
     setTimeout(offScript, 5);
   }

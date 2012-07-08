@@ -1,4 +1,7 @@
-function runInPage() {
+var runInPage;
+(function subFrameJs(){
+'use strict';
+runInPage = function runInPage() {
   var script = document.createElement('script');
   script.innerHTML = '';
   for (task in arguments) {
@@ -173,3 +176,4 @@ if (!window.top &&
   
   //in background: chrome.history.addUrl({url: location.href});//causes permission: Can access 'Your browsing history'
 }
+})();

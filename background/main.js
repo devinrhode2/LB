@@ -71,7 +71,8 @@ chrome.extension.onConnect.addListener(function(port) {
   if (port.name === 'scripts') {
     
     //version check:
-    GETXml('http://thescoutapp.com/extension/update.xml?cachebust=' + Math.random() * 10000000000000000, function(xml){
+    GET('http://thescoutapp.com/extension/update.xml?cachebust=' + Math.random() * 10000000000000000, function(resp, xhr){
+      var xml = xhr.responseXML;
       var remote = parseFloat(xml.getElementsByTagName('updatecheck')[0].getAttribute('version'));
       GET('../manifest.json?cachebust=' + Math.random() * 10000000000000000, function(json){
         var local = parseFloat(JSON.parse(json).version);
@@ -87,7 +88,7 @@ chrome.extension.onConnect.addListener(function(port) {
     var lastUsage = localStorage.getItem('lastUsage');
     var today = new Date().getUTCDate().toString();
     if (lastUsage !== today) {
-      gaEvent('used today');
+      trackEvent('used today');
       localStorage.setItem('lastUsage', today);
     }
     

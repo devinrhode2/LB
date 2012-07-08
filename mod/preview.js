@@ -9,9 +9,9 @@ function src(url) {
   if (iframe.contentWindow) iframe.contentWindow.name = 'smartframe';
   if (iframe.contentWindow) iframe.contentWindow.setAttribute('name', 'smartframe');
   
-  var script = document.createElement('script');
-  script.id = 'scoutScript';
-  script.innerHTML = "\
+  var script = createElement('script', {
+    id: 'scoutScript',
+    innerHTML: "\
     setTimeout(function one(){                                                        \
       document.getElementById('smartframe').contentWindow.name = 'smartframe';        \
       setTimeout(function two(){                                                      \
@@ -23,7 +23,8 @@ function src(url) {
           ScoutScript.parentNode.removeChild(ScoutScript);                            \
         }, 2);                                                                        \
       }, 2);                                                                          \
-    }, 2);";
+    }, 2);"
+  });
   document.documentElement.appendChild(script);
 }
 
@@ -33,9 +34,9 @@ var prevLi = '';
 //preview is used to load a site, it determines whether to just set the iframe src or use altLoad
 function preview(url, li, auto) {
   if (typeof auto !== 'undefined' && auto) {
-    gaEvent('auto load');
+    trackEvent('auto load');
   } else {
-    gaEvent('manually clicked result');
+    trackEvent('manually clicked result');
   }
   if (!url) {
     console.log('preview received bad url parameter: ' + url);
@@ -45,7 +46,7 @@ function preview(url, li, auto) {
   /////////////////
   //HIGHLIGHT LOGIC
   //figure out which <li> element to highlight as the loaded page. (the darker blue)
-  if (byClass('g')[li]) {
+  if (getClass('g')[li]) {
     if (typeof li === 'undefined') {
       alert('please pass the li number to preview()');
     }
@@ -55,19 +56,19 @@ function preview(url, li, auto) {
       prevLi = li;
       (function(li){
         li.classList.add('scoutOpenedResult');
-      }(byClass('g')[li]))
+      }(getClass('g')[li]))
     
     } else {
     
-      if (byClass('g')[prevLi]) {
+      if (getClass('g')[prevLi]) {
       
         //swap the highlition for the loaded result.
-        byClass('g')[prevLi].classList.remove('scoutOpenedResult');
+        getClass('g')[prevLi].classList.remove('scoutOpenedResult');
         prevLi = li;
-        byClass('g')[li].classList.add('scoutOpenedResult');
+        getClass('g')[li].classList.add('scoutOpenedResult');
         
       } else {
-        console.log('byClass(\'g\')[prevLi] was false');
+        console.log('getClass(\'g\')[prevLi] was false');
         setTimeout(function(){
           preview(url, li, auto);
         }, 200);
