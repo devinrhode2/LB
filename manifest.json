@@ -12,7 +12,15 @@
       },
       {
          "all_frames": false,
-         "js": [ "node_modules/extension-include/extension-include.js", "mod/messaging.js", "mod/cs_analytics.js", "mod/neif.js", "mod/preview.js", "mod/fresh.js", "misc/start.js" ],
+         "js": [
+           "node_modules/extension-include/extension-include.js",
+           "mod/messaging.js",
+           "mod/cs_analytics.js",
+           "mod/neif.js",
+           "mod/preview.js",
+           "mod/fresh.js",
+           "misc/start.js"
+         ],
          "matches": [ "*://*.google.com/search*", "*://*.google.com/webhp*" ],
          "run_at": "document_start"
       },

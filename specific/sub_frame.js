@@ -23,9 +23,9 @@ if (!window.top &&
     window.location.href !== 'https://www.google.com/blank.html' &&
     window.location.href !== 'http://www.google.com/blank.html') {
     
-  var TheScoutAppFrameBrandaidScript = function TheScoutAppFrameBrandaidScript(){
+  var TheScoutAppFrameBandaidScript = function TheScoutAppFrameBandaidScript() {
       
-      var AlertOverwrite = function AlertOverwrite(){
+      function AlertOverwrite() {
         if (typeof window.ScoutNativeAlert === 'undefined') {                               
           window.ScoutNativeAlert = alert;                                                  
         } else {                                                                            
@@ -45,8 +45,8 @@ if (!window.top &&
        *   
        * });
        */
-      var forTheseDomains = function (arrayDomains, action){
-        arrayDomains.forEach(function(domain){
+      var forTheseDomains = function forTheseDomains(arrayDomains, action){
+        arrayDomains.forEach(function arrayDomains_forEach(domain){
           if (window.location.href.indexOf(domain + '/') > -1) {
             action();
           } else if(window.location.href.indexOf(domain) > -1) {
@@ -169,10 +169,10 @@ if (!window.top &&
           /*prevent window.name === 'smartframe' from being changed!*/
           window.__defineSetter__("name", function() {});
       }
-  };//end TheScoutAppFrameBrandaidScript definition
+  };//end TheScoutAppFrameBandaidScript definition
   
-  runInPage('window.TheScoutAppFrameBrandaidScript = ' + TheScoutAppFrameBrandaidScript.toString() + ';');
-  runInPage('TheScoutAppFrameBrandaidScript();');
+  runInPage('window.TheScoutAppFrameBandaidScript = ' + TheScoutAppFrameBandaidScript.toString() + ';');
+  runInPage('TheScoutAppFrameBandaidScript();');
   
   //in background: chrome.history.addUrl({url: location.href});//causes permission: Can access 'Your browsing history'
 }
