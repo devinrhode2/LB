@@ -7,7 +7,6 @@ function src(url) {
   iframe.name = 'smartframe';
   iframe.setAttribute('name', 'smartframe');
   if (iframe.contentWindow) iframe.contentWindow.name = 'smartframe';
-  if (iframe.contentWindow) iframe.contentWindow.setAttribute('name', 'smartframe');
   
   var script = createElement('script', {
     id: 'scoutScript',

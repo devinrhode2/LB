@@ -8,7 +8,7 @@ if (localStorage.getItem('installed') !== 'installed') {
   POST('http://thescoutapp.com/smartframes/post.php', 'install=occured', function(){});
 }
 
-var defaults = function defaults(defaults) {
+function defaults(defaults) {
   for (var item in defaults) {
     if (localStorage.getItem(item) === null) {
       localStorage.setItem(item, defaults[item]);
@@ -16,7 +16,7 @@ var defaults = function defaults(defaults) {
   }
 }
 
-var set = function set(setting, value) {
+function set(setting, value) {
   if (localStorage.getItem(setting) !== value.toString()) {
     if (setting !== 'sites') {
       set.message = 'localStorage['+setting+'] changed from: ' + localStorage.getItem(setting);
@@ -33,7 +33,7 @@ defaults({width:22, on: 'yes'}); //only write if they are undefined.
 
 var name = '';
 chrome.webRequest.onHeadersReceived.addListener(
-  function onHeadersReceivedListener(resp){
+  function onHeadersReceivedListener(resp) {
     resp.responseHeaders.forEach(function(header,index){
       if(header.name.toLowerCase() === 'x-frame-options')
         resp.responseHeaders.splice(index,1);
@@ -56,7 +56,7 @@ chrome.webRequest.onHeadersReceived.addListener(
   ['blocking','responseHeaders']
 );
 
-var sendData = function sendData(port) {
+function sendData(port) {
   var settings = {};
   for (var item in localStorage) {
     settings[item] = localStorage.getItem(item);

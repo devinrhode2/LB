@@ -1,11 +1,11 @@
 var prefs = [];
-document.cookie.split('; ').forEach(function(cookie){
+document.cookie.split('; ').forEach(function(cookie) {
   if (cookie.indexOf('PREF=') === 0) {
     prefs[prefs.length] = cookie.substring(cookie.indexOf('=') + 1, cookie.length);;
   }
 });
 
-var processPref = function processPref(PREF){
+function processPref(PREF) {
   var fPrefKeys = {};
   if (PREF) {
     PREF.split('&').forEach(function(pair){
@@ -25,7 +25,7 @@ var processPref = function processPref(PREF){
     }
   }
   return newPREF;
-};
+}
 
 var noPath = processPref(prefs[0]);
 document.cookie = 'PREF=' + noPath + '; expires=Mon, 09 Jan 2211 04:26:43 GMT; domain=youtube.com';
@@ -41,34 +41,35 @@ var style = document.createElement('style');
 style.innerHTML = '.video-ads {display: none !important;}';
 document.documentElement.appendChild(style);
 
-if (!window.top) {
-  var tryEmbedFix = function tryEmbedFix(){
-    var embed = document.getElementsByTagName('embed');
-    if (embed && embed.length > 0 && embed[0]) {
-      embed = embed[0];
-      if (embed.length > 1) {
-        alert('WOAH multiple embed elements...');
-      }
-      console.error('FLASH VIDEO. FIX IT!');
-      
-      //find video id:
-      var flashvars = embed.getAttribute('flashvars');
-      if (flashvars && flashvars.length > 29) {
-        var video_id = flashvars.lastIndexOf('&video_id=') + 10
-        var id = flashvars.substring(video_id, video_id + 11);
-        var embedStyle = getComputedStyle(embed);
-        if (id.length === 11) {
-          embed.outerHTML = '<iframe name="SUPERSCOUTHACK" id="supascouthack" type="text/html" frameborder="0" width="'+embedStyle.width+'" height="'+embedStyle.height+'" src="http://www.youtube.com/embed/'+id +'?autoplay=1&SUPERSCOUTHACK=YIPPEY" allowfullscreen></iframe>';
-          setTimeout(tryEmbedFix, 3000);
-        } else {
-          alert('Oh no! id is: ' + id);
-        }
+function tryEmbedFix() {
+  var embed = document.getElementsByTagName('embed');
+  if (embed && embed.length > 0 && embed[0]) {
+    embed = embed[0];
+    if (embed.length > 1) {
+      alert('WOAH multiple embed elements...');
+    }
+    console.error('FLASH VIDEO. FIX IT!');
+    
+    //find video id:
+    var flashvars = embed.getAttribute('flashvars');
+    if (flashvars && flashvars.length > 29) {
+      var video_id = flashvars.lastIndexOf('&video_id=') + 10
+      var id = flashvars.substring(video_id, video_id + 11);
+      var embedStyle = getComputedStyle(embed);
+      if (id.length === 11) {
+        embed.outerHTML = '<iframe name="SUPERSCOUTHACK" id="supascouthack" type="text/html" frameborder="0" width="'+embedStyle.width+'" height="'+embedStyle.height+'" src="http://www.youtube.com/embed/'+id +'?autoplay=1&SUPERSCOUTHACK=YIPPEY" allowfullscreen></iframe>';
+        setTimeout(tryEmbedFix, 3000);
       } else {
-        alert('What... flashvars falsy/shorter than 29 chars:' + flashvars);
+        alert('Oh no! id is: ' + id);
       }
     } else {
-      setTimeout(tryEmbedFix, 160);
+      alert('What... flashvars falsy/shorter than 29 chars:' + flashvars);
     }
-  };
+  } else {
+    setTimeout(tryEmbedFix, 160);
+  }
+}
+
+if (!window.top) {
   tryEmbedFix();
 }

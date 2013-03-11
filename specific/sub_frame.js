@@ -16,7 +16,7 @@ runInPage = function runInPage() {
   } catch (e) {
     console.error('CAUGHT ERROR: ', e, 'on:', script.innerHTML);
   }
-}
+};
 
 
 if (!window.top &&

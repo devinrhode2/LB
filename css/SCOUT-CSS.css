@@ -1,7 +1,3 @@
-#gbq1 + #gbq2 {
-  margin-left: 0px !important;
-}
-
 #tads,
 #tadsto,
 #tadsb {
@@ -137,7 +133,8 @@ div.nojsb,
 #arcntc,
 div.gsib_d,
 td.gsib_d,
-div.vspi {
+div.vspi,
+#top_nav {
   display: none !important;
 }
 #center_col,
@@ -307,6 +304,9 @@ td.b.navend #pnprev.pn {
 }
 div.f.kv+span.st>span.ft {
   word-wrap: break-word;
+}
+li.g.tpo {
+  display: none !important;
 }
 a.gssb_j.gss_ifl {
   display: none;
@@ -881,22 +881,15 @@ table.gssb_c {
   outline: none;
 }
 /**END TOP BAR**/
-#smartframe {
-  -webkit-transition: left 0s linear, width 0s linear;
-}
-#searchform,
-html,
-#shadowDiv,
-#gb {
-  -webkit-transition: width 0s linear;
-}
-#ulBorder,
-#scoutAdjustor,
-#fullSite,
-#loadingDiv {
-  -webkit-transition: left 0s linear;
-}
-*
+/*
+$speed = 0s linear //<--- Tried this transition, but turned it off with 0 seconds. Feel free to see how it feels, you should agree
+#smartframe
+  -webkit-transition: left $speed, width $speed
+#searchform, html, #shadowDiv, #gb
+  -webkit-transition: width $speed
+#ulBorder, #scoutAdjustor, #fullSite, #loadingDiv
+  -webkit-transition: left $speed
+*/
 #__su__toolbar {
   display: none;
   width: 0px;

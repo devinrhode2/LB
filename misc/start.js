@@ -1,5 +1,5 @@
 var cache = '';
-var offScript = function offScript() {
+function offScript() {
   cache = getClass('gbtc')[0];
   if (cache && !getId('scoutOn')) {
     var turnOn = createElement('li', {
@@ -14,10 +14,10 @@ var offScript = function offScript() {
   } else {
     setTimeout(offScript, 5);
   }
-};
+}
 
 
-var webSearch = function webSearch(url) {
+function webSearch(url) {
   var returnValue = 'default';
   if (url.contains('?sourceid=chrome-instant') || 
   
@@ -59,7 +59,7 @@ var webSearch = function webSearch(url) {
     if (returnValue !== false) alert('return value should be false, but is:' + returnValue);
     return returnValue
   }
-};
+}
 
 
 var isWebSearch = webSearch(location.href);

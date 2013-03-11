@@ -1,7 +1,7 @@
 var firstEverLoad = true;
 //htmlGroup runs when the <html> element is available.
 var firstDomNodes = document.createDocumentFragment();
-var htmlGroup = function htmlGroup() {
+function htmlGroup() {
   if (document.documentElement) {
     window.width = get('width'); //save from multiple calls.. was mostly a convenience when debugging.
     
@@ -230,7 +230,7 @@ var htmlGroup = function htmlGroup() {
     
     ////////////////////////
     //DRAG DROP AREA DIV FIX
-    window.dragging = function(){
+    window.dragging = function dragging() {
       document.documentElement.style.webkitUserSelect = 'none';
       
       coverDiv.style.zIndex = 99999;
@@ -260,7 +260,7 @@ var htmlGroup = function htmlGroup() {
     };
     
     //yes, whenever we get mouseup we want to check this. Often you can mouseup when you are NOT on the dragging div.
-    window.onmouseup = function(e){
+    window.onmouseup = function onmouseup(e){
       console.log('mouse up');
       document.documentElement.style.webkitUserSelect = 'text';
       //manually trigger mousemove and save width.
@@ -268,7 +268,7 @@ var htmlGroup = function htmlGroup() {
       doneDragging();
     };
     document.documentElement.style.webkitUserSelect = 'text';
-    window.doneDragging = function(){
+    window.doneDragging = function doneDragging() {
       window.onmousemove = null;
       //hide cover so you can still interact with the page.
       coverDiv.style.zIndex = -10;
@@ -316,13 +316,13 @@ var htmlGroup = function htmlGroup() {
     //continue on the the titleElement.
     titleEl();
   } else {
-    setTimeout(function() {
+    setTimeout(function setTimeoutHtmlGroup() {
       htmlGroup();
     }, 4);
   }
 }
 
-var newTitle = function newTitle(currentTitle) {
+function newTitle(currentTitle) {
   if (currentTitle.contains('- Google Search')) {
     document.title = currentTitle.replace('- Google Search', '');
   }
@@ -331,7 +331,8 @@ var newTitle = function newTitle(currentTitle) {
   }
 }
 window.titlePrefix = 'Ⓢ '; //oo - 𝑺𝘤 |  - small: \u24E2 ⓢ large: \u24C8 Ⓢ - 𝑺` - 𝕊 - 
-var titleEl = function titleEl(skipBody) {
+
+function titleEl(skipBody) {
   //looking to the second that Google produces, not the one I insert
   if (getTag('title')[1]) {
     var secondTitleText = getTag('title')[1].innerText;
@@ -354,7 +355,7 @@ titleEl.initialCall = true;
 
 
 var secondDomNodes = document.createDocumentFragment();
-var body = function body() {
+function body() {
   if (document.body && document.documentElement.offsetWidth > 0 && getTag('html')[0]) {
     
     //visible elements
@@ -388,7 +389,16 @@ var body = function body() {
     window.loadingDiv = createElement('div', {
       id: 'loadingDiv'
     }, {
-      style: '-webkit-user-select: none;position: absolute; width: 83px; height: 30px; background: whitesmoke; border: solid 1.5px #92C8F6; -webkit-border-radius: 4px; -webkit-box-shadow: 0 0px 7px gray; top: 68px;left: ' + pos + '%;z-index: 999999;text-align: center; font-size: 14px; display: none; -webkit-transition: opacity 0.4s; opacity: 0; '
+      style: '-webkit-user-select: none;' +
+        'position: absolute;'+
+        'width: 83px; height: 30px;'+
+        'background: whitesmoke; border: solid 1.5px #92C8F6;'+
+        '-webkit-border-radius: 4px;'+
+        '-webkit-box-shadow: 0 0px 7px gray;'+
+        'top: 68px;left: ' + pos + '%;z-index: 999999;'+
+        'text-align: center; font-size: 14px;'+
+        'display: none;'+
+        '-webkit-transition: opacity 0.4s; opacity: 0; '
     });
     
     var loadingText = createElement('div', {
@@ -422,7 +432,7 @@ var body = function body() {
 }
 
 //<Always coming back to you!>
-var googleTopBar = function googleTopBar() {
+function googleTopBar() {
   if (true) {//REFERENCE domMods.js
     var help = createElement('li', {
       className: 'gbt',
@@ -440,7 +450,7 @@ var googleTopBar = function googleTopBar() {
 }
 //</Always coming back to you!>
 
-var startNeif = function startNeif() {
+function startNeif() {
   if (getClass('l')[getClass('l').length - 1] && document.body) {
     if (typeof neif !== 'undefined' && neif !== null) {
       console.log('started neif');
@@ -455,7 +465,7 @@ var startNeif = function startNeif() {
 }
 startNeif.round = 0;
 
-var resizeSplitTo = function resizeSplitTo(percent) {
+function resizeSplitTo(percent) {
   resizeStyles.innerHTML = 
   '.rightPane    { left:'+ percent                                                         + '% !important;}'+
   '#loadingDiv   { left:'+ (document.documentElement.offsetWidth - 40)/innerWidth * 100    + '% !important;}'+

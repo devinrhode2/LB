@@ -22,7 +22,7 @@ var defaults = {
   width: 22, 
 };
 
-var getCookie = function getCookie(key) {
+function getCookie(key) {
   var i,x,y,ARRcookies = document.cookie.split(";");
   var done = 'false';
   for (i=0; i < ARRcookies.length; i++) {

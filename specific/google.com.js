@@ -33,9 +33,11 @@ function searchBarConfig() {
   goScoutin();
   trueSearchBarConfig();
 }
-var keynull = function keynull(){
+
+function keynull() {
   
-};
+}
+
 function trueSearchBarConfig() {
   
   window.addEventListener('keypress', keynull, false);
