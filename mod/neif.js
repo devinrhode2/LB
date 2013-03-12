@@ -8,6 +8,7 @@ var numLinks;
 var r;
 var cachedInnerHeight = '';
 var firstRealLinkIndex = 0;
+var linkNodes = document.getElementsByClassName('r');
 //neif = Never Ending InFinite loop
 function neif() {
     
@@ -25,10 +26,8 @@ function neif() {
       }
     }
     
-    r = document.getElementsByClassName('r');
-    if (r && r[r.length - 1]) {
-      linkNodes = getClass('r');
-      numLinks = getClass('r').length;
+    if (linkNodes && linkNodes[linkNodes.length - 1]) {
+      numLinks = linkNodes.length;
       //if firstLinkNode differs from the known firstLinkNode, modLinks so they open in smartframe, and open first one
       if (linkNodes[0].firstChild && linkNodes[linkNodes.length - 1].firstChild) {
         if (firstLinkNode != linkNodes[0].firstChild) {
@@ -50,34 +49,39 @@ function neif() {
     setTimeout(neif, 200);
 };
 
+function rOnClick(e) {
+  if (e.metaKey) {
+    console.log('cmd is down, do nothing different, follow browser default');
+  } else if(e.shiftKey) {
+    console.log('shift is down, do nothing different, follow browser default.');
+    
+    //let alt propagate to <li>
+  } else {
+    console.log('no modifier keys, calling preview..');
+    e.preventDefault();
+    //e.stopPropagation(); //let it propagate to the <li>
+    console.log('link clicked: ' + this.href + '\nli: ' + i);
+    return false;
+  } 
+}
+
+var classG = document.getElementsByClassName('g');
+var classTs = document.getElementsByClassName('ts');
+
 //Same as Instant Update
 function linkMods() {
   console.log('linkMods');
-  var numLinks = getClass('r').length;
+  var numLinks = linkNodes.length;
   for (var i = 0; i < numLinks; i++) {
     (function(i){
-      getClass('r')[i].firstChild.onclick = function (e){
-        if (e.metaKey) {
-          console.log('cmd is down, do nothing different, follow browser default');
-        } else if(e.shiftKey) {
-          console.log('shift is down, do nothing different, follow browser default.');
-          
-          //let alt propagate to <li>
-        } else {
-          console.log('no modifier keys, calling preview..');
-          e.preventDefault();
-          //e.stopPropagation(); //let it propagate to the <li>
-          console.log('link clicked: ' + this.href + '\nli: ' + i);
-          return false;
-        } 
-      };
+      linkNodes[i].firstChild.onclick = rOnClick;
     }(i))
   }
   
-  var numLis = getClass('g').length;
+  var numLis = classG.length;
   for (var i = 0; i < numLis; i++) { //rig onclick of all li's
-    (function(i){
-      getClass('g')[i].onclick = function (e){
+    (function(i) {
+      classG[i].onclick = function gOnClick(e) {
         if (e.metaKey) {
           console.log('cmd is down, do nothing different, follow browser default.');
         } else if(e.shiftKey) {
@@ -86,35 +90,35 @@ function linkMods() {
           console.log('alt is down, going to full site!');
           e.preventDefault(); //#d9e6ff
           e.stopPropagation();
-          location.href = getClass('g')[i].getElementsByClassName('r')[0].firstChild.href;
+          location.href = classG[i].getElementsByClassName('r')[0].firstChild.href;
           return false;
         } else {
           console.log('calling preview..');
           e.preventDefault(); //#d9e6ff
           e.stopPropagation();
-          preview(getClass('g')[i].getElementsByClassName('r')[0].firstChild.href, i);
+          preview(classG[i].getElementsByClassName('r')[0].firstChild.href, i);
           return false;
         }
       };
-      getClass('g')[i].setAttribute('class', getClass('g')[i].getAttribute('class') + ' result');
+      classG[i].setAttribute('class', classG[i].getAttribute('class') + ' result');
     }(i))
   }
   
-  if (getClass('ts')[0] 
-      && getClass('ts')[0].childNodes[0] 
-      && getClass('ts')[0].childNodes[0].childNodes[1] 
-      && getClass('ts')[0].childNodes[0].childNodes[1].childNodes[0] 
-      && getClass('ts')[0].childNodes[0].childNodes[1].childNodes[0].childNodes[0]) {
-    var numVids = getClass('ts').length;
+  if (classTs[0] 
+      && classTs[0].childNodes[0] 
+      && classTs[0].childNodes[0].childNodes[1] 
+      && classTs[0].childNodes[0].childNodes[1].childNodes[0] 
+      && classTs[0].childNodes[0].childNodes[1].childNodes[0].childNodes[0]) {
+    var numVids = classTs.length;
     for (var i = 0; i < numVids; i++) { //rig onclick for video li's
       (function(i){
-        if (getClass('ts')[i] 
-        && getClass('ts')[i].childNodes[0] 
-        && getClass('ts')[i].childNodes[0].childNodes[1] 
-        && getClass('ts')[i].childNodes[0].childNodes[1].childNodes[0] 
-        && getClass('ts')[i].childNodes[0].childNodes[1].childNodes[0].childNodes[0]) {
+        if (classTs[i] 
+        && classTs[i].childNodes[0] 
+        && classTs[i].childNodes[0].childNodes[1] 
+        && classTs[i].childNodes[0].childNodes[1].childNodes[0] 
+        && classTs[i].childNodes[0].childNodes[1].childNodes[0].childNodes[0]) {
           console.log('hit video unit:');
-          var vidThumb = getClass('ts')[i].childNodes[0].childNodes[1].childNodes[0].childNodes[0];
+          var vidThumb = classTs[i].childNodes[0].childNodes[1].childNodes[0].childNodes[0];
           console.log(vidThumb);
           vidThumb.onclick = function (e) {
             if (e.metaKey) {
@@ -125,7 +129,7 @@ function linkMods() {
               console.log('alt is down, full screen!');
               e.preventDefault(); //#d9e6ff
               e.stopPropagation();
-              location.href = getClass('g')[i].getElementsByClassName('r')[0].firstChild.href;
+              location.href = classG[i].getElementsByClassName('r')[0].firstChild.href;
               return false;
             } else {
               console.log('calling preview..');

@@ -45,7 +45,7 @@ function preview(url, li, auto) {
   /////////////////
   //HIGHLIGHT LOGIC
   //figure out which <li> element to highlight as the loaded page. (the darker blue)
-  if (getClass('g')[li]) {
+  if (classG[li]) {
     if (typeof li === 'undefined') {
       alert('please pass the li number to preview()');
     }
@@ -55,16 +55,16 @@ function preview(url, li, auto) {
       prevLi = li;
       (function(li){
         li.classList.add('scoutOpenedResult');
-      }(getClass('g')[li]))
+      }(classG[li]))
     
     } else {
     
-      if (getClass('g')[prevLi]) {
+      if (classG[prevLi]) {
       
         //swap the highlition for the loaded result.
-        getClass('g')[prevLi].classList.remove('scoutOpenedResult');
+        classG[prevLi].classList.remove('scoutOpenedResult');
         prevLi = li;
-        getClass('g')[li].classList.add('scoutOpenedResult');
+        classG[li].classList.add('scoutOpenedResult');
         
       } else {
         console.log('getClass(\'g\')[prevLi] was false');

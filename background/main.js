@@ -31,7 +31,6 @@ function set(setting, value) {
 
 defaults({width:22, on: 'yes'}); //only write if they are undefined. 
 
-var name = '';
 chrome.webRequest.onHeadersReceived.addListener(
   function onHeadersReceivedListener(resp) {
     resp.responseHeaders.forEach(function(header,index){

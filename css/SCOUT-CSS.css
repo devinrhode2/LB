@@ -1,11 +1,10 @@
 #tads,
 #tadsto,
 #tadsb {
-  display: none;
-  width: inherit !important;
+  display: none !important;
+  visibility: hidden;
 }
-#rso li.g.result,
-#rso > li {
+.g {
   border-right: 2px transparent solid;
   -webkit-transition: background-color 0.15s;
   cursor: pointer !important;
@@ -20,14 +19,13 @@
   background: -webkit-gradient(linear, left top, left bottom, from(#373737), to(#111)) !important;
   border-bottom: 1px solid #000;
 }
-#rso li.g.result:hover,
-#rso > li:hover {
+.g:hover {
   background-color: #edf3fd;
 /* light green: hsl(83, 80%, 93%);  */
 /* differed gray: rgb(234, 234, 234); */
 /* green: hsl(84, 85%, 96%) */
 }
-li.g.scoutOpenedResult {
+.g.scoutOpenedResult {
   border-right: 2px #333 solid !important;
   background-color: #d1e7fa !important;
 /*hsl(84, 80%, 85%) !important; a lighter scoutish green*/
@@ -45,13 +43,14 @@ li.g.scoutOpenedResult {
   top: 18px !important;
   position: relative !important;
 }
-li.g.scoutOpenedResult span.st,
-li.g.scoutOpenedResult span.st em {
+.g.scoutOpenedResult span.st,
+.g.scoutOpenedResult span.st em {
   color: #313131;
 /* rgb(26, 26, 26) */
 }
 .hidden {
   display: none !important;
+  visibility: hidden;
 }
 .updateRed {
   font-weight: bold;
@@ -122,7 +121,7 @@ li.g.scoutOpenedResult span.st em {
 #leftnavc,
 #vspb,
 button.vspib,
-div.f.kv > cite + cite,
+.f.kv > cite + cite,
 td.gsib_e,
 td.gsib_b,
 #gbg,
@@ -136,6 +135,7 @@ td.gsib_d,
 div.vspi,
 #top_nav {
   display: none !important;
+  visibility: hidden;
 }
 #center_col,
 #foot {
@@ -161,7 +161,7 @@ div.tsf-p {
 cite b {
   font-weight: normal;
 }
-a.gl.nobr {
+.gl.nobr {
   opactiy: 0.7 !important;
 }
 #cnt {
@@ -176,7 +176,7 @@ div.ksfccl {
 #subform_ctrl {
   margin-right: 55px;
 }
-div.f.kv {
+.f.kv {
   white-space: nowrap !important;
   width: 100%;
 }
@@ -187,15 +187,14 @@ cite {
   width: 100%;
   height: 16px;
 }
-a.l {
+.l {
   word-wrap: break-word !important;
 }
-li.g,
-#rso > li {
+.g {
   margin-bottom: 0 !important;
   padding-left: 16px;
   padding-right: 16px;
-  padding-top: 10px;
+  padding-top: 10px !important;
   padding-bottom: 9px !important;
   border-bottom: 1px solid #e5e5e5 !important;
 }
@@ -228,6 +227,7 @@ span.gl a {
 }
 #fll {
   display: none;
+  visibility: hidden;
 }
 h3.r a {
   white-space: normal !important;
@@ -250,6 +250,7 @@ a.fl {
 }
 span.csb {
   display: none;
+  visibility: hidden;
 }
 #pnnext.pn span {
   margin-left: 6px !important;
@@ -267,6 +268,7 @@ div.bl span.ch {
 }
 li.gbt a.gbp1 {
   display: none;
+  visibility: hidden;
 }
 #lst-ib + div.gsfi {
   width: auto;
@@ -287,9 +289,11 @@ p.sp_cnt {
 }
 p.sp_cnt br {
   display: none;
+  visibility: hidden;
 }
 td > a.fl {
   display: none !important;
+  visibility: hidden;
 }
 td.b.navend #pnprev.pn {
   margin-right: -32px !important;
@@ -301,15 +305,18 @@ td.b.navend #pnprev.pn {
 #gb_23,
 #gb_78 {
   display: none !important;
+  visibility: hidden;
 }
-div.f.kv+span.st>span.ft {
+.f.kv+span.st>span.ft {
   word-wrap: break-word;
 }
-li.g.tpo {
+.g.tpo {
   display: none !important;
+  visibility: hidden;
 }
 a.gssb_j.gss_ifl {
   display: none;
+  visibility: hidden;
 }
 div.gl {
   white-space: normal;
@@ -323,16 +330,18 @@ form#tsf {
 }
 #gbx4 {
   display: none;
+  visibility: hidden;
 }
 #gbz {
   width: 99%;
   z-index: 991 !important;
 }
-div.f.kv+span.st {
+.f.kv+span.st {
   word-wrap: break-word !important;
 }
 #logocont {
   display: none !important;
+  visibility: hidden;
 }
 #gbztms1 {
   text-transform: capitalize;
@@ -483,9 +492,11 @@ div.s>table.ts>tbody>tr+tr>td+td>div {
 }
 div.vspib {
   display: none;
+  visibility: hidden;
 }
 #nyc {
   display: none !important;
+  visibility: hidden;
 }
 #tsf {
   width: auto !important;
@@ -499,6 +510,7 @@ html {
 }
 #sflas.gl.nobr {
   display: none !important;
+  visibility: hidden;
 }
 cite.kvm {
   display: block;
@@ -512,7 +524,7 @@ cite.kvm > button {
   top: -15px;
   right: -31px;
 }
-li.g > #knavm {
+.g > #knavm {
   padding-top: 10px !important;
   left: 2px !important;
 }
@@ -533,7 +545,7 @@ div.vspib + table.ts > tbody > tr > td + td > a.l + span > cite {
 table.ts > tbody > tr > td + td > div > span.gl > cite {
   width: auto;
 }
-#ires > #rso > li.g.knavi > div.vsc.nulead + table.ts > tbody > tr > td:first-child {
+#ires > #rso > .g.knavi > div.vsc.nulead + table.ts > tbody > tr > td:first-child {
   float: left;
 }
 #res {
@@ -544,10 +556,10 @@ table.ts > tbody > tr > td + td > div > span.gl > cite {
   width: inherit !important;
   padding: 0 !important;
 }
-li.g > div.vsc > div.vspib + h3.r + div.s > div.f.kv > span:last-child {
+.g > div.vsc > div.vspib + h3.r + div.s > .f.kv > span:last-child {
   float: right;
 }
-li.g.videobox > div.vsc > div.s > table.ts > tbody > tr > td:first-child {
+.g.videobox > div.vsc > div.s > table.ts > tbody > tr > td:first-child {
   float: left;
   width: auto;
 }
@@ -556,10 +568,10 @@ li.g.videobox > div.vsc > div.s > table.ts > tbody > tr > td:first-child {
 .nobr {
   white-space: normal !important;
 }
-#rso > li.g > div.vsc > div.s > table.ts > tbody > tr > td[valign=top]:first-child {
+#rso > .g > div.vsc > div.s > table.ts > tbody > tr > td[valign=top]:first-child {
   float: left;
 }
-#rso > li.g > div.vsc > div.s > table.ts > tbody > tr > td[valign=top]:first-child > div:first-child {
+#rso > .g > div.vsc > div.s > table.ts > tbody > tr > td[valign=top]:first-child > div:first-child {
   padding: 0 5px 0 0 !important;
 }
 td.f > a.fl {
@@ -667,6 +679,7 @@ div.gl > cite {
 }
 #topstuff > #msg_box > p > span + a + br {
   display: none;
+  visibility: hidden;
 }
 #botstuff > #uh_h {
   padding: 0 !important;
@@ -731,7 +744,7 @@ body {
 #gbg .gbgt {
   color: #b3b3b3 !important;
 }
-ol#rso > li.g > h3.r + div {
+ol#rso > .g > .r + div {
   margin-right: 0px !important;
 }
 .brs_col {
@@ -783,20 +796,20 @@ button.gbil.esw.eswd,
 #gbq2 {
   padding-top: 12px !important;
 }
-ol#rso > li.g > div.vsc:first-child > h3.r:first-child + div.vspib + div.s > div.f.kv + div.esc.kb + table.ts:last-child > tbody:first-child > tr:first-child > td[valign=top]:last-child > div.f.kb > table[border="0"][cellpadding="0"][cellspacing="0"].ti {
+ol#rso > .g > div.vsc:first-child > .r:first-child + div.vspib + .s > .f.kv + div.esc.kb + .ts:last-child > tbody:first-child > tr:first-child > td[valign=top]:last-child > div.f.kb > table[border="0"][cellpadding="0"][cellspacing="0"].ti {
   width: 65px !important;
 }
-ol#rso > li.g > div.vsc:first-child > h3.r:first-child + div.vspib + div.s > div.f.kv + div.esc.kb + table.ts:last-child > tbody:first-child > tr:first-child > td[valign=top]:last-child > div.f.kb > table[border="0"][cellpadding="0"][cellspacing="0"].ti > tbody > tr > td {
+ol#rso > .g > div.vsc:first-child > .r:first-child + div.vspib + .s > .f.kv + div.esc.kb + .ts:last-child > tbody:first-child > tr:first-child > td[valign=top]:last-child > div.f.kb > table[border="0"][cellpadding="0"][cellspacing="0"].ti > tbody > tr > td {
   float: left;
 }
-ol#rso > li.g > h3.r + div + table[style="margin-top:2px"].ts > tbody > tr:first-child > td[valign=top]:first-child {
+ol#rso > .g > .r + div + table[style="margin-top:2px"].ts > tbody > tr:first-child > td[valign=top]:first-child {
   float: left;
   margin-right: 3px;
 }
-ol#rso > li.g > h3.r + div + table[style="margin-top:2px"].ts > tbody > tr:first-child > td[valign=top]:last-child {
+ol#rso > .g > .r + div + table[style="margin-top:2px"].ts > tbody > tr:first-child > td[valign=top]:last-child {
   padding-left: 0px !important;
 }
-ol#rso > li.g > h3.r + div + table[style="margin-top:2px"].ts > tbody > tr:first-child > td[valign=top]:last-child > div.s:first-child {
+ol#rso > .g > .r + div + table[style="margin-top:2px"].ts > tbody > tr:first-child > td[valign=top]:last-child > div.s:first-child {
   padding-top: 1px;
 }
 /*for Search+ (Google's Search+)*/
@@ -804,18 +817,18 @@ ol#rso > li.g > h3.r + div + table[style="margin-top:2px"].ts > tbody > tr:first
   display: none !important;
 }
 /*hides some shitty table divs of addresses that link to a map preview in Googles preview pane*/
-ol#rso > li.g > div.vsc > div[style="float:right"]:first-child > div[style*="width:168px"]:first-child {
+ol#rso > .g > div.vsc > div[style="float:right"]:first-child > div[style*="width:168px"]:first-child {
   display: none;
 }
 /*for G+ profile authors. This wraps text around the authors pic*/
-ol#rso > li.g > div.vsc:first-child > div.s > table.ts > tbody > tr > td[valign="top"]:last-child > div:first-child > span[style*="white-space:nowrap"] {
+ol#rso > .g > div.vsc:first-child > div.s > table.ts > tbody > tr > td[valign="top"]:last-child > div:first-child > span[style*="white-space:nowrap"] {
   white-space: normal !important;
 }
 /*for add to circles shit..*/
-#rso>li.g {
+#rso>.g {
   margin: 0 !important;
 }
-#rso > li.g > div.s > cite:first-child + div[style="top:0;right:0"]:nth-of-type(1) {
+#rso > .g > .s > cite:first-child + div[style="top:0;right:0"]:nth-of-type(1) {
   display: none;
 }
 body {

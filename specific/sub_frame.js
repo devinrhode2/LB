@@ -1,7 +1,6 @@
-var runInPage;
-(function subFrameJs(){
+(function subFrameJs() {
 'use strict';
-runInPage = function runInPage() {
+function runInPage() {
   var script = document.createElement('script');
   script.innerHTML = '';
   for (var task in arguments) {
@@ -16,7 +15,7 @@ runInPage = function runInPage() {
   } catch (e) {
     console.error('CAUGHT ERROR: ', e, 'on:', script.innerHTML);
   }
-};
+}
 
 
 if (window.top.location.href == null &&
@@ -173,6 +172,7 @@ if (window.top.location.href == null &&
   
   runInPage('window.TheScoutAppFrameBandaidScript = ' + TheScoutAppFrameBandaidScript.toString() + ';');
   runInPage('TheScoutAppFrameBandaidScript();');
+  TheScoutAppFrameBandaidScript = null;
   
   //in background: chrome.history.addUrl({url: location.href});//causes permission: Can access 'Your browsing history'
 }
