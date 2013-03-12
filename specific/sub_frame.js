@@ -19,7 +19,7 @@ runInPage = function runInPage() {
 };
 
 
-if (!window.top &&
+if (window.top.location.href == null &&
     window.location.href !== 'https://www.google.com/blank.html' &&
     window.location.href !== 'http://www.google.com/blank.html') {
     
