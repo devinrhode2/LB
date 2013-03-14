@@ -1,0 +1,78 @@
+/*** development ***/
+html {
+  width: 90% !important;
+  border-right: 1px dotted gray;
+}
+
+
+
+/*** IMPORTANT STRUCTURAL STYLES - without these, the page is really broken ***/
+/*chunks of page to hide*/
+  #appbar   /*1,000,000 results*/
+, #mngb     /*contains search box*/
+, #top_nav  /*contains any time and any results filters*/
+, .pplsrsla /*'share' button*/
+, .vspib    /*instant site previews on side*/
+{
+  display: none !important;
+  visibility: hidden;
+}
+
+
+/*flatten left/right margin of the page*/
+#center_col, #foot {
+  /*originally around 120px*/
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+#hdtb_msb > .hdtb_mitem:first-child, .ab_tnav_wrp, #cnt #center_col, .mw #center_col, .mw #foot {
+  /*originally like 138 or 120 px*/
+  margin-left: 0px !important;
+}
+
+/*fluid width for sidebar/google's center column*/
+#cnt #center_col, #cnt #foot, #cnt .ab_center_col {
+  /*originally 528px*/
+  width: auto !important;
+}
+
+#cnt {
+  /*originally something like 823px, the page width (or close to that)*/
+  min-width: 0 !important;
+}
+
+/*make green url text cut off with ellipsis, and only take up one line of text*/
+cite {
+  overflow-x: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*hide ads*/
+#taw {
+  display: none !important;
+}
+
+
+/*** ADJUSTING MARGINS/PADDING ***/
+#res {
+  /*originally 0 8px */
+  padding: 0 !important;
+}
+
+/* small tweaks */
+#rcnt {
+  /*originally set at 2px*/
+  margin-top: 0 !important;
+}
+
+
+/*** OPTINIONATED LI BLOCK STYLING
+
+/*
+li's
+  margin: 0 !important;
+  border-bottom: solid #D4D4D4 1px !important;
+  cursor: pointer;
+*/
