@@ -34,29 +34,31 @@ function searchBarConfig() {
   trueSearchBarConfig();
 }
 
-function keynull() {
+function noop() {
   
 }
 
+var gsib_a = getClass('gsib_a')
+
 function trueSearchBarConfig() {
-  
+
   window.addEventListener('keypress', keynull, false);
   window.addEventListener('keydown', keynull, false);
   window.addEventListener('keyup', keynull, false);
   var d = document;
   if (getId('gbqfq') && 
-      getClass('gsib_a')[0] && 
-      getClass('gsib_a')[0].firstChild && 
+      gsib_a[0] && 
+      gsib_a[0].firstChild && 
       getId('gbqf') && 
       getId('mngb') ) {
     console.error('boom, cs iso world');
     var searchInput = getId('gbqfq');
-    getClass('gsib_a')[0].firstChild.removeChild(searchInput);
+    gsib_a[0].firstChild.removeChild(searchInput);
     getId('gbqf').action = 'http://www.google.com/search';
     getId('gbqf').removeAttribute('onsubmit');
 
-    getClass('gsib_a')[0].firstChild.innerHTML = '<input id="gbqfq" class="gbqfif" name="q" type="text" autocomplete="off" value="" dir="ltr" style="left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; border-image: initial; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; height: auto; width: 100%; outline-style: none; outline-width: initial; outline-color: initial; background-image: url(data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw%3D%3D); background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; position: absolute; z-index: 5; color: rgb(0, 0, 0); background-position: initial initial; background-repeat: initial initial; " spellcheck="false" x-webkit-speech="" x-webkit-grammar="builtin:search" lang="en">' 
-    + getClass('gsib_a')[0].firstChild.innerHTML;
+    gsib_a[0].firstChild.innerHTML = '<input id="gbqfq" class="gbqfif" name="q" type="text" autocomplete="off" value="" dir="ltr" style="left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; border-image: initial; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; height: auto; width: 100%; outline-style: none; outline-width: initial; outline-color: initial; background-image: url(data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw%3D%3D); background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; position: absolute; z-index: 5; color: rgb(0, 0, 0); background-position: initial initial; background-repeat: initial initial; " spellcheck="false" x-webkit-speech="" x-webkit-grammar="builtin:search" lang="en">' 
+    + gsib_a[0].firstChild.innerHTML;
     console.error('scout all done');
     window.removeEventListener('keypress', keynull, false);
     window.removeEventListener('keydown', keynull, false);
@@ -133,17 +135,17 @@ function searchBarConfig() {
     return false;
   };
   if (getId('gbqfq') && 
-      getClass('gsib_a')[0] && 
-      getClass('gsib_a')[0].firstChild && 
+      gsib_a[0] && 
+      gsib_a[0].firstChild && 
       getId('gbqf')) {
     console.error('boom, cs iso world');
     var searchInput = getId('gbqfq');
-    getClass('gsib_a')[0].firstChild.removeChild(searchInput);
+    gsib_a[0].firstChild.removeChild(searchInput);
     getId('gbqf').action = 'http://www.google.com/search';
     getId('gbqf').onsubmit = '';
 
-    getClass('gsib_a')[0].firstChild.innerHTML = '<input id="gbqfq" class="gbqfif" name="q" type="text" autocomplete="off" value="" placeholder="" style="border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-left: 2px; width: 100%; outline-style: none; outline-width: initial; outline-color: initial; left: 0px; top: 1px; overflow-x: hidden; overflow-y: hidden; background-image: url(data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw%3D%3D); background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; position: absolute; z-index: 5; color: transparent; background-position: initial initial; background-repeat: initial initial; " spellcheck="false" dir="ltr">' 
-    + getClass('gsib_a')[0].firstChild.innerHTML;
+    gsib_a[0].firstChild.innerHTML = '<input id="gbqfq" class="gbqfif" name="q" type="text" autocomplete="off" value="" placeholder="" style="border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-left: 2px; width: 100%; outline-style: none; outline-width: initial; outline-color: initial; left: 0px; top: 1px; overflow-x: hidden; overflow-y: hidden; background-image: url(data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw%3D%3D); background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; position: absolute; z-index: 5; color: transparent; background-position: initial initial; background-repeat: initial initial; " spellcheck="false" dir="ltr">' 
+    + gsib_a[0].firstChild.innerHTML;
     console.error('all done');
     window.onkeypress = null;
     window.onkeyup = null;

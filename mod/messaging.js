@@ -1,17 +1,18 @@
-var message, saveData, get, set;
-(function messageJS(){
+var message, get, set;
+(function messageJS() {
 'use strict';
 var port = chrome.extension.connect({name: 'scripts'});
+
 message = function message(data) {
   try {
-    port.postMessage(data);
-  } catch(e) {console.log('CAUGHT ERROR:', e); }
-}
-
-saveData = function saveData(data) {
-  var settings = data.settings;
-  for (var item in settings) {
-    set(item, settings[item]);
+    port.postMessage(update);
+  } catch(e) {
+    port = chrome.extension.connect({name: 'scripts'});
+    try {
+      port.postMessage(update);
+    } catch (e) {
+      console.log('FAILED TO RECONNECT:', e.stack);
+    }
   }
 }
 
@@ -52,24 +53,29 @@ function getCookie(key) {
 
 get = function get(setting) {
   var getReturn = 'initial';
+  var cookieSetting = getCookie(setting);
+  var localStorageSetting = localStorage.getItem(setting);
   
   //undefined check, cause cookies and w3schools code can do that to you.
-  try { if (getCookie(setting) === 'undefined' || typeof getCookie(setting) === 'undefined' || getCookie(setting) === null) alert('getCookie is returning bad values ');}
-  catch(e) { alert('getCookie threw an error: ' + e); }
+  try {
+    if (cookieSetting === 'undefined' || cookieSetting == null) alert('getCookie is returning bad values ');
+  } catch(e) {
+    alert('getCookie threw an error: ' + e);
+  }
   
   //Main logic
   var used;
-  if (getCookie(setting) === 'false') {
-    if (localStorage.getItem(setting) === 'undefined' || typeof localStorage.getItem(setting) === 'undefined' ||  localStorage.getItem(setting) === null) {
+  if (cookieSetting === 'false') {
+    if (localStorageSetting === 'undefined' || typeof localStorageSetting === 'undefined' ||  localStorageSetting === null) {
       used = 'DEFAULT';
       getReturn = defaults[setting];
     } else {
       used = 'LOCAL STORAGE';
-      getReturn = localStorage.getItem(setting);
+      getReturn = localStorageSetting;
     }
   } else {
     used = 'COOKIE'
-    getReturn = getCookie(setting);
+    getReturn = cookieSetting;
   }
   //End main logic
   
@@ -97,10 +103,12 @@ set = function set(setting, value) {
   message(update);
 }
 
-port.onMessage.addListener(function(msg) {
-  //console.log('onMessage');
+port.onMessage.addListener(function onMessage(msg) {
   if (msg.data) {
-    saveData(msg.data);
+    var settings = msg.data.settings;
+    for (var item in settings) {
+      set(item, settings[item]);
+    }
   } else if(msg.update) {
     updateBtn.show();
   } else {

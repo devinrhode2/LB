@@ -45,8 +45,6 @@ function neif() {
         console.error('linkMods foo?');
       }
     } 
-    
-    setTimeout(neif, 200);
 };
 
 function rOnClick(e) {
@@ -73,14 +71,14 @@ function linkMods() {
   console.log('linkMods');
   var numLinks = linkNodes.length;
   for (var i = 0; i < numLinks; i++) {
-    (function(i){
+    (function forEveryLink(i){
       linkNodes[i].firstChild.onclick = rOnClick;
     }(i))
   }
   
   var numLis = classG.length;
   for (var i = 0; i < numLis; i++) { //rig onclick of all li's
-    (function(i) {
+    (function forEveryLi(i) {
       classG[i].onclick = function gOnClick(e) {
         if (e.metaKey) {
           console.log('cmd is down, do nothing different, follow browser default.');
@@ -111,7 +109,7 @@ function linkMods() {
       && classTs[0].childNodes[0].childNodes[1].childNodes[0].childNodes[0]) {
     var numVids = classTs.length;
     for (var i = 0; i < numVids; i++) { //rig onclick for video li's
-      (function(i){
+      (function forEveryTs(i){
         if (classTs[i] 
         && classTs[i].childNodes[0] 
         && classTs[i].childNodes[0].childNodes[1] 
@@ -120,7 +118,7 @@ function linkMods() {
           console.log('hit video unit:');
           var vidThumb = classTs[i].childNodes[0].childNodes[1].childNodes[0].childNodes[0];
           console.log(vidThumb);
-          vidThumb.onclick = function (e) {
+          vidThumb.onclick = function vidThumbOnclick(e) {
             if (e.metaKey) {
               console.log('cmd is down, do nothing different, follow browser default.');
             } else if (e.shiftKey) {

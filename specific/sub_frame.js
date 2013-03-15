@@ -1,19 +1,21 @@
 if (top.location.href == null &&
-    location.href !== 'https://www.google.com/blank.html' &&
-    location.href !== 'http://www.google.com/blank.html') {
+        location.href !== 'https://www.google.com/blank.html' &&
+        location.href !== 'http://www.google.com/blank.html')
+{
 
-    (function subFrameAddScript(s) {
-        s.innerText = "(" +
-        //NO "//" comments in this function!!
-        (function TheScoutAppFrameBandaidScript() {                                                                                      
+  (function subFrameAddScript(s) {
+      s.innerText = "(" +
+      //NO "//" comments in this function!!
+      (function TheScoutAppFrameBandaidScript() {                                                                                      
 
-            /* always do this */
-            self = top;
+          /* always do this */
+          self = top;
 
+          (function isDomainScope() {
             function isDomain(domain) {
               return location.href.indexOf(domain) > -1;
             }
-
+  
             if (isDomain('github.com')) {
               alert = function OverwrittenAlert(text) {
                 console.error('Tried to alert: ' + text);
@@ -36,64 +38,33 @@ if (top.location.href == null &&
                 }
               };
             }
+          }());
 
-            /*special/protected actions*/
-            if (window.name === 'smartframe' || window.name === 'data-group-key' || window.name === 'ytsmartframe') {
-                /*
-                window.addEventListener('click', function ScoutWindowOnClick(e){
-                  if safe
-                  if (e && e.target) {
-
-                    if ('_top' === e.target.target) {
-                      then open in this frame
-                      e.target.target = '_self';
-
-                    } else if('_blank' === e.target.target) {
-                      then do window.open to new tab
-                      window.open(e.target.href); being lazy.
-
-                    } else if('_self' === e.target.target) {
-                      DO NOTHING
-
-                    } else if(e.target.target && e.target.target.length > 0) {
-                      window.open(e.target.href); being lazy.
-                    }
-
-                    e.target.target = '_self';
-                  } else {
-                    alert('WHAT! e or e.target are falsy, see console.');
-                    console.log('e and e.target:', e, e.target);
-                  }
-                }, false);
-                */
-
-                if (window.name === 'smartframe' || window.name === 'data-group-key') {
-                  var ScoutMessageUp = function ScoutMessageUp(step) {
-                    var data = JSON.stringify({step:step, url: location.href, title: document.title});
-                    console.log('Messaging up from ' + window.name + ': ' + window.location.href);
-                    window.top.postMessage(data, 'http://www.google.com');
-                    window.top.postMessage(data, 'https://www.google.com');
-                  };
-                  ScoutMessageUp('init');
-                  document.addEventListener( 'DOMContentLoaded', function ScoutDOMContentLoaded(){
-                    ScoutMessageUp('DOMContentLoaded');
-                  }, false );
-                  window.addEventListener( 'load', function ScoutWindowOnLoad(){
-                    ScoutMessageUp('load');
-                  }, false );
-                /* } else if (window.name === 'ytsmartframe') { */
-
-                } else {
-                  alert('you goof shit devin!');
-                }
-
-                /*prevent window.name === 'smartframe' from being changed!*/
-                window.__defineSetter__('name', function nameSetter() {});
-            }
-        }).toString() + ")();";
-        document.documentElement.appendChild(s);
-    })( document.createElement('script') );
+          /*special/protected actions*/
+          if (window.name === 'smartframe' || window.name === 'data-group-key') {
+            (function windowNameScope() {
+              function ScoutMessageUp(step) {
+                var data = JSON.stringify({step:step, url: location.href, title: document.title});
+                console.log('Messaging up from ' + window.name + ': ' + window.location.href);
+                window.top.postMessage(data, 'http://www.google.com');
+                window.top.postMessage(data, 'https://www.google.com');
+              };
+              ScoutMessageUp('init');
+              document.addEventListener('DOMContentLoaded', function ScoutDOMContentLoaded() {
+                ScoutMessageUp('DOMContentLoaded');
+              });
+              window.addEventListener('load', function ScoutWindowOnLoad() {
+                ScoutMessageUp('load');
+              });
+              
+              /*prevent window.name === 'smartframe' from being changed!*/
+              window.__defineSetter__('name', function nameSetter() {});
+            }());
+          }
+      }).toString() + ")();";
+      document.documentElement.appendChild(s);
+  })( document.createElement('script') );
 
 
-    //in background: chrome.history.addUrl({url: location.href});//causes permission: Can access 'Your browsing history'
+  //in background: chrome.history.addUrl({url: location.href});//causes permission: Can access 'Your browsing history'
 }

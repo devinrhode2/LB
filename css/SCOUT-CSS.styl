@@ -1,3 +1,5 @@
+//'#rso > .g > .r + div', '.g > .r'
+
 //blockStyles are the styles for the search result <li>'s
 //It's abstracted because these styles should be matched other places too.
 blockStyles()
@@ -8,6 +10,10 @@ blockStyles()
 $topBarGray = #B3B3B3 !important
 
 $topBarGradient = -webkit-gradient(linear, left top, left bottom, from(rgb(55, 55, 55)), to(rgb(17, 17, 17))) !important
+
+//start re-write
+#ires
+  padding-top:0 !important
 
 //ads
 #tads, #tadsto, #tadsb 
@@ -39,7 +45,7 @@ $sidebarBackground = rgb(248, 248, 248)
   background-color: hsl(208, 81%, 90%) !important; /*hsl(84, 80%, 85%) !important; a lighter scoutish green*/ /* dark, subtle blue: hsl(208, 81%, 90%) !important; */ /* hsl(84, 100%, 89%) !important */
 
 #searchform > div.sfbg.nojsv > div.sfbgg, #gbx1
-  -webkit-box-shadow: 0px 1px 7px rgba(0,0,0,0.50)
+  -webkit-box-shadow: 0 1px 7px rgba(0,0,0,0.50)
   border-bottom: 1px solid #b5b5b5 !important
   height: 53px !important
   background: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#d9d9d9)) !important
@@ -139,7 +145,7 @@ cite b
   font-weight:normal
 
 .gl.nobr
-  opactiy: .7 !important
+  opacityst: .7 !important
 
 #cnt
   min-width:50px !important
@@ -206,7 +212,7 @@ span.gl a
   display:none
   visibility: hidden
 
-h3.r a
+.l
   white-space:normal !important
 
 span.ch
@@ -216,12 +222,12 @@ span.ch
 a.fl
   margin:0 2px
 
-.autoPagerS#apBreakStart1
+#apBreakStart1
   height:7px !important
   margin-bottom:7px !important
   margin-top:11px !important
 
-.autoPagerS#apBreakStart1 span
+#apBreakStart1 span
   display:none !important
   visibility:hidden !important
 
@@ -237,7 +243,7 @@ span.csb
 
 #knavm
   margin-left:0 !important
-  display:static !important
+  display:inline-block !important
 
 div.bl span.ch
   display:inline !important
@@ -297,7 +303,7 @@ div.gl
 ol.gbtc>li.gbt+li.gbt+li.gbt+li.gbt+li.gbt+li.gbt+li.gbt+li.gbt
   float:left
 
-form#tsf
+#tsf
   max-width:2024px !important
   min-width:50px !important
 
@@ -349,6 +355,7 @@ td.nrtd
   padding-left: 3px !important
   padding-right: 8px !important
 
+/*
 .boltBtn
   display: $boltDisplay
   -webkit-transition:opacity linear .2s
@@ -364,8 +371,6 @@ td.nrtd
   background-image: url()
   width:30px
 
-
-/*
 .blackBg 
   display: boltDisplay
   position: relative
@@ -412,33 +417,33 @@ td.nrtd
   position:relative
   z-index:100
 
- body 
+body 
   overflow-x:hidden !important
   display:block !important
 
-div.s>table.ts>tbody>tr+tr>td>a
+div.s>.ts>tbody>tr+tr>td>a
   display:block
   width:82px
 
-div.s>table.ts>tbody>tr+tr>td+td>div>cite
+div.s>.ts>tbody>tr+tr>td+td>div>cite
   margin-top:-2px
 
-table.ts tbody tr td
+.ts tbody tr td
   display:inline !important
 
-table.ts, table.ts tbody, table.ts tbody, table.ts tbody tr, table.ts tbody tr td
+.ts, .ts tbody, .ts tbody, .ts tbody tr, .ts tbody tr td
   display:block !important
 
-table.ts tbody tr td *
+.ts tbody tr td *
   word-wrap: break-word
   
-div.s>table.ts>tbody>tr+tr>td:first-child
+div.s>.ts>tbody>tr+tr>td:first-child
   float:left
   width:auto
   margin-right:-1px
   height:auto
 
-div.s>table.ts>tbody>tr+tr>td+td>div
+div.s>.ts>tbody>tr+tr>td+td>div
   padding-top:6px
 
 .eswa
@@ -504,16 +509,16 @@ span.spell_orig
 table.nrgt 
   display: none
 
-div.vspib + table.ts > tbody > tr > td:first-child 
+div.vspib + .ts > tbody > tr > td:first-child 
   float: left
 
-div.vspib + table.ts > tbody > tr > td + td > a.l + span > cite 
+div.vspib + .ts > tbody > tr > td + td > a.l + span > cite 
   display: inline
 
-table.ts > tbody > tr > td + td > div > span.gl > cite 
+.ts > tbody > tr > td + td > div > span.gl > cite 
    width: auto 
 
-#ires > #rso > .g.knavi > div.vsc.nulead + table.ts > tbody > tr > td:first-child 
+#rso > .g.knavi > .vsc.nulead + .ts > tbody > tr > td:first-child 
   float: left
 
 #res
@@ -523,20 +528,20 @@ table.ts > tbody > tr > td + td > div > span.gl > cite
   width: inherit !important
   padding: 0 !important
 
-.g > div.vsc > div.vspib + h3.r + div.s > .f.kv > span:last-child 
+.r + .s > .f.kv > span:last-child 
    float:right 
 
-.g.videobox > div.vsc > div.s > table.ts > tbody > tr > td:first-child 
+.g.videobox > .vsc > div.s > .ts > tbody > tr > td:first-child 
    float: left
    width: auto
 
 .gl, #foot a, .nobr 
   white-space: normal !important
 
-#rso > .g > div.vsc > div.s > table.ts > tbody > tr > td[valign=top]:first-child 
+#rso > .g > .vsc > div.s > .ts > tbody > tr > td[valign=top]:first-child 
    float: left 
 
-#rso > .g > div.vsc > div.s > table.ts > tbody > tr > td[valign=top]:first-child > div:first-child 
+#rso > .g > .vsc > div.s > .ts > tbody > tr > td[valign=top]:first-child > div:first-child 
    padding: 0 5px 0 0 !important 
 
 td.f > a.fl 
@@ -551,9 +556,6 @@ td.f > a.fl
 
 #res
   padding:0
-
-div#ires
-  padding-top:0
 
 p.sp_cnt
   margin-bottom:0
@@ -622,7 +624,7 @@ div.gl > cite
 #botstuff > div.s.std
   blockStyles()
 
-#botstuff > #brs + #vspb + div#uh_hp + div#uh_h + div
+#botstuff > #brs + #vspb + #uh_hp + #uh_h + div
   blockStyles()
 
 #botstuff > p.ssp
@@ -665,7 +667,7 @@ div.gl > cite
 #gb 
   position: fixed
   width: 100%
-  top: 0px 
+  top: 0 
 
 div#sdb + div.ksfcccl > div.ksfccl 
   display: none
@@ -689,18 +691,18 @@ body
   position: fixed !important
 #gbz .gbzt, #gbz .gbgt, #gbg .gbgt 
   color: $topBarGray
-ol#rso > .g > .r + div 
-  margin-right:0px !important
+#rso > .g > .r + div 
+  margin-right:0 !important
 
 
 .brs_col
   white-space:normal !important
 #center_col
   white-space: normal
-div#gbz
+#gbz
   width: inherit !important
 #msg_box > p 
-   margin-bottom: 0px 
+   margin-bottom: 0 
 #sform 
    display: none !important
 button.gbil.esw.eswd, .esws, .eswh, .esw, .eswa 
@@ -727,26 +729,26 @@ button.gbil.esw.eswd, .esws, .eswh, .esw, .eswa
   padding-top: 12px !important
 
 
-ol#rso > .g > div.vsc:first-child > .r:first-child + div.vspib + .s > .f.kv + div.esc.kb + .ts:last-child > tbody:first-child > tr:first-child > td[valign=top]:last-child > div.f.kb > table[border="0"][cellpadding="0"][cellspacing="0"].ti
+#rso > .g > .vsc:first-child > .r:first-child + div.vspib + .s > .f.kv + div.esc.kb + .ts:last-child > tbody:first-child > tr:first-child > td[valign=top]:last-child > div.f.kb > table[border="0"][cellpadding="0"][cellspacing="0"].ti
   width:65px !important;  
   > tbody > tr > td {float:left;};
 
-ol#rso > .g > .r + div + table[style="margin-top:2px"].ts > tbody > tr:first-child > 
+#rso > .g > .r + div + table[style="margin-top:2px"].ts > tbody > tr:first-child > 
   td[valign=top]:first-child 
     float: left
     margin-right: 3px
   td[valign=top]:last-child 
-    padding-left: 0px !important 
+    padding-left: 0 !important 
   td[valign=top]:last-child > div.s:first-child  
     padding-top:1px
 /*for Search+ (Google's Search+)*/
 .spri 
   display: none !important
 /*hides some shitty table divs of addresses that link to a map preview in Googles preview pane*/
-ol#rso > .g > div.vsc > div[style="float:right"]:first-child > div[style*="width:168px"]:first-child 
+#rso > .g > .vsc > div[style="float:right"]:first-child > div[style*="width:168px"]:first-child 
   display: none
 /*for G+ profile authors. This wraps text around the authors pic*/
-ol#rso > .g > div.vsc:first-child > div.s > table.ts > tbody > tr > td[valign="top"]:last-child > div:first-child > span[style*="white-space:nowrap"] 
+#rso > .g > .vsc:first-child > div.s > .ts > tbody > tr > td[valign="top"]:last-child > div:first-child > span[style*="white-space:nowrap"] 
   white-space: normal !important
 
 /*for add to circles shit..*/
@@ -762,10 +764,10 @@ body
 #cnt > div.mw:first-child
   height: 0 !important
 #cnt
-  padding-top: 0px !important
+  padding-top: 0 !important
 
 //for ads...
-.c#tads > h2:first-child 
+#tads > h2:first-child 
   margin: 0 -13px 0 0 !important
 
 table.gssb_c
@@ -773,7 +775,7 @@ table.gssb_c
   top: 70px !important
 
 .med, #extrares
-  padding: 0px !important
+  padding: 0 !important
 
 /**TOP BAR**/
 
@@ -834,7 +836,7 @@ $speed = 0s linear //<--- Tried this transition, but turned it off with 0 second
 
 #__su__toolbar
   display: none
-  width: 0px
+  width: 0
 
 //for news search, couldn't get this line to work.
 #topstuff > form.naslf

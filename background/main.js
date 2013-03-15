@@ -5,7 +5,7 @@ if (localStorage.getItem('installed') !== 'installed') {
   chrome.tabs.create({
     'url': chrome.extension.getURL('welcome/index.html')
   });
-  POST('http://thescoutapp.com/smartframes/post.php', 'install=occured', function(){});
+  POST('http://thescoutapp.com/smartframes/post.php', 'install=occured', function emptyPostCallbackForInstallOccured(){});
 }
 
 function defaults(defaults) {
@@ -33,7 +33,7 @@ defaults({width:22, on: 'yes'}); //only write if they are undefined.
 
 chrome.webRequest.onHeadersReceived.addListener(
   function onHeadersReceivedListener(resp) {
-    resp.responseHeaders.forEach(function(header,index){
+    resp.responseHeaders.forEach(function forEachResponseHeader(header,index){
       if(header.name.toLowerCase() === 'x-frame-options')
         resp.responseHeaders.splice(index,1);
       if(header.name.toLowerCase() === 'access-control-allow-origin')
@@ -66,21 +66,21 @@ function sendData(port) {
   port.postMessage({data: {settings: settings, sites: sites}});
 }
 
-chrome.extension.onConnect.addListener(function(port) {
+chrome.extension.onConnect.addListener(function onConnectListener(port) {
   if (port.name === 'scripts') {
     
     //version check:
-    GET('http://thescoutapp.com/extension/update.xml?cachebust=' + Math.random() * 10000000000000000, function(resp, xhr){
+    GET('http://thescoutapp.com/extension/update.xml?cachebust=' + Math.random() * 10000000000000000, function ScoutUpdateCheckCallback(resp, xhr){
       var xml = xhr.responseXML;
       var remote = parseFloat(xml.getElementsByTagName('updatecheck')[0].getAttribute('version'));
-      GET('../manifest.json?cachebust=' + Math.random() * 10000000000000000, function(json){
+      (function getManifestScope(json) {
         var local = parseFloat(JSON.parse(json).version);
         if (remote > local) {
           port.postMessage({update:'son'});
         } else {
           console.log('up to date');
         }
-      });
+      })(chrome.runtime.getManifest());
     });
     
     //used today
@@ -92,7 +92,7 @@ chrome.extension.onConnect.addListener(function(port) {
     }
     
     //port handler
-    port.onMessage.addListener(function(msg) {
+    port.onMessage.addListener(function ScoutOnmessageListener(msg) {
       if (msg.loadData) {
         sendData(port);
       } else if(msg.set) {

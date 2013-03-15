@@ -8,7 +8,7 @@ function src(url) {
   iframe.setAttribute('name', 'smartframe');
   if (iframe.contentWindow) iframe.contentWindow.name = 'smartframe';
   
-  var script = createElement('script', {
+  document.documentElement.appendChild(createElement('script', {
     id: 'scoutScript',
     innerHTML: "\
     setTimeout(function one(){                                                        \
@@ -20,11 +20,10 @@ function src(url) {
           document.getElementById('smartframe').contentWindow.name = 'smartframe';    \
           var ScoutScript = document.getElementById('scoutScript');                   \
           ScoutScript.parentNode.removeChild(ScoutScript);                            \
-        }, 2);                                                                        \
-      }, 2);                                                                          \
-    }, 2);"
-  });
-  document.documentElement.appendChild(script);
+        }, 1);                                                                        \
+      }, 1);                                                                          \
+    }, 1);"
+  }));
 }
 
 //previous <li> that was loaded.
@@ -53,10 +52,8 @@ function preview(url, li, auto) {
     
       //initial load
       prevLi = li;
-      (function(li){
-        li.classList.add('scoutOpenedResult');
-      }(classG[li]))
-    
+      classG[li].classList.add('scoutOpenedResult');
+      
     } else {
     
       if (classG[prevLi]) {
@@ -68,7 +65,7 @@ function preview(url, li, auto) {
         
       } else {
         console.log('getClass(\'g\')[prevLi] was false');
-        setTimeout(function(){
+        setTimeout(function previewInTwoHundredMilliseconds(){
           preview(url, li, auto);
         }, 200);
         return;
@@ -77,7 +74,7 @@ function preview(url, li, auto) {
     }
   } else {
     console.log('calling preview again.. <li> was false.');
-    setTimeout(function(){
+    setTimeout(function secondPreviewInTwoHundreMilliseconds(){
       preview(url, li, auto);
     }, 200);
     return;
@@ -99,7 +96,7 @@ function preview(url, li, auto) {
     preview.justStarted = true;
   }
   
-  setTimeout(function(){
+  setTimeout(function previewStarted(){
     preview.justStarted = false;
   }, 200);
   
@@ -127,13 +124,13 @@ function preview(url, li, auto) {
 function loading(state) {
   if (state === 'start') {
     loadingDiv.style.display = 'block';
-    setTimeout(function(){
+    setTimeout(function fadeInLoadingDiv(){
       loadingDiv.style.opacity = '1';
     }, 2);
     //setTimeout fixes bug where loading would just immediately appear without fade-in
   } else if (state === 'done') {
     loadingDiv.style.opacity = '0';
-    setTimeout(function(){
+    setTimeout(function displayNoneLoadingDiv(){
       loadingDiv.style.display = 'none';
     }, 400);
   } else {

@@ -11,6 +11,11 @@ function offScript() {
       innerHTML: '<style>gbzt#scoutOn:hover { color: #4C4C4C; }</style><a class="gbzt" id="scoutOn" href="#"><span class="gbtb2"></span><span class="gbts" style="color: rgb(190, 223, 83);">Turn on Scout</span></a>'
     });
     cache.insertBefore(turnOn);
+    
+    var s = document.createElement('link');
+    s.rel = 'stylesheet';
+    s.href = chrome.extension.getURL('css/REWRITE.css');
+    document.documentElement.insertBefore(s, document.head);
   } else {
     setTimeout(offScript, 5);
   }
@@ -37,7 +42,7 @@ function webSearch(url) {
   /*bailParams. indicators by the url that we don't want to run on this page. Over time, we want to support all these views, remove these, and not bail.*/
   var bailParams = ['&tbs=sbi:', '?tbs=sbi:']; /*tbs is for searching by inputting an image, either dragging to a images.google.com tab or uploading.*/
   /*[TECHNICALLY] the tbs param is base64 encoded image data.*/
-  bailParams.forEach(function(param){
+  bailParams.forEach(function forEachBailParams(param){
     if (url.contains(param)) {
       console.log('url has param:' + param + ' ');
       returnValue = false;
@@ -46,7 +51,7 @@ function webSearch(url) {
   
   /*tbm is the magical param that basically indicates what type of search is being done, at this time, only plain web search is supported.*/
   var tbmBailParams = ['isch', 'shop', 'nws', 'vid', 'plcs', 'dsc', 'rcp', 'app', 'pts', 'blg', 'bus'];
-  tbmBailParams.forEach(function(search){
+  tbmBailParams.forEach(function forEachTbmBailParam(search){
     if (url.contains('tbm=' + search)) {
       console.log('url has tbm= param:' + search);
       returnValue = false; /*bail, don't run scout on this page.*/

@@ -10,24 +10,12 @@ html {
 /*chunks of page to hide*/
   #appbar   /*1,000,000 results*/
 , #mngb     /*contains search box*/
-, #top_nav  /*contains any time and any results filters*/
+, #top_nav  /*contains 'any time' and 'any results' filters*/
 , .pplsrsla /*'share' button*/
 , .vspib    /*instant site previews on side*/
 {
   display: none !important;
   visibility: hidden;
-}
-
-
-/*flatten left/right margin of the page*/
-#center_col, #foot {
-  /*originally around 120px*/
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-}
-#hdtb_msb > .hdtb_mitem:first-child, .ab_tnav_wrp, #cnt #center_col, .mw #center_col, .mw #foot {
-  /*originally like 138 or 120 px*/
-  margin-left: 0px !important;
 }
 
 /*fluid width for sidebar/google's center column*/
@@ -50,16 +38,12 @@ cite {
 }
 
 /*hide ads*/
-#taw {
+#taw, #bottomads {
   display: none !important;
 }
 
 
 /*** ADJUSTING MARGINS/PADDING ***/
-#res {
-  /*originally 0 8px */
-  padding: 0 !important;
-}
 
 /* small tweaks */
 #rcnt {
@@ -68,11 +52,51 @@ cite {
 }
 
 
-/*** OPTINIONATED LI BLOCK STYLING
+/*** OPTINIONATED STYLING ***/
 
-/*
-li's
+/*strip all margins so li blocks are flush to the edges*/
+#center_col, #foot,
+#hdtb_msb > .hdtb_mitem:first-child, .ab_tnav_wrp, #cnt #center_col, .mw #center_col, .mw #foot,
+#ires {
+  /*flatten left/right margin of the page, originally around 120px*/
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0 !important;
+}
+
+.med {
+  padding: 0 !important;
+}
+
+body {
+  background-color: rgb(248, 248, 248) !important;
+}
+
+/*result blocks*/
+.g, #botstuff { /*set footer area with same/consistent padding*/
+  padding: 8px 10px !important;
   margin: 0 !important;
+}
+
+.g {
   border-bottom: solid #D4D4D4 1px !important;
   cursor: pointer;
-*/
+  -webkit-transition: background-color 0.15s;
+
+  background-color: rgb(248, 248, 248); /*transition looks likely flaky when transitioning to transparent*/
+}
+
+.g:hover {
+  background-color: hsl(215, 81%, 96%);
+}
+
+/*** TEMPORARY/UNSURE ***/
+/*right hand side column*/
+#rhscol {
+  display: none;
+}
+
+/*quick links below result - irrelevant since you already have the side open*/
+.nrgt {
+  display: none;
+}

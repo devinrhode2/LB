@@ -4,7 +4,7 @@ window.initGa = function initGa(UA, nickname) {
   document.documentElement.setAttribute('scout-ga-initialized', 'yes, request sent');
   window._gaq = [['_setAccount', UA]];
   if (chrome.browserAction) {//chrome.browserAction means we're not a content script, because content scripts arent' given this api
-    (function(d, t){
+    (function ga_js(d, t){
       var g = d.createElement(t);
       g.id = 'initGa_for_' + nickname + ' (' + UA + ')';
       g.src = 'https://ssl.google-analytics.com/ga.js';

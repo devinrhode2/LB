@@ -90,7 +90,7 @@ function htmlGroup() {
     window.iframe = createElement('iframe', {
       //explicit properties
       id: 'smartframe',
-      onload: function() {
+      onload: function iframeOnload() {
         if (firstEverLoad) {
           //Do nothing.
           firstEverLoad = false;
@@ -101,10 +101,10 @@ function htmlGroup() {
           console.groupEnd();
         }
       },
-      onerror: function() {
+      onerror: function iframeOnError() {
         alert('iframe error!'); //never happens... but just in case...
       },
-      onmouseover: function(){
+      onmouseover: function iframeOnMouseover() {
         this.focus();
       },
       className: 'rightPane',
@@ -235,7 +235,7 @@ function htmlGroup() {
       
       coverDiv.style.zIndex = 99999;
       
-      window.onmousemove = function(e, save) {
+      window.onmousemove = function onMouseMove(e, save) {
         var pageWidth = document.documentElement.clientWidth;
         var toLeft = e.clientX;
         var percent = (toLeft/pageWidth) * 100;
@@ -280,7 +280,7 @@ function htmlGroup() {
     var adjustor = createElement('div', {
       id: 'scoutAdjustor',
       className: 'rightPane',
-      onmousedown: function(){
+      onmousedown: function adjustorOnMousedown(){
         console.log('mousedown');
         dragging();
       },
@@ -341,7 +341,7 @@ function titleEl(skipBody) {
       titleEl.initialCall = false;
     }
     newTitle(document.title);
-    getTag('title')[0].addEventListener("DOMSubtreeModified", function(evt) {
+    getTag('title')[0].addEventListener("DOMSubtreeModified", function ScoutDomSubtreeModified(evt) {
       titleEl(true); //true, skipBody
     }, false);
     
@@ -450,11 +450,12 @@ function googleTopBar() {
 }
 //</Always coming back to you!>
 
+var classL = document.getElementsByClassName('l');
 function startNeif() {
-  if (getClass('l')[getClass('l').length - 1] && document.body) {
+  if (classL[classL.length - 1] && document.body) {
     if (typeof neif !== 'undefined' && neif !== null) {
       console.log('started neif');
-      neif();
+      setInterval(neif, 200);
     } else {
       alert('tried calling neif when it\'s undefined but should cause this is a serp');
     }

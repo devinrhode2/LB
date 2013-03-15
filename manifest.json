@@ -6,7 +6,7 @@
    "content_scripts": [
       {
          "all_frames": true,
-         "js": [ "node_modules/extension-include/extension-include.js", "specific/sub_frame.js" ],
+         "js": [ "specific/sub_frame.js" ],
          "matches": [ "<all_urls>" ],
          "run_at": "document_start"
       },
@@ -44,7 +44,7 @@
       "16": "images/icon16.png",
       "48": "images/icon48.png"
    },
-   "web_accessible_resources": ["css/SCOUT-CSS.css"],
+   "web_accessible_resources": ["css/SCOUT-CSS.css", "css/REWRITE.css"],
    "incognito": "spanning",
    "minimum_chrome_version": "18",
    "update_url": "http://thescoutapp.com/extension/update.xml",
@@ -59,6 +59,7 @@
      "idle",
      "notifications",
      "unlimitedStorage",
+     "storage",
      "webRequest",
      "webRequestBlocking"
    ],
