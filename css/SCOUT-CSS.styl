@@ -1,194 +1,27 @@
-//'#rso > .g > .r + div', '.g > .r'
 
-//blockStyles are the styles for the search result <li>'s
-//It's abstracted because these styles should be matched other places too.
-blockStyles()
-  padding: 10px 16px 10px 16px !important
-  margin: 0 !important
-  border-bottom: solid #D4D4D4 1px !important
-
-$topBarGray = #B3B3B3 !important
-
-$topBarGradient = -webkit-gradient(linear, left top, left bottom, from(rgb(55, 55, 55)), to(rgb(17, 17, 17))) !important
-
-//start re-write
-#ires
-  padding-top:0 !important
-
-//ads
-#tads, #tadsto, #tadsb 
-  display: none !important
-  visibility: hidden
-
-//whiteSmoke === hsl 96%
-//rgb(251, 251, 251); //hsl 98% //247-247-247 is 97%
-$sidebarBackground = rgb(248, 248, 248)
-
-.g
-  border-right: 2px transparent solid
-  -webkit-transition: background-color 0.15s
-  cursor: pointer !important
-  background-color: $sidebarBackground
-#main, #cnt
-  height: 100%
-  background-color: $sidebarBackground
-
-.topBarGradient
-  background: $topBarGradient
-  border-bottom: 1px solid black
-
-.g:hover
-  background-color: hsl(215, 81%, 96%); /* light green: hsl(83, 80%, 93%);  */ /* differed gray: rgb(234, 234, 234); */ /* green: hsl(84, 85%, 96%) */
-
-.g.scoutOpenedResult
-  border-right: 2px #333 solid !important
-  background-color: hsl(208, 81%, 90%) !important; /*hsl(84, 80%, 85%) !important; a lighter scoutish green*/ /* dark, subtle blue: hsl(208, 81%, 90%) !important; */ /* hsl(84, 100%, 89%) !important */
-
-#searchform > div.sfbg.nojsv > div.sfbgg, #gbx1
-  -webkit-box-shadow: 0 1px 7px rgba(0,0,0,0.50)
-  border-bottom: 1px solid #b5b5b5 !important
-  height: 53px !important
-  background: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#d9d9d9)) !important
-
-#searchform > div.sfbg.nojsv > div.sfbgg
-  top: 18px !important
-  position: relative !important
-
-.g.scoutOpenedResult span.st, .g.scoutOpenedResult span.st em
-  color: #313131; /* rgb(26, 26, 26) */
-
-bootrapBtnBase()
-  font-weight: bold
-  padding: 3px 9px
-  font-size: 13px
-  background-repeat: repeat-x
-  &:active
-    background-image: none;
-  &:hover
-    background-position: 0 -15px;
-    -webkit-transition: background-position 0.1s linear;
-
-.hidden
-  display: none !important
-  visibility: hidden
-
-.updateRed
-  bootrapBtnBase()
-  color: #333 !important
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75)
-  background-color: #FF9B1B
-  background-image: -webkit-linear-gradient(top, #FFDB4A, #FF9B1B)
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25)
-  border: 1px solid #929292
-  border-bottom-color: #B3B3B3
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
-  &:active
-    -webkit-box-shadow: inset 0 2px 4px hsla(0, 0%, 0%, 0.15), 0 1px 2px hsla(0, 0%, 0%, 0.05);
-    background-color: #FF9B1B;
-  &:hover
-    color: hsl(0, 0%, 20%);
-    background-color: #FF9B1B;
-
-
-.bootstrappyGray
-  bootrapBtnBase()
-  color: #333 !important 
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75)
-  background-color: whiteSmoke
-  background-image: -webkit-linear-gradient(top, white, #E6E6E6)
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25)
-  border: 1px solid #929292
-  border-bottom-color: #B3B3B3
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
-
-  &:active
-    -webkit-box-shadow: inset 0 2px 4px hsla(0, 0%, 0%, 0.15), 0 1px 2px hsla(0, 0%, 0%, 0.05);
-    background-color: hsl(0, 0%, 90%);
-
-  &:hover
-    color: hsl(0, 0%, 20%);
-    background-color: hsl(0, 0%, 90%);
-
-
-#gbx3
-  min-width: 100% !important
-  height: 30px !important
-
-//$boltUrl = url('')
-//$boltDisplay = none
-
-#appbar, #appbar_b, #sftr, #logo, #leftnavc, #vspb, button.vspib, .f.kv > cite + cite, td.gsib_e, td.gsib_b, #gbg, div.nojsb, #sbds.ds, #resultStats nobr,#rhscol, #arcntc, div.gsib_d, td.gsib_d, div.vspi, #top_nav
-  display:none !important
-  visibility: hidden
-  
-#center_col,#foot
-  margin-left: 2px !important
-  margin-right: auto !important
-
-div.tsf-p
+.tsf-p
   padding-left: 9px !important
   padding-right: 9px !important
 
-#subform_ctrl
-  margin-left: 19px !important
 
-#sflas
-  visibility:hidden
-
-#resultStats
-  opacity:.6
-
-#rcnt
-  margin-top: 0 !important
-  
+//?
 cite b
   font-weight:normal
 
-.gl.nobr
-  opacityst: .7 !important
-
-#cnt
-  min-width:50px !important
-
-#subform_ctrl
-  margin-right:0
-
+//?
 div.ksfccl
   margin-right:17px
 
-#subform_ctrl
-  margin-right: 55px
 
 .f.kv
   white-space: nowrap !important
   width: 100%
 
-cite
-  text-overflow: ellipsis
-  display: inline-block
-  overflow: hidden
-  width: 100%
-  height: 16px
-
 .l
   word-wrap: break-word !important
 
-.g
-  margin-bottom: 0 !important
-  padding-left: 16px
-  padding-right: 16px
-  padding-top:10px !important
-  padding-bottom:9px !important
-  border-bottom:1px solid #e5e5e5 !important
-
 span.gl a
   opacity:.75
-
-#fll
-  margin-bottom: 19px !important
-  margin-top: 6px !important
-  position: relative
-  right: 5px
 
 #bfl
   display: none
@@ -208,14 +41,11 @@ span.gl a
   font-size: 1.1em
   margin-right: 63px !important
 
-#fll
-  display:none
-  visibility: hidden
-
+//**********
 .l
   white-space:normal !important
 
-span.ch
+.ch
   background:none !important
   height:15px !important
 
@@ -355,33 +185,6 @@ td.nrtd
   padding-left: 3px !important
   padding-right: 8px !important
 
-/*
-.boltBtn
-  display: $boltDisplay
-  -webkit-transition:opacity linear .2s
-  opacity: 0.85
-  float: right
-  color: $topBarGray
-  margin-top: -1px
-  position: relative
-  z-index: 992
-  cursor: pointer
-  height: 28.9px
-  padding-top: 3px
-  background-image: url()
-  width:30px
-
-.blackBg 
-  display: boltDisplay
-  position: relative
-  left: 33px
-  background: $topBarGradient
-  z-index: 991
-  opacity: 1
-
-.boltBtn:hover
-  opacity:1
-*/
 
 #logocont+.tsf-p
   margin-right:auto
@@ -428,6 +231,8 @@ div.s>.ts>tbody>tr+tr>td>a
 div.s>.ts>tbody>tr+tr>td+td>div>cite
   margin-top:-2px
 
+
+//
 .ts tbody tr td
   display:inline !important
 
@@ -446,19 +251,45 @@ div.s>.ts>tbody>tr+tr>td:first-child
 div.s>.ts>tbody>tr+tr>td+td>div
   padding-top:6px
 
-.eswa
-  float:right
-  top:2px
-  border-radius: 2px
-  position:relative
-  z-index:100
+div.vspib + .ts > tbody > tr > td:first-child 
+  float: left
 
-.esww
-  float:right
-  top:2px
-  border-radius: 2px
-  position:relative
-  z-index:100
+div.vspib + .ts > tbody > tr > td + td > a.l + span > cite 
+  display: inline
+
+.ts > tbody > tr > td + td > div > span.gl > cite 
+   width: auto 
+
+#rso > .g.knavi > .vsc.nulead + .ts > tbody > tr > td:first-child 
+  float: left
+
+.g.videobox > .vsc > div.s > .ts > tbody > tr > td:first-child 
+   float: left
+   width: auto
+
+#rso > .g > .vsc > div.s > .ts > tbody > tr > td[valign=top]:first-child 
+   float: left 
+
+#rso > .g > .vsc > div.s > .ts > tbody > tr > td[valign=top]:first-child > div:first-child 
+   padding: 0 5px 0 0 !important 
+
+td.f > a.fl 
+  display: block !important
+
+#rso > .g > .vsc:first-child > .r:first-child + div.vspib + .s > .f.kv + div.esc.kb + .ts:last-child > tbody:first-child > tr:first-child > td[valign=top]:last-child > div.f.kb > table[border="0"][cellpadding="0"][cellspacing="0"].ti
+  width:65px !important;  
+  > tbody > tr > td {float:left;};
+
+#rso > .g > .r + div + table[style="margin-top:2px"].ts > tbody > tr:first-child > 
+  td[valign=top]:first-child 
+    float: left
+    margin-right: 3px
+  td[valign=top]:last-child 
+    padding-left: 0 !important 
+  td[valign=top]:last-child > div.s:first-child  
+    padding-top:1px
+
+
 
 #cnt #center_col,#cnt #foot
   width:inherit
@@ -509,18 +340,6 @@ span.spell_orig
 table.nrgt 
   display: none
 
-div.vspib + .ts > tbody > tr > td:first-child 
-  float: left
-
-div.vspib + .ts > tbody > tr > td + td > a.l + span > cite 
-  display: inline
-
-.ts > tbody > tr > td + td > div > span.gl > cite 
-   width: auto 
-
-#rso > .g.knavi > .vsc.nulead + .ts > tbody > tr > td:first-child 
-  float: left
-
 #res
   padding: 0 !important
 
@@ -531,21 +350,9 @@ div.vspib + .ts > tbody > tr > td + td > a.l + span > cite
 .r + .s > .f.kv > span:last-child 
    float:right 
 
-.g.videobox > .vsc > div.s > .ts > tbody > tr > td:first-child 
-   float: left
-   width: auto
 
 .gl, #foot a, .nobr 
   white-space: normal !important
-
-#rso > .g > .vsc > div.s > .ts > tbody > tr > td[valign=top]:first-child 
-   float: left 
-
-#rso > .g > .vsc > div.s > .ts > tbody > tr > td[valign=top]:first-child > div:first-child 
-   padding: 0 5px 0 0 !important 
-
-td.f > a.fl 
-  display: block !important
 
 .g
   padding:0 16px 0 16px
@@ -728,19 +535,6 @@ button.gbil.esw.eswd, .esws, .eswh, .esw, .eswa
 #gbq2 
   padding-top: 12px !important
 
-
-#rso > .g > .vsc:first-child > .r:first-child + div.vspib + .s > .f.kv + div.esc.kb + .ts:last-child > tbody:first-child > tr:first-child > td[valign=top]:last-child > div.f.kb > table[border="0"][cellpadding="0"][cellspacing="0"].ti
-  width:65px !important;  
-  > tbody > tr > td {float:left;};
-
-#rso > .g > .r + div + table[style="margin-top:2px"].ts > tbody > tr:first-child > 
-  td[valign=top]:first-child 
-    float: left
-    margin-right: 3px
-  td[valign=top]:last-child 
-    padding-left: 0 !important 
-  td[valign=top]:last-child > div.s:first-child  
-    padding-top:1px
 /*for Search+ (Google's Search+)*/
 .spri 
   display: none !important
@@ -761,6 +555,7 @@ button.gbil.esw.eswd, .esws, .eswh, .esw, .eswa
 //'part 3'
 body
   margin-top: 83px !important
+//doesn't seem needed anymore..
 #cnt > div.mw:first-child
   height: 0 !important
 #cnt
@@ -774,65 +569,9 @@ table.gssb_c
   position: fixed !important
   top: 70px !important
 
-.med, #extrares
-  padding: 0 !important
-
-/**TOP BAR**/
-
-#topBar *
-  -webkit-border-radius: 4px
-  text-decoration: none
-  -webkit-user-select: none
-  display: inline-block
-  cursor: pointer
-
-#topBar > *
-  height: 15px
-  margin-left: 4px
-  vertical-align: top
-
-#topBar > a:active
-  outline: 0;
-
-#topBar > a:hover
-  text-decoration: none;
-
-#shareWrapper
-  height: 20px
-  border: 1px solid #929292
-  border-bottom-color: #B3B3B3
-  background-color: whiteSmoke
-  padding: 0
-
-#shareWrapper > textarea
-  margin: 0
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
-  padding: 3px 9px
-  font-size: 13px
-  color: #333
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75)
-  border: none
-  -webkit-user-select: text !important
-  resize: none
-  height: 14px
-  cursor: default
-
-#shareWrapper > textarea:focus
-  outline: none
-
-/**END TOP BAR**/
 
 
-//transitions for all resize elements:
-/*
-$speed = 0s linear //<--- Tried this transition, but turned it off with 0 seconds. Feel free to see how it feels, you should agree
-#smartframe
-  -webkit-transition: left $speed, width $speed
-#searchform, html, #shadowDiv, #gb
-  -webkit-transition: width $speed
-#ulBorder, #scoutAdjustor, #fullSite, #loadingDiv
-  -webkit-transition: left $speed
-*/
+
 
 #__su__toolbar
   display: none

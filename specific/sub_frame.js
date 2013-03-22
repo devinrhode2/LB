@@ -1,4 +1,5 @@
-if (top.location.href == null &&
+(function sub_frame_js() {
+if (top.location.href === undefined &&
         location.href !== 'https://www.google.com/blank.html' &&
         location.href !== 'http://www.google.com/blank.html')
 {
@@ -8,15 +9,18 @@ if (top.location.href == null &&
       //NO "//" comments in this function!!
       (function TheScoutAppFrameBandaidScript() {                                                                                      
 
-          /* always do this */
-          self = top;
-
           (function isDomainScope() {
             function isDomain(domain) {
               return location.href.indexOf(domain) > -1;
             }
-  
-            if (isDomain('github.com')) {
+
+            /* basically always spoof frames (self = top), except on this Gplus notifications frame, where it causes errors */
+            if (!( isDomain(':/'+'/plus.google.com/') && isDomain('notifications/frame') )) {
+              self = top;
+              console.log('set self to top on ' + location.href);
+            }
+
+            if (isDomain('://github.com')) {
               alert = function OverwrittenAlert(text) {
                 console.error('Tried to alert: ' + text);
                 console.log('  --Scout blocked alerts on this site. ');
@@ -34,7 +38,7 @@ if (top.location.href == null &&
                     /go\sto\sfacebook\.com/ig.test(string) ) {
                   return false;
                 } else {
-                  ScoutDocumentWrite(string);
+                  ScoutDocumentWrite.apply(document, arguments);
                 }
               };
             }
@@ -48,7 +52,7 @@ if (top.location.href == null &&
                 console.log('Messaging up from ' + window.name + ': ' + window.location.href);
                 window.top.postMessage(data, 'http://www.google.com');
                 window.top.postMessage(data, 'https://www.google.com');
-              };
+              }
               ScoutMessageUp('init');
               document.addEventListener('DOMContentLoaded', function ScoutDOMContentLoaded() {
                 ScoutMessageUp('DOMContentLoaded');
@@ -61,10 +65,11 @@ if (top.location.href == null &&
               window.__defineSetter__('name', function nameSetter() {});
             }());
           }
-      }).toString() + ")();";
+      }).toString()+ ")();";
       document.documentElement.appendChild(s);
   })( document.createElement('script') );
 
 
   //in background: chrome.history.addUrl({url: location.href});//causes permission: Can access 'Your browsing history'
 }
+}());

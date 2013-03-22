@@ -13,6 +13,22 @@
       {
          "all_frames": false,
          "js": [
+           "js/REWRITE.js"
+         ],
+         "matches": [ "*://*.google.com/search*", "*://*.google.com/webhp*" ],
+         "run_at": "document_start"
+      },
+      {
+         "all_frames": false,
+         "js": [
+           "js/scrollToFirstResult.js"
+         ],
+         "matches": [ "*://*.google.com/search*", "*://*.google.com/webhp*" ],
+         "run_at": "document_end"
+      },
+      {
+         "all_frames": false,
+         "js": [
            "node_modules/extension-include/extension-include.js",
            "mod/messaging.js",
            "mod/cs_analytics.js",
@@ -21,19 +37,13 @@
            "mod/fresh.js",
            "misc/start.js"
          ],
-         "matches": [ "*://*.google.com/search*", "*://*.google.com/webhp*" ],
+         "matches": [ "*://*.NOTGOOGLEgoogle.com/search*", "*://*.NOTGOOGLEgoogle.com/webhp*" ],
          "run_at": "document_start"
       },
       {
          "all_frames": true,
-         "js": [ "node_modules/extension-include/extension-include.js", "specific/google.com.js" ],
-         "matches": [ "*://www.google.com/", "*://www.google.com/webhp*" ],
-         "run_at": "document_start"
-      },
-      {
-         "all_frames": true,
-         "js": [ "node_modules/extension-include/extension-include.js", "specific/youtube.js" ],
-         "matches": [ "*://*.youtube.com/*", "*://youtube.com/*" ],
+         "js": [ "specific/youtube.js" ],
+         "matches": [ "*://*.youtube.com/*" ],
          "run_at": "document_start"
       }
    ],
@@ -46,7 +56,7 @@
    },
    "web_accessible_resources": ["css/SCOUT-CSS.css", "css/REWRITE.css"],
    "incognito": "spanning",
-   "minimum_chrome_version": "18",
+   "minimum_chrome_version": "20",
    "update_url": "http://thescoutapp.com/extension/update.xml",
    "name": "Scout 4.0 Eros",
    "homepage_url": "http://TheScoutApp.com",

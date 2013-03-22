@@ -1,0 +1,141 @@
+/*** development ***/
+#rso > .g:first-child {
+  border-right: 2px #333 solid !important;
+  background-color: hsl(208, 81%, 90%) !important;
+}
+
+
+
+/*make green url text cut off with ellipsis, and only take up one line of text*/
+cite, .gl { /*.gl="www.cnn.com/asdf -10 hours ago" also trim div.gl containing this*/
+  display: inline-block; /*without this, there's no ellipsis here https://www.google.com/search?q=sunrise%20san%20francieco&tbm=vid*/
+  overflow-x: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*hide ads*/
+#taw, #bottomads {
+  display: none !important;
+}
+
+
+/*** ADJUSTING MARGINS/PADDING ***/
+
+
+
+
+/*** OPTINIONATED STYLING ***/
+
+/*whitesmokey background*/
+body {
+  background-color: rgb(248, 248, 248) !important;
+  /*wack page after advanced search has padding https://www.google.com/search?hl=en&as_q=google&as_epq=&as_oq=&as_eq=&as_nlo=&as_nhi=&lr=&cr=&as_qdr=d&as_sitesearch=&as_occt=any&safe=images&tbs=&as_filetype=&as_rights=*/
+  margin: 0 !important;
+}
+
+/*strip all margins so li blocks are flush to the edges, referencing the original selectors google uses to style with*/
+#center_col, #foot,
+#hdtb_msb > .hdtb_mitem:first-child, .ab_tnav_wrp, #cnt #center_col, .mw #center_col, .mw #foot,
+#ires /*#res is taken care of by the .med below (#res has class med)*/ {
+  /*flatten left/right margin of the page, originally around 120px/256px*/
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0 !important;
+}
+
+/*result blocks*/
+.g, #botstuff {
+  /*set footer area with same/consistent padding*/
+  padding: 8px 10px !important;
+  margin: 0 !important;
+}
+
+#rso > .g {
+  border-bottom: solid #D4D4D4 1px !important;
+  cursor: pointer;
+  -webkit-transition: background-color 0.15s;
+
+  background-color: rgb(248, 248, 248); /*transition looks flaky when transitioning to transparent*/
+}
+#rso > .g:hover {
+  background-color: hsl(215, 81%, 96%);
+}
+.scoutOpenedResult {
+  border-right: 2px #333 solid !important;
+  background-color: hsl(208, 81%, 90%) !important;
+}
+
+/*fix formatting on "sunrise san francisco" -> 7:20am quick info block*/
+.vk_cxp {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+/*have text flow around video thumbnails*/
+div[style="margin-left:125px"] {
+  margin-left: 0 !important;
+}
+div[style="margin-left:125px"] > .f.kv {
+  margin-left: 125px;
+}
+.th.thb {
+  /*little space between thumbnail and text (otherwise the text runs up right against it*/
+  margin-right: 7px;
+}
+
+/*
+"Images of <search term>" in results list.
+Width: 528 makes the containing element of the images wider than the sidebar,
+so they get cut off instead of popping down below and not being visible.
+We could let them pop down below and have the result block expand in height,
+but I think this looks the cleanest.
+*/
+.rg_ul {
+  width: 545px; /*needs to be at least 540, based on non-replcatable experience*/
+}
+/*EXPERIMENTAL also let you horizontally scroll across the cut off images*/
+.birrg {
+  overflow-x: auto !important;
+}
+
+/*hide little person icon to left of result h3 link*/
+.spri {
+  display: none !important;
+}
+/*e.g. https://www.google.com/search?q=gooogle&hl=en*/
+
+/* news result blocks have '- 10 hours ago' hanging off sidebar. this tucks them in*/
+.gl > cite {
+  width: auto;
+}
+/*e.g. https://www.google.com/search?q=test+&aq=f&oq=test+&aqs=chrome.0.59j60l3j57j61.562&sourceid=chrome&ie=UTF-8#hl=en&sclient=psy-ab&q=san+franciceoco&oq=san+franciceoco&gs_l=serp.3..0i13l4.143868210.143873929.1.143874123.21.16.0.5.5.0.250.2648.0j13j3.16.0.les%3B..0.0...1c.1.6.psy-ab.Tv4F-mnPAns&pbx=1&fp=1&biw=1112&bih=641&cad=b&bav=on.2,or.r_cp.r_qf.&sei=JyxEUbm6MYmFywGC94GACg*/
+
+
+/*break up "399 Google reviews • Write a review" text better*/
+.fl > span {
+  white-space: normal !important;
+  /*originally nowrap, looks clunky in the sidebar, https://www.google.com/search?q=academy+sciences+sf*/
+}
+
+/*** TEMPORARY/UNSURE ***/
+
+/*quick links, the 2 columns of 3 links, below certain results, are irrelevant since you already have the side open*/ 
+.nrgt {
+  display: none;
+}
+
+/*after using advanced search form, this page https://www.google.com/search?hl=en&as_q=google&as_epq=&as_oq=&as_eq=&as_nlo=&as_nhi=&lr=&cr=&as_qdr=d&as_sitesearch=&as_occt=any&safe=images&tbs=&as_filetype=&as_rights=
+has a wack search box present.*/
+#sfcnt, #subform_ctrl {
+  display: none;
+}
+
+
+/*valuable ports*/
+#__su__toolbar {
+  display: none;
+  width: 0; /*don't know why width is here.*/
+}
