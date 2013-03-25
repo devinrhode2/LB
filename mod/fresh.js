@@ -60,27 +60,6 @@ function htmlGroup() {
       href: chrome.extension.getURL('css/SCOUT-CSS.css'),
       rel: 'stylesheet'
     }));
-
-    
-    
-    ///////////////
-    //SCROLLBAR CSS
-/*
-    var scrollbars = createElement('link', {
-      rel: 'stylesheet'
-    });
-    if (/mac\sos/ig.test(navigator.userAgent) || /macintosh/ig.test(navigator.userAgent)) {
-      //use antiscroll?
-      if (navigator.userAgent.indexOf('Mac OS X 10_7_') > -1) {
-        //do nothing
-      } else {
-        scrollbars.href = chrome.extension.getURL('css/scrollbar.mac.css');
-      }
-    } else {
-      scrollbars.href = chrome.extension.getURL('css/scrollbar.windows.css');
-    }
-    firstDomNodes.appendChild(scrollbars);
-*/
     
     
     var rightPaneBaseStyles = 'white-space: nowrap;position:fixed; right: 0px; z-index:111;';
@@ -133,7 +112,7 @@ function htmlGroup() {
       //favicon struggles... :( 
       //if (data.title) //Yep, usually false.
       //  document.title = data.title;
-    }
+    };
     
     window.addEventListener('message', function windowOnMessage(event) {
       if (event.origin !== 'https://plus.google.com') {

@@ -1,6 +1,5 @@
 var timeout = 24;
 var links = document.getElementsByClassName('l');
-
 (function REWRITEJS() {
 
   (function appendStylesheet(stylesheet) {
@@ -11,7 +10,6 @@ var links = document.getElementsByClassName('l');
     document.documentElement.appendChild(stylesheet);
   })( document.createElement('link') );
 
-scrollTo(0, 81);
 /*
   window.addEventListener('load', function ScoutOnLoad() {
     setTimeout(function afterLoadLag() {

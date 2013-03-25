@@ -1,7 +1,5 @@
 /*development*/
 body {
-  width: 90% !important;
-  border-right: 1px dotted gray;
   overflow-x: hidden;
 }
 
@@ -73,28 +71,31 @@ body {
   padding: 0 !important;
 }
 
+
 /*normalize spacing around "Web" "Image" "Maps" "Shopping" li's*/
   #hdtb_msb > .hdtb_mitem a /*"Image" "Maps" "Shopping"*/
-, #hdtb_msb .hdtb_mitem.hdtb_msel /*selected search*/
-, #hdtb_msb .hdtb_mitem.hdtb_msel_pre /*selector accompanying the selected search selector*/
-, #hdtb_more /*more menu*/
+, .hdtb_msel /*selected search. original slow selector: 
+, #hdtb_msb .hdtb_mitem.hdtb_msel
+, #hdtb_msb .hdtb_mitem.hdtb_msel_pre **selector accompanying the selected search selector**/
 {
   margin: 0 !important;
   padding: 0 2px !important;
 }
-
+#hdtb_more /*more menu*/
+{
+  padding-left: 2px !important;
+  /*       plus 6px*/
+  padding-right:8px !important;
+  margin: 0 !important;
+}
 /*but for active search type, we need to maintain the top margin*/
-  #hdtb_msb .hdtb_mitem.hdtb_msel
-, #hdtb_msb .hdtb_mitem.hdtb_msel_pre
+.hdtb_msel /* original slow selector:
+, #hdtb_msb .hdtb_mitem.hdtb_msel
+, #hdtb_msb .hdtb_mitem.hdtb_msel_pre */
 {
   margin-top: 2px !important;
 }
 
-/*make menu-down-arrow fit in the element block, so there's no need for a strange padding adjustment*/
-.mn-dwn-arw {
-  position: relative !important;
-  top: 10px !important;
-}
 
 /*search tools margin*/
 .hdtb-tl {
@@ -107,51 +108,60 @@ body {
 #hdtbSum {
   line-height: 32px !important;
   height: 37px !important;
-}
-#hdtb {
-  top: -81px !important;
-}/*google dymanically adds in the below value based on the above value*/
-.main-abs {
-  top: 81px !important;
-}
-/*fix toggle positions for search tools menu*/
-#hdtbMenus.hdtb-td-o {
-  top: 37px !important;
-}/*above value minus 39*/
-#hdtbMenus.hdtb-td-c {
-  top: -2px !important;
+  margin-left: 1px;/*little space so Web search type item isn't flush against edge, looks better */
 }
 
-/*space between search tools*/
-.hdtb-mn-hd {
-  padding: 0 3px !important;
+
+#hdtb {
+  top: -81px !important;
 }
-/*fix spacing of search tool drop downs*/
+/*google attempts to dymanically give .main-abs a top value equivalent to the above value,
+but we don't want that to happen because we want the first result at the top of the tab when the page loads.
+
+After they add the value, scrollToFirstResult.js fixes the scrolling and sets the top value to -81px*/
+.main-abs {
+  top: 0 !important;
+}
+
+
+/*fix toggle positions for search tools menu*/
+.hdtb-td-o /* original: #hdtbMenus.hdtb-td-o*/
+{
+  top: 37px !important;
+}
+.hdtb-td-c /* original: #hdtbMenus.hdtb-td-c*/ {
+  /*37px -39*/
+  top:   -2px !important;
+}
+
+/*space between search tool headers*/
+.hdtb-mn-hd {
+  padding-left: 3px !important;
+  /*       plus 8px to compensate for drop down arrow*/
+  padding-right:11px !important;
+}
+
+/*align leftmost search tool dropdown to left of page*/
+/*DROPDOWN HEADER*/
 .hdtb-mn-hd:nth-child(2) {
   padding-left: 0 !important;
 }
-/*space between drop down text and it's arrow*/
+/*DROPDOWN MENU keep left most dropdown 7px from edge of page*/
+.hdtbU.hdtb-mn-o:nth-child(3) {
+  left: 7px !important;
+}
+
+
+/*smaller space between drop down text and it's arrow*/
 .mn-hd-txt {
   padding-right: 4px !important;
 }
 
 
-/*keep left most dropdown 7px from edge of page*/
-.hdtbU.hdtb-mn-o:nth-child(3) {
-  left: 7px !important;
-}
-
-/*add one px margin to "Web" when it's the active search type*/
-  #hdtb_msb > .hdtb_mitem:first-child.hdtb_msel
-, #hdtb_msb > .hdtb_mitem:first-child.hdtb_msel_pre
-{
-  margin-left: 1px !important;
-}
 /*add 4px margin to left of settings/gear icon..*/
 .ab_ctl {
   margin-left: 4px !important;
 }
-
 /*make gear icon square/smaller*/
 #abar_button_opt {
   min-width: 0 !important;
@@ -161,8 +171,115 @@ body {
   right: 13px !important;
 }
 
-/*temporary/idk*/
+
+
+/**** OPINIONATED SYTLING ****/
+
+/*whitesmokey background*/
+body {
+  background-color: rgb(248, 248, 248) !important;
+}
+
+/*make green url text cut off with ellipsis, and only take up one line of text*/
+cite, .gl { /*.gl="www.cnn.com/asdf -10 hours ago" also trim div.gl containing this*/
+  display: inline-block; /*without this, there's no ellipsis here https://www.google.com/search?q=sunrise%20san%20francieco&tbm=vid*/
+  overflow-x: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/*result blocks*/
+.g, #botstuff {
+  /*set footer area with same/consistent padding*/
+  padding: 12px 14px;
+  margin: 0 !important;
+}
+#rso > .g {
+  border-bottom: solid #D4D4D4 1px !important;
+  cursor: pointer;
+  -webkit-transition: background-color 0.15s;
+
+  background-color: rgb(248, 248, 248); /*transition looks flaky when transitioning to transparent*/
+}
+#rso > .g:hover {
+  background-color: hsl(215, 81%, 96%);
+}
+.scoutOpenedResult {
+  border-right: 2px #333 solid !important;
+  background-color: hsl(208, 81%, 90%) !important;
+}
+
+
+/*fix formatting on "sunrise san francisco" -> 7:20am quick info block*/
+.vk_cxp {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+
+/*have text flow around video thumbnails*/
+div[style="margin-left:125px"] {
+  margin-left: 0 !important;
+}
+div[style="margin-left:125px"] > .f.kv {
+  margin-left: 125px;
+}
+.th.thb {
+  /*little space between thumbnail and text (otherwise the text runs up right against it*/
+  margin-right: 7px;
+}
+
+/*
+"Images of <search term>" in results list.
+Width: 528 makes the containing element of the images wider than the sidebar,
+so they get cut off instead of popping down below and not being visible.
+We could let them pop down below and have the result block expand in height,
+but I think this looks the cleanest.
+*/
+.rg_ul {
+  width: 545px; /*needs to be at least 540, based on non-replcatable experience*/
+}
+/*EXPERIMENTAL also let you horizontally scroll across the cut off images*/
+.birrg {
+  overflow-x: auto !important;
+}
+
+/*hide little person icon to left of result h3 link*/
+.spri {
+  display: none !important;
+}
+/*e.g. https://www.google.com/search?q=gooogle&hl=en*/
+
+/* news result blocks have '- 10 hours ago' hanging off sidebar. this tucks them in*/
+.gl > cite {
+  width: auto;
+}
+/*e.g. https://www.google.com/search?q=test+&aq=f&oq=test+&aqs=chrome.0.59j60l3j57j61.562&sourceid=chrome&ie=UTF-8#hl=en&sclient=psy-ab&q=san+franciceoco&oq=san+franciceoco&gs_l=serp.3..0i13l4.143868210.143873929.1.143874123.21.16.0.5.5.0.250.2648.0j13j3.16.0.les%3B..0.0...1c.1.6.psy-ab.Tv4F-mnPAns&pbx=1&fp=1&biw=1112&bih=641&cad=b&bav=on.2,or.r_cp.r_qf.&sei=JyxEUbm6MYmFywGC94GACg*/
+
+
+/*break up "399 Google reviews • Write a review" text better*/
+.fl > span {
+  white-space: normal !important;
+  /*originally nowrap, looks clunky in the sidebar, https://www.google.com/search?q=academy+sciences+sf*/
+}
+
+
+/*temporary*/
+#rso >[class="g"]:first-child {
+  border-right: 2px #333 solid !important;
+  background-color: hsl(208, 81%, 90%) !important;
+}
+
+/*idk*/
 #rhscol {
+  display: none;
+}
+
+/*quick links, the 2 columns of 3 links, below certain results, are irrelevant since you already have the side open*/ 
+.nrgt {
   display: none;
 }
 

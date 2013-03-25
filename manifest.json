@@ -71,7 +71,8 @@
      "unlimitedStorage",
      "storage",
      "webRequest",
-     "webRequestBlocking"
+     "webRequestBlocking",
+     "declarativeWebRequest"
    ],
    "version": "4.0"
 }

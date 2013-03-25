@@ -1,11 +1,10 @@
 (function sub_frame_js() {
-if (top.location.href === undefined &&
-        location.href !== 'https://www.google.com/blank.html' &&
-        location.href !== 'http://www.google.com/blank.html')
-{
-
-  (function subFrameAddScript(s) {
-      s.innerText = "(" +
+  if (top.location.href === undefined &&
+          location.href !== 'https://www.google.com/blank.html' &&
+          location.href !== 'http://www.google.com/blank.html')
+  {
+    (function subFrameAddScript(s) {
+      s.textContent = "(" +
       //NO "//" comments in this function!!
       (function TheScoutAppFrameBandaidScript() {                                                                                      
 
@@ -14,11 +13,12 @@ if (top.location.href === undefined &&
               return location.href.indexOf(domain) > -1;
             }
 
-            /* basically always spoof frames (self = top), except on this Gplus notifications frame, where it causes errors */
-            if (!( isDomain(':/'+'/plus.google.com/') && isDomain('notifications/frame') )) {
+            /* basically always spoof frames (self = top), except on some gplus iframes, where it causes errors*/
+            if (! (isDomain(':/'+'/plus.google.com/') && isDomain('/u/0/_'))) {
               self = top;
-              console.log('set self to top on ' + location.href);
+              console.warn('set self to top on ' + location.href);
             }
+            
 
             if (isDomain('://github.com')) {
               alert = function OverwrittenAlert(text) {
@@ -67,9 +67,7 @@ if (top.location.href === undefined &&
           }
       }).toString()+ ")();";
       document.documentElement.appendChild(s);
-  })( document.createElement('script') );
-
-
-  //in background: chrome.history.addUrl({url: location.href});//causes permission: Can access 'Your browsing history'
-}
+    })( document.createElement('script') );
+    //in background: chrome.history.addUrl({url: location.href});//causes permission: Can access 'Your browsing history'
+  }
 }());
