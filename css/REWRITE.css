@@ -197,13 +197,14 @@ cite, .gl { /*.gl="www.cnn.com/asdf -10 hours ago" also trim div.gl containing t
   margin: 0 !important;
 }
 #rso > .g {
-  border-bottom: solid #D4D4D4 1px !important;
   cursor: pointer;
   -webkit-transition: background-color 0.15s;
-
   background-color: rgb(248, 248, 248); /*transition looks flaky when transitioning to transparent*/
+
+  border-bottom: solid #D4D4D4 1px !important; } #rso {
+  border-top:    solid #D4D4D4 1px !important;
 }
-#rso > .g:hover {
+#rso > .g:hover, #rso > .g:focus {
   background-color: hsl(215, 81%, 96%);
 }
 .scoutOpenedResult {
