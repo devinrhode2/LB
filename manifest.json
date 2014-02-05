@@ -1,6 +1,7 @@
 {
    "manifest_version": 2,
    "background": {
+      "persistent": false,
       "page": "background/background.html"
    },
    "content_scripts": [
@@ -8,36 +9,6 @@
          "all_frames": true,
          "js": [ "specific/sub_frame.js" ],
          "matches": [ "<all_urls>" ],
-         "run_at": "document_start"
-      },
-      {
-         "all_frames": false,
-         "js": [
-           "js/REWRITE.js"
-         ],
-         "matches": [ "*://*.google.com/search*", "*://*.google.com/webhp*" ],
-         "run_at": "document_start"
-      },
-      {
-         "all_frames": false,
-         "js": [
-           "js/scrollToFirstResult.js"
-         ],
-         "matches": [ "*://*.google.com/search*", "*://*.google.com/webhp*" ],
-         "run_at": "document_end"
-      },
-      {
-         "all_frames": false,
-         "js": [
-           "node_modules/extension-include/extension-include.js",
-           "mod/messaging.js",
-           "mod/cs_analytics.js",
-           "mod/neif.js",
-           "mod/preview.js",
-           "mod/fresh.js",
-           "misc/start.js"
-         ],
-         "matches": [ "*://*.NOTGOOGLEgoogle.com/search*", "*://*.NOTGOOGLEgoogle.com/webhp*" ],
          "run_at": "document_start"
       },
       {
@@ -54,14 +25,18 @@
       "16": "images/icon16.png",
       "48": "images/icon48.png"
    },
-   "web_accessible_resources": ["css/SCOUT-CSS.css", "css/REWRITE.css"],
+   "browser_action": {
+
+   },
+   "web_accessible_resources": [],
    "incognito": "spanning",
    "minimum_chrome_version": "20",
-   "update_url": "http://thescoutapp.com/extension/update.xml",
-   "name": "Scout 4.0 Eros",
-   "homepage_url": "http://TheScoutApp.com",
+   "name": "Mobar, MOBile sidebAR. 'Innovative' 'new' 'browsing experience'",
+   "homepage_url": "http://github.com/devinrhode2/Mobar",
    "permissions": [
      "<all_urls>",
+
+     //free permissions
      "chrome://favicon/",
      "clipboardWrite",
      "contextMenus",
@@ -71,8 +46,7 @@
      "unlimitedStorage",
      "storage",
      "webRequest",
-     "webRequestBlocking",
-     "declarativeWebRequest"
+     "webRequestBlocking"
    ],
-   "version": "4.0"
+   "version": "0.1"
 }

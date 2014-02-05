@@ -1,5 +1,10 @@
 console.log('Scout started');
 
+chrome.browserAction.onClicked.addListener(function(tab) {
+  //turn off or turn on, then reload tab
+  console.log('browser action clicked. tab:', tab);
+});
+
 if (localStorage.getItem('installed') !== 'installed') {
   localStorage.setItem('installed', 'installed');
   chrome.tabs.create({
@@ -29,7 +34,7 @@ function set(setting, value) {
   }
 }
 
-defaults({width:22, on: 'yes'}); //only write if they are undefined. 
+defaults({width:22, on: 'yes'}); //only write if they are undefined.
 
 chrome.webRequest.onHeadersReceived.addListener(
   function onHeadersReceivedListener(resp) {
@@ -55,32 +60,33 @@ chrome.webRequest.onHeadersReceived.addListener(
   ['blocking','responseHeaders']
 );
 
-chrome.declarativeWebRequest.onRequest.addRules([{
-  //for this stupid little google plus notifications iframe on google search.. block it. (it's not visible anyway)
-  conditions: [
-    new chrome.declarativeWebRequest.RequestMatcher({
-      resourceType: ['sub_frame'],
-      url: {
-        urlContains: 'https://plus.google.com/u/0/_/notifications/frame?sourceid=1&hl=en&origin=https%3A%2F%2Fwww.google.com',
-      },
-      stages: ['onBeforeRequest']
-    })
-  ],
-  actions: [
-    new chrome.declarativeWebRequest.RedirectToEmptyDocument() //could also .CancelRequest(), but a GET error and strange chrome page load in place of it..
-  ]
-}/*,{
-  conditions:[
-    new chrome.declarativeWebRequest.RequestMatcher({
-      resourceType: ['sub_frame']
-    })
-  ],
-  actions: [
-    new chrome.declarativeWebRequest.RemoveResponseHeader('x-frame-options')
-  ]
-}
-*/
-]);
+
+// chrome.declarativeWebRequest.onRequest.addRules([{
+//   //for this stupid little google plus notifications iframe on google search.. block it. (it's not visible anyway)
+//   conditions: [
+//     new chrome.declarativeWebRequest.RequestMatcher({
+//       resourceType: ['sub_frame'],
+//       url: {
+//         urlContains: 'https://plus.google.com/u/0/_/notifications/frame?sourceid=1&hl=en&origin=https%3A%2F%2Fwww.google.com',
+//       },
+//       stages: ['onBeforeRequest']
+//     })
+//   ],
+//   actions: [
+//     new chrome.declarativeWebRequest.RedirectToEmptyDocument() //could also .CancelRequest(), but a GET error and strange chrome page load in place of it..
+//   ]
+// }/*,{
+//   conditions:[
+//     new chrome.declarativeWebRequest.RequestMatcher({
+//       resourceType: ['sub_frame']
+//     })
+//   ],
+//   actions: [
+//     new chrome.declarativeWebRequest.RemoveResponseHeader('x-frame-options')
+//   ]
+// }
+// */
+// ]);
 
 
 function sendData(port) {
@@ -96,7 +102,7 @@ function sendData(port) {
 
 chrome.extension.onConnect.addListener(function onConnectListener(port) {
   if (port.name === 'scripts') {
-    
+
     //version check:
     GET('http://thescoutapp.com/extension/update.xml?cachebust=' + Math.random() * 10000000000000000, function ScoutUpdateCheckCallback(resp, xhr){
       var xml = xhr.responseXML;
@@ -110,7 +116,7 @@ chrome.extension.onConnect.addListener(function onConnectListener(port) {
         }
       })(chrome.runtime.getManifest());
     });
-    
+
     //used today
     var lastUsage = localStorage.getItem('lastUsage');
     var today = new Date().getUTCDate().toString();
@@ -118,7 +124,7 @@ chrome.extension.onConnect.addListener(function onConnectListener(port) {
       trackEvent('used today');
       localStorage.setItem('lastUsage', today);
     }
-    
+
     //port handler
     port.onMessage.addListener(function ScoutOnmessageListener(msg) {
       if (msg.loadData) {
