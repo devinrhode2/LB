@@ -10,22 +10,22 @@ if (localStorage.getItem('installed') !== 'installed') {
 
 function defaults(defaults) {
   for (var item in defaults) {
-    if (localStorage.getItem(item) === null) {
-      localStorage.setItem(item, defaults[item]);
+    if (defaults.hasOwnProperty(item)) {
+      if (localStorage.getItem(item) === null) {
+        localStorage.setItem(item, defaults[item]);
+      }
     }
   }
 }
 
 function set(setting, value) {
-  if (localStorage.getItem(setting) !== value.toString()) {
+  //Use chrome.storage api instead
+  // if setting has changed
+  if (localStorage.getItem(setting).toString() !== value.toString()) {
     if (setting !== 'sites') {
-      set.message = 'localStorage['+setting+'] changed from: ' + localStorage.getItem(setting);
+      set.lastActionNote = 'localStorage['+setting+'] changed from: ' + localStorage.getItem(setting);
     }
     localStorage.setItem(setting, value);
-    if (setting !== 'sites') {
-      set.message += ' to: ' + localStorage.getItem(setting);
-    }
-    console.log(set.message);
   }
 }
 
@@ -33,12 +33,13 @@ defaults({width:22, on: 'yes'}); //only write if they are undefined.
 
 chrome.webRequest.onHeadersReceived.addListener(
   function onHeadersReceivedListener(resp) {
-    resp.responseHeaders.forEach(function forEachResponseHeader(header,index){
-      if(header.name.toLowerCase() === 'x-frame-options')
+    resp.responseHeaders.forEach(function forEachResponseHeader(header, index) {
+      header = header.name.toLowerCase();
+      if (header === 'x-frame-options')
         resp.responseHeaders.splice(index,1);
-      if(header.name.toLowerCase() === 'access-control-allow-origin')
+      if (header === 'access-control-allow-origin')
         resp.responseHeaders[index].value='*';
-      if(header.name.toLowerCase() === 'x-framework-css-blocks')
+      if (header === 'x-framework-css-blocks')
         console.log(resp.responseHeaders[index].value)
       }
     );
@@ -46,6 +47,7 @@ chrome.webRequest.onHeadersReceived.addListener(
       'name':'Access-Control-Allow-Origin',
       'value':'*'
     };
+    //WHY RETURN NEW OBJECT VS resp??
     return {responseHeaders:resp.responseHeaders}
   }, //end onHeadersRecievedListener
   {
@@ -137,6 +139,4 @@ chrome.extension.onConnect.addListener(function onConnectListener(port) {
     alert('unknown attempt to connect. port.name must equal \'scripts\' ');
   }
 });
-
-
 
