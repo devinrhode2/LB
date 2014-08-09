@@ -1,36 +1,43 @@
 console.log('Scout started');
 
-if (localStorage.getItem('installed') !== 'installed') {
-  localStorage.setItem('installed', 'installed');
+if (NOT_INSTALLED) {
+  SET_INSTALLED_TRUE
   chrome.tabs.create({
     'url': chrome.extension.getURL('welcome/index.html')
   });
-  POST('http://thescoutapp.com/smartframes/post.php', 'install=occured', function emptyPostCallbackForInstallOccured(){});
+  //POST('http://thescoutapp.com/smartframes/post.php', 'install=occured', function emptyPostCallbackForInstallOccured(){});
 }
 
-function defaults(defaults) {
-  for (var item in defaults) {
-    if (defaults.hasOwnProperty(item)) {
-      if (localStorage.getItem(item) === null) {
-        localStorage.setItem(item, defaults[item]);
-      }
+chrome.browserAction.onClicked.addListener(function(tab) {
+  //turn off or turn on, then reload tab
+  console.log('browser action clicked. tab:', tab);
+});
+
+var defaults = {width:22, on: 'yes'}; //only write if they are undefined. 
+for (var item in defaults) {
+  if (defaults.hasOwnProperty(item)) {
+    if (CHROME_STORAGE.getItem(item) is null?) {
+      CHROME_STORAGE.setItem(item, defaults[item]);
     }
   }
 }
+
+chrome.webRequest.onBeforeSendHeaders.addListener(function(){
+  console.log('beforeSendHeaders', arguments);
+}/*, filter, opt_extraInfoSpec*/);
+
 
 function set(setting, value) {
-  //Use chrome.storage api instead
   // if setting has changed
-  if (localStorage.getItem(setting).toString() !== value.toString()) {
+  if (CHROME_STORAGE.getItem(setting).toString() !== value.toString()) {
     if (setting !== 'sites') {
-      set.lastActionNote = 'localStorage['+setting+'] changed from: ' + localStorage.getItem(setting);
+      set.lastActionNote = 'localStorage['+setting+'] changed from: ' + CHROME_STORAGE.getItem(setting);
     }
-    localStorage.setItem(setting, value);
+    CHROME_STORAGE.setItem(setting, value);
   }
 }
 
-defaults({width:22, on: 'yes'}); //only write if they are undefined. 
-
+//Allow iframes to load from any site, remote x-frame-options restrictions
 chrome.webRequest.onHeadersReceived.addListener(
   function onHeadersReceivedListener(resp) {
     resp.responseHeaders.forEach(function forEachResponseHeader(header, index) {
@@ -57,86 +64,58 @@ chrome.webRequest.onHeadersReceived.addListener(
   ['blocking','responseHeaders']
 );
 
-chrome.declarativeWebRequest.onRequest.addRules([{
-  //for this stupid little google plus notifications iframe on google search.. block it. (it's not visible anyway)
-  conditions: [
-    new chrome.declarativeWebRequest.RequestMatcher({
-      resourceType: ['sub_frame'],
-      url: {
-        urlContains: 'https://plus.google.com/u/0/_/notifications/frame?sourceid=1&hl=en&origin=https%3A%2F%2Fwww.google.com',
-      },
-      stages: ['onBeforeRequest']
-    })
-  ],
-  actions: [
-    new chrome.declarativeWebRequest.RedirectToEmptyDocument() //could also .CancelRequest(), but a GET error and strange chrome page load in place of it..
-  ]
-}/*,{
-  conditions:[
-    new chrome.declarativeWebRequest.RequestMatcher({
-      resourceType: ['sub_frame']
-    })
-  ],
-  actions: [
-    new chrome.declarativeWebRequest.RemoveResponseHeader('x-frame-options')
-  ]
-}
-*/
-]);
+// function sendData(port) {
+//   var settings = {};
+//   for (var item in localStorage) {
+//     settings[item] = localStorage.getItem(item);
+//   }
+//   if (typeof sites === 'undefined') {
+//     sites = JSON.parse(localStorage.getItem('sites'));
+//   }
+//   port.postMessage({data: {settings: settings, sites: sites}});
+// }
 
-
-function sendData(port) {
-  var settings = {};
-  for (var item in localStorage) {
-    settings[item] = localStorage.getItem(item);
-  }
-  if (typeof sites === 'undefined') {
-    sites = JSON.parse(localStorage.getItem('sites'));
-  }
-  port.postMessage({data: {settings: settings, sites: sites}});
-}
-
-chrome.extension.onConnect.addListener(function onConnectListener(port) {
-  if (port.name === 'scripts') {
+// chrome.extension.onConnect.addListener(function onConnectListener(port) {
+//   if (port.name === 'scripts') {
     
-    //version check:
-    GET('http://thescoutapp.com/extension/update.xml?cachebust=' + Math.random() * 10000000000000000, function ScoutUpdateCheckCallback(resp, xhr){
-      var xml = xhr.responseXML;
-      var remote = parseFloat(xml.getElementsByTagName('updatecheck')[0].getAttribute('version'));
-      (function getManifestScope(json) {
-        var local = parseFloat(JSON.parse(json).version);
-        if (remote > local) {
-          port.postMessage({update:'son'});
-        } else {
-          console.log('up to date');
-        }
-      })(chrome.runtime.getManifest());
-    });
+//     //version check:
+//     GET('http://thescoutapp.com/extension/update.xml?cachebust=' + Math.random() * 10000000000000000, function ScoutUpdateCheckCallback(resp, xhr){
+//       var xml = xhr.responseXML;
+//       var remote = parseFloat(xml.getElementsByTagName('updatecheck')[0].getAttribute('version'));
+//       (function getManifestScope(json) {
+//         var local = parseFloat(JSON.parse(json).version);
+//         if (remote > local) {
+//           port.postMessage({update:'son'});
+//         } else {
+//           console.log('up to date');
+//         }
+//       })(chrome.runtime.getManifest());
+//     });
     
-    //used today
-    var lastUsage = localStorage.getItem('lastUsage');
-    var today = new Date().getUTCDate().toString();
-    if (lastUsage !== today) {
-      trackEvent('used today');
-      localStorage.setItem('lastUsage', today);
-    }
+//     //used today
+//     var lastUsage = localStorage.getItem('lastUsage');
+//     var today = new Date().getUTCDate().toString();
+//     if (lastUsage !== today) {
+//       trackEvent('used today');
+//       localStorage.setItem('lastUsage', today);
+//     }
     
-    //port handler
-    port.onMessage.addListener(function ScoutOnmessageListener(msg) {
-      if (msg.loadData) {
-        sendData(port);
-      } else if(msg.set) {
-        for(key in msg.set) {
-          set(key, msg.set[key]);
-        }
-      } else if(msg.trackEvent) {
-        trackEvent(msg.trackEvent);
-      } else {
-        alert('unhandled message to background.html: ' + JSON.stringify(msg));
-      }
-    });
-  } else {
-    alert('unknown attempt to connect. port.name must equal \'scripts\' ');
-  }
-});
+//     //port handler
+//     port.onMessage.addListener(function ScoutOnmessageListener(msg) {
+//       if (msg.loadData) {
+//         sendData(port);
+//       } else if(msg.set) {
+//         for(key in msg.set) {
+//           set(key, msg.set[key]);
+//         }
+//       } else if(msg.trackEvent) {
+//         trackEvent(msg.trackEvent);
+//       } else {
+//         alert('unhandled message to background.html: ' + JSON.stringify(msg));
+//       }
+//     });
+//   } else {
+//     alert('unknown attempt to connect. port.name must equal \'scripts\' ');
+//   }
+// });
 
