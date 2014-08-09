@@ -1,78 +1,68 @@
 {
-   "manifest_version": 2,
-   "background": {
-      "page": "background/background.html"
-   },
-   "content_scripts": [
-      {
-         "all_frames": true,
-         "js": [ "specific/sub_frame.js" ],
-         "matches": [ "<all_urls>" ],
-         "run_at": "document_start"
-      },
-      {
-         "all_frames": false,
-         "js": [
-           "js/REWRITE.js"
-         ],
-         "matches": [ "*://*.google.com/search*", "*://*.google.com/webhp*" ],
-         "run_at": "document_start"
-      },
-      {
-         "all_frames": false,
-         "js": [
-           "js/scrollToFirstResult.js"
-         ],
-         "matches": [ "*://*.google.com/search*", "*://*.google.com/webhp*" ],
-         "run_at": "document_end"
-      },
-      {
-         "all_frames": false,
-         "js": [
-           "node_modules/extension-include/extension-include.js",
-           "mod/messaging.js",
-           "mod/cs_analytics.js",
-           "mod/neif.js",
-           "mod/preview.js",
-           "mod/fresh.js",
-           "misc/start.js"
-         ],
-         "matches": [ "*://*.NOTGOOGLEgoogle.com/search*", "*://*.NOTGOOGLEgoogle.com/webhp*" ],
-         "run_at": "document_start"
-      },
-      {
-         "all_frames": true,
-         "js": [ "specific/youtube.js" ],
-         "matches": [ "*://*.youtube.com/*" ],
-         "run_at": "document_start"
-      }
-   ],
-   "description": "Scout - Google like a god",
-   "icons":
-   {
-      "128": "images/icon128.png",
-      "16": "images/icon16.png",
-      "48": "images/icon48.png"
-   },
-   "web_accessible_resources": ["css/SCOUT-CSS.css", "css/REWRITE.css"],
-   "incognito": "spanning",
-   "minimum_chrome_version": "20",
-   "update_url": "http://thescoutapp.com/extension/update.xml",
-   "name": "Scout 4.0 Eros",
-   "homepage_url": "http://TheScoutApp.com",
-   "permissions": [
-     "<all_urls>",
-     "chrome://favicon/",
-     "clipboardWrite",
-     "contextMenus",
-     "cookies",
-     "idle",
-     "notifications",
-     "unlimitedStorage",
-     "storage",
-     "webRequest",
-     "webRequestBlocking",
-     "declarativeWebRequest"
-   ],
-   "version": "4.0"
+  "manifest_version": 2,
+  "background": {
+    "persistent": true,
+    "scripts": [
+      "node_modules/extension-include/extension-include.js",
+      "node_modules/analytics.js/analytics.js",
+      "background/main_background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "js": [ "specific/sub_frame.js" ],
+      "matches": [ "<all_urls>" ],
+      "all_frames": true,
+      "run_at": "document_start"
+    },
+    {
+      "js": [ "specific/youtube.js" ],
+      "matches": [ "*://*.youtube.com/*" ],
+      "all_frames": true,
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "node_modules/extension-include/extension-include.js",
+        "js/start.js",
+        "js/REWRITE.js"
+      ],
+      "matches": [ "<all_urls>" ],
+      "all_frames": false,
+      "run_at": "document_start"
+    }
+  ],
+  "description": "\"This thing is a piece of crap!\" 'New' 'innovative' browsing experience",
+  "icons":
+  {
+    "128": "images/icon128.png",
+    "48": "images/icon48.png",
+    "16": "images/icon16.png"
+  },
+  "browser_action": {
+    "default_icon": {
+      "19": "images/icon19.png",
+      "38": "images/icon38.png"
+    },
+    "default_title": "Activate LinkBrowser on this page"
+  },
+  "incognito": "spanning",
+  "minimum_chrome_version": "20",
+  "name": "LinkBrowser Alpha-fa-falfa",
+  "permissions": [
+    "<all_urls>",
+    "declarativeWebRequest"
+
+    "chrome://favicon/",
+    "clipboardWrite",
+    "contextMenus",
+    "cookies",
+    "idle",
+    "notifications",
+    "unlimitedStorage",
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+  ],
+  "version": "0.0001"
 }
