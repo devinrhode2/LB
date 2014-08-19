@@ -32,7 +32,7 @@
       "run_at": "document_start"
     }
   ],
-  "description": "\"This thing is a piece of crap!\" 'New' 'innovative' browsing experience",
+  "description": "Your favorite site in a sidebar, your favorite sites content on center stage." ,
   "icons":
   {
     "128": "images/icon128.png",
