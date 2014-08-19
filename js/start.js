@@ -1,10 +1,8 @@
 function isWebSearchUrl(url) {
   var returnValue = 'default';
   if (url.contains('?sourceid=chrome-instant') || 
-  
-      url.contains('&sourceid=chrome-instant') || 
-      url.contains('&q=') || url.contains('?q=') || 
-      url.contains('&as_q=') || url.contains('?as_q=')) {
+      url.contains('&q=') ||
+      url.contains('&as_q=')) {
       /*Do nothing, continue*/
   } else {
     console.log('url doesnt have basic params indicating a web search...');
