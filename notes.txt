@@ -1,0 +1,39 @@
+# Architecture
+
+Algorithm:
+  When you click a link: check the dom tree structure.. tag names should be good enough? except for maybe table elements, if the tag name based selector matches 2 or more elements, and those anchor tags have the same css size styling
+
+  Or if there's a list taking up the majority of the screen, then any anchor tags within those list elements will open in the detail pane. Links without an href attribute are assumed to be javascript actions and will be ignored.
+
+  3 or more elements with the same tag name, same css for spacing and dimensions (at least width should match?) taking up the majority of the screen
+
+
+
+Chrome extension:
+  Background: polling for domain selectors, adding into chrome.storage
+  On all page loads: 
+
+Proxy:
+  Find existing proxy application
+  Expand on AdBlock plus proxy?
+
+
+
+Security extension: across 
+
+Names!
+
+Mr. Detail
+MasterDetail Browser
+LinkBrowser
+LinkList browser
+Links Browser
+List Browser
+Super List Browser
+Master List Browser
+Ultimate List Browser
+Free List Browser
+Every List Browser
+Futch List Browser
+List Browser
+Awesome 
