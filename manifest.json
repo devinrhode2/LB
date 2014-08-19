@@ -5,7 +5,7 @@
     "scripts": [
       "node_modules/extension-include/extension-include.js",
       "node_modules/analytics.js/analytics.js",
-      "background/main_background.js"
+      "background.js"
     ]
   },
   "content_scripts": [
@@ -51,7 +51,7 @@
   "name": "LinkBrowser Alpha-fa-falfa",
   "permissions": [
     "<all_urls>",
-    "declarativeWebRequest"
+    "declarativeWebRequest",
 
     "chrome://favicon/",
     "clipboardWrite",
@@ -62,7 +62,7 @@
     "unlimitedStorage",
     "storage",
     "webRequest",
-    "webRequestBlocking",
+    "webRequestBlocking"
   ],
-  "version": "0.0001"
+  "version": "0.1"
 }
