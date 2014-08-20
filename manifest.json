@@ -51,7 +51,6 @@
   "name": "LinkBrowser Alpha-fa-falfa",
   "permissions": [
     "<all_urls>",
-    "declarativeWebRequest",
 
     "chrome://favicon/",
     "clipboardWrite",
