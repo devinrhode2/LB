@@ -25,9 +25,9 @@
     cursor: col-resize;
     */
 
-    /* 
+     
     //css selector targetting main links
-    var linkSelector = chrome.storage.get(location.hostname)
+    //var linkSelector = chrome.storage.get(location.hostname)
     //use jQuery delegation? off of body to keep things simple and stable
   
   }, false);
