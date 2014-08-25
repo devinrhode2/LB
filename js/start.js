@@ -40,19 +40,22 @@ function isWebSearchUrl(url) {
   }
 }
 
+document.documentElement.setAttribute(
+  'style',
+  document.documentElement.getAttribute('style') || '' + ' width:' + (window.innerWidth - 1024 > 310 ? window.innerWidth - 1024 : 310) + 'px;')
 
-if (isWebSearchUrl(location.href)) {
-  var on = get('on');
-  if (on === 'yes' || on === 'true' ) {
-    htmlGroup();
-  } else {
-    console.log('Scout is off: ' + on);
-    offScript();
-  }
-} else {
-  //if webhp but not ?q= or &q=, then it's actually the homepage, and is handled by google.com.js
-  console.log('not web search.');
-}
+// if (isWebSearchUrl(location.href)) {
+//   var on = get('on');
+//   if (on === 'yes' || on === 'true' ) {
+//     htmlGroup();
+//   } else {
+//     console.log('Scout is off: ' + on);
+//     offScript();
+//   }
+// } else {
+//   //if webhp but not ?q= or &q=, then it's actually the homepage, and is handled by google.com.js
+//   console.log('not web search.');
+// }
 
 /* try getting html.innerHTML.indexOf(google.sn=") and then see if it's google.sn="web" or ="webhp" */
 /* if it's web search as this variable indicates and there is a list of results, report this URL.*/
