@@ -24,6 +24,7 @@
     {
       "js": [
         "node_modules/extension-include/extension-include.js",
+        "node_modules/analytics.js/analytics.js",
         "js/start.js",
         "js/REWRITE.js"
       ],
@@ -52,14 +53,16 @@
   "permissions": [
     "<all_urls>",
 
+    "activeTab",
+    "browsingData",
     "chrome://favicon/",
     "clipboardWrite",
     "contextMenus",
     "cookies",
     "idle",
     "notifications",
-    "unlimitedStorage",
     "storage",
+    "unlimitedStorage",
     "webRequest",
     "webRequestBlocking"
   ],
