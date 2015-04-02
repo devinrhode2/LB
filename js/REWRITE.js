@@ -1,5 +1,5 @@
 //faster than polling for document.body https://gist.github.com/anonymous/5219254
-document.addEventListener('DOMContentLoaded', function ScoutDOMContentLoaded() {
+$(document).on('DOMContentLoaded', () => {
 
   //preview(links[0].href)
   //links[0].classList.add('scoutOpenedResult');
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function ScoutDOMContentLoaded() {
 
    
   //css selector targetting main links
-  //var linkSelector = chrome.storage.get(location.hostname)
+  //let linkSelector = chrome.storage.get(location.hostname)
   //use jQuery delegation? off of body to keep things simple and stable
 
 }, false)

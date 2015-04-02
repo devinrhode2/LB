@@ -1,4 +1,4 @@
-console.log('Scout started');
+console.log('Scout started')
 
 // if (NOT_INSTALLED) {
 //   SET_INSTALLED_TRUE
@@ -29,8 +29,8 @@ console.log('Scout started');
 
 chrome.browserAction.onClicked.addListener(function(tab) {
   //turn off or turn on, then reload tab
-  console.log('browser action clicked. tab:', tab);
-});
+  console.log('browser action clicked. tab:', tab)
+})
 
 //Allow iframes to load from any site, remove x-frame-options restrictions
 chrome.webRequest.onHeadersReceived.addListener(
@@ -71,17 +71,17 @@ Mozilla/5.0 (Linux; Android 4.4.4; SGH-M919 Build/KTU84Q) AppleWebKit/537.36 (KH
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
   function (req) {
-    console.log('onBeforeSendHeaders');
+    console.log('onBeforeSendHeaders')
     req.requestHeaders.forEach(function(header, index){
-      console.log(header.name, header.value);
+      console.log(header.name, header.value)
       if (header.name === 'User-Agent') {
         if (header.value.indexOf('Mobile Safari') === -1) {
-          req.requestHeaders[index].value = 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Mobile/11D201';
-          console.log('fixed?', req.requestHeaders[index].value);
+          req.requestHeaders[index].value = 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Mobile/11D201'
+          console.log('fixed?', req.requestHeaders[index].value)
         }
       }
     })
-    return {requestHeaders: req.requestHeaders};
+    return {requestHeaders: req.requestHeaders}
   },
   {
     urls: ['<all_urls>'],

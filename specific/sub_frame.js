@@ -3,12 +3,11 @@ if (top.location.href === undefined &&
         location.href !== 'http://www.google.com/blank.html')
 {
   (function subFrameAddScript() {
-    var s = document.createElement('script');
+    var s = document.createElement('script')
+    /*THIS FUNCTION CANNOT CONTAIN SINGLE LINE // COMMENTS AT ALL ANYWHERE, it gets turned into a string,
+    which gets rid of newlines, and then the // is interpreted as a comment ending the thread of execution.*/
     s.textContent = "(" +
     (function TheScoutAppFrameBandaidScript() {
-    /*THIS FUNCTION CANNOT CONTAIN THE CHARACTERS "//" AT ALL ANYWHERE, it gets turned into a string,
-    which gets rid of newlines, and then the // is interpreted as a comment ending the thread of execution.*/
-
         function isDomain(domain) {
           return location.href.indexOf(domain) > -1;
         }
