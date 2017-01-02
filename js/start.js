@@ -1,4 +1,4 @@
-function isWebSearchUrl(url) {
+isWebSearchUrl = (url) => {
   var returnValue = 'default'
   if (url.contains('?sourceid=chrome-instant') || 
       url.contains('&q=') ||
@@ -60,5 +60,3 @@ document.documentElement.setAttribute(
 
 /* try getting html.innerHTML.indexOf(google.sn=") and then see if it's google.sn="web" or ="webhp" */
 /* if it's web search as this variable indicates and there is a list of results, report this URL.*/
-
-

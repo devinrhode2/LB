@@ -1,3 +1,45 @@
+intercept navigation at onBeforeRequest? no, because of communication overhead
+
+therefore, when LB is activated, content scripts will be injected from the background page
+cause there's no an API for that,
+this cuts down memory usage and increases browser performance by not injecting javascript in each tab
+
+LB will be activated through some chrome in the browser, aka a browser action, or it could be a 'page action' in chrome, but I'm not targetting chrome because chrome does not respect your privacy as well as other browsers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 largest highest link in that repeating unit
 
 Dear Fellow Coder:
