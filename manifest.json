@@ -34,8 +34,7 @@
     }
   ],
   "description": "Your favorite site in a sidebar, your favorite sites content on center stage." ,
-  "icons":
-  {
+  "icons": {
     "128": "images/icon128.png",
     "48": "images/icon48.png",
     "16": "images/icon16.png"
@@ -49,7 +48,8 @@
   },
   "incognito": "spanning",
   "minimum_chrome_version": "20",
-  "name": "LinkBrowser Alpha-fa-falfa",
+  "name": "FeedBrowser (v0.1 alpha pup)",
+  "version": "0.1",
   "permissions": [
     "<all_urls>",
 
@@ -65,6 +65,5 @@
     "unlimitedStorage",
     "webRequest",
     "webRequestBlocking"
-  ],
-  "version": "0.1"
+  ]
 }
