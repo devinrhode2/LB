@@ -18,13 +18,18 @@ console.log('Scout started')
 // }
 
 // function set(setting, value) {
-//   // if setting has changed
-//   if (CHROME_STORAGE.getItem(setting).toString() !== value.toString()) {
-//     if (setting !== 'sites') {
-//       set.lastActionNote = 'localStorage['+setting+'] changed from: ' + CHROME_STORAGE.getItem(setting);
+//   // first get setting to see if it has changed
+//   chrome.storage.local.get(setting, function(settingValue) {
+//     //only set if setting is actually different
+//     if (settingValue.toString() !== value.toString()) {
+//       // if (setting !== 'sites') {
+//       //   set.lastActionNote = 'chrome.storage.local setting:'+setting+' changed from: ' + settingValue + ' to:'+value.toString();
+//       // }
+//       const newSettings = {}
+//       newSettings[setting] = value
+//       chrome.storage.local.set(newSettings)
 //     }
-//     CHROME_STORAGE.setItem(setting, value);
-//   }
+//   })
 // }
 
 chrome.browserAction.onClicked.addListener(function(tab) {
