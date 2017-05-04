@@ -33,13 +33,27 @@ console.log('Scout started')
 // }
 
 chrome.browserAction.onClicked.addListener(function(tab) {
-  //turn off or turn on, then reload tab
-  console.log('browser action clicked. tab:', tab)
+  //turn off or turn on for site actively being viewed, then reload tab
+  console.log('browser action clicked... tab:', tab);
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    if (!tabs || !tabs[0]) {return }
+    const activeTab = tabs[0];
+
+    chrome.storage.local.get('all_active_sites', function (all_active_sites) {
+      if (all_active_sites['reddit.com'] === 'true') {
+        //turn off
+      } else {
+        //turn on
+      }
+    })
+  })
 })
 
 //Allow iframes to load from any site, remove x-frame-options restrictions
 chrome.webRequest.onHeadersReceived.addListener(
   function (resp) {
+
+    //ONLY IF response is for site which scout is active on
     resp.responseHeaders.forEach(function(header, index) {
       header = header.name.toLowerCase()
 
