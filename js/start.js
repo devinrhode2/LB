@@ -1,5 +1,5 @@
-isWebSearchUrl = (url) => {
-  var returnValue = 'default'
+const isWebSearchUrl = (url) => {
+  let returnValue = 'default'
   if (url.contains('?sourceid=chrome-instant') || 
       url.contains('&q=') ||
       url.contains('&as_q=')) {
@@ -14,7 +14,7 @@ isWebSearchUrl = (url) => {
   }
   
   /*bailParams. indicators by the url that we don't want to run on this page. Over time, we want to support all these views, remove these, and not bail.*/
-  var bailParams = ['&tbs=sbi:', '?tbs=sbi:'] /*tbs is for searching by inputting an image, either dragging to a images.google.com tab or uploading.*/
+  const bailParams = ['&tbs=sbi:', '?tbs=sbi:'] /*tbs is for searching by inputting an image, either dragging to a images.google.com tab or uploading.*/
   /*[TECHNICALLY] the tbs param is base64 encoded image data.*/
   bailParams.forEach(function forEachBailParams(param){
     if (url.contains(param)) {
@@ -24,7 +24,7 @@ isWebSearchUrl = (url) => {
   })
   
   /*tbm is the magical param that basically indicates what type of search is being done, at this time, only plain web search is supported.*/
-  var tbmBailParams = ['isch', 'shop', 'nws', 'vid', 'plcs', 'dsc', 'rcp', 'app', 'pts', 'blg', 'bus']
+  const tbmBailParams = ['isch', 'shop', 'nws', 'vid', 'plcs', 'dsc', 'rcp', 'app', 'pts', 'blg', 'bus']
   tbmBailParams.forEach(function forEachTbmBailParam(search){
     if (url.contains('tbm=' + search)) {
       console.log('url has tbm= param:' + search)
