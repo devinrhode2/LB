@@ -1,5 +1,5 @@
 //faster than polling for document.body https://gist.github.com/anonymous/5219254
-$(document).on('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
   //preview(links[0].href)
   //links[0].classList.add('scoutOpenedResult');
