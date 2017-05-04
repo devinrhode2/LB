@@ -14,17 +14,17 @@ function neif() {
     
     //maintain proper body height (so that you can scroll all the way to the bottom, 
     //a side effect of css at the top with the search box)
-    if (window.innerHeight > 0) { //if NaN or string, results in false
-      cachedInnerHeight = window.innerHeight
-      if ( (cachedInnerHeight - 83) != prevBodyHeight) { //single equals cause we don't need type co-ersion, and I suspect it would be more efficient without this. 
-        //console.log('changed body height + offset');
-        prevBodyHeight = cachedInnerHeight - 83
-        prevSmartframeHeight = cachedInnerHeight - 30
-        window.paneHeights.innerHTML = 
-          'html>body  {height:'+(prevBodyHeight + 2)       +'px !important;}'+
-          '#smartframe{height:'+(prevSmartframeHeight + 2) +'px !important;}'
-      }
-    }
+    // if (window.innerHeight > 0) { //if NaN or string, results in false
+    //   cachedInnerHeight = window.innerHeight
+    //   if ( (cachedInnerHeight - 83) != prevBodyHeight) { //single equals cause we don't need type co-ersion, and I suspect it would be more efficient without this. 
+    //     //console.log('changed body height + offset');
+    //     prevBodyHeight = cachedInnerHeight - 83
+    //     prevSmartframeHeight = cachedInnerHeight - 30
+    //     window.paneHeights.innerHTML = 
+    //       'html>body  {height:'+(prevBodyHeight + 2)       +'px !important;}'+
+    //       '#smartframe{height:'+(prevSmartframeHeight + 2) +'px !important;}'
+    //   }
+    // }
     
     if (linkNodes && linkNodes[linkNodes.length - 1]) {
       numLinks = linkNodes.length

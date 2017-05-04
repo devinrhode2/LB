@@ -2,31 +2,7 @@ firstEverLoad = true
 //htmlGroup runs when the <html> element is available.
 firstDomNodes = document.createDocumentFragment()
 
-htmlGroup = (width) => {
-  if (!document.documentElement) {
-    return setTimeout(() => {
-      htmlGroup()
-    }, 10)
-  }
-  if (width == null) {
-    throw new Error('width was not defined before htmlGroup was called')
-  }
-  
-  /////////////////
-  //LEAVE OUR MARK!
-  document.documentElement.appendChild(document.createComment())
-
-
-  ///////////////////////////////////////////
-  //CUSTOM STYLES W/ RESPECT TO WIDTH SETTING
-  firstDomNodes.appendChild(createElement('style', {
-    innerHTML:
-    'html, #searchform, #gb { max-width: 574px !important;min-width: 10% !important; width: #{width}% !important;}'
-   +'html { height: auto; border-bottom: none; border-top: none; }'
-   +'body { z-index: 2; position: relative; }'
-   +'html { overflow: hidden; height: 100%; }'
-   +'body { height: 100%; }'
-  }))
+const htmlGroup = (width) => {
 
   ////////////////////
   // RESIZE STYLES NODE
@@ -36,14 +12,7 @@ htmlGroup = (width) => {
   }))
   resizeSplitTo(width)
 
-  ///////////////
-  // General-styles.css link
-  // firstDomNodes.appendChild(createElement('link', {
-  //   href: chrome.extension.getURL('general-styles.css'),
-  //   rel: 'stylesheet'
-  // }))
-
-  rightPaneBaseStyles = 'white-space: nowrap;position:fixed; right: 0px; z-index:111;'
+  const rightPaneBaseStyles = 'white-space: nowrap;position:fixed; right: 0px; z-index:111;'
 
   ////////
   //IFRAME
@@ -65,7 +34,7 @@ htmlGroup = (width) => {
       alert('iframe error!') //never happens... but just in case...
     },
     onmouseover() {
-      this.focus()
+      this.focus() //HEY should I add an autofocus thing to the left pane?
     },
     className: 'rightPane',
     sandbox: 'allow-scripts allow-forms allow-same-origin',
@@ -73,7 +42,7 @@ htmlGroup = (width) => {
     //explicit attributes
     name: 'smartframe',
     style: rightPaneBaseStyles +
-    '-webkit-user-select: none;top: 31px; height: 100%; width: #{100 - width}%; background: white; border: none;'
+      'user-select: none;top: 31px; height: 100%; width:'+(100 - width)+'%; background: white; border: none;'
   }))
 
 
@@ -105,7 +74,7 @@ htmlGroup = (width) => {
           title: message.title
         })
       }
-      console.log((message ? 'good' : 'bad') + ' message from ' + event.origin + ':', event)
+      console.log((message ? 'message:"'+message+'"' : 'empty(falsey)') + ' message from ' + event.origin + ':', event)
     }
   }, false)
 
@@ -116,12 +85,12 @@ htmlGroup = (width) => {
     className: 'rightPane topBarGradient'
   }, {
     style: rightPaneBaseStyles +
-      '-webkit-user-select: none;padding-top: 4px; top: 0px; height: 27px;'+
-      '-webkit-box-shadow: 2px 0px 5px 0px hsla(0, 0%, 29%, 0.6)'
+      'user-select:none; padding-top:4px; top:0px; height:27px;'+
+      'box-shadow: 2px 0px 5px 0px hsla(0, 0%, 29%, 0.6);'
   })
 
-  /////////////
-  //--FULL SITE
+  //////////////////
+  //--FULL SITE LINK
   topBar.appendChild(window.fullSiteLink = createElement('a', {
     innerHTML: 'Open Full Site',
     className: 'bootstrappyGray'
@@ -132,8 +101,9 @@ htmlGroup = (width) => {
   topBar.appendChild(window.onOffButton = createElement('a', {
     innerHTML: 'Turn off Scout',
     onclick (){
-      set('on', 'false')
-      location.reload()
+      chrome.storage.set('on:'+DOMAIN, 'false', () => {
+        location.reload()
+      })
     },
     className: 'bootstrappyGray'
   }, {
@@ -150,10 +120,10 @@ htmlGroup = (width) => {
     className: 'bootstrappyGray'
   }, {
     style: 'color: #333 !important;'
-  })
+  }))
 
-  //////////
-  //--UPDATE
+  /////////////////////
+  //--UPDATE SCOUT LINK
   topBar.appendChild(window.updateBtn = createElement('a', {
     innerText: 'Update Scout!',
     className: 'updateRed hidden',
@@ -169,7 +139,7 @@ htmlGroup = (width) => {
   firstDomNodes.appendChild(topBar)
 
 
-  ///////////
+  ////////////////////////////////////
   //COVER DIV - for adjustable sidebar
   //this cover div is needed so that you when you drag over the iframe mousemove still triggers.
   //Otherwise you can't drag back to the right.
@@ -241,7 +211,7 @@ htmlGroup = (width) => {
       onmouseup(e)
     }
   }, {
-    style: 'position:fixed; display: block; top: 30px; left: '+width+'%; height: 100%; width: 5px; background: transparent; border: none; z-index: 9999999999999; cursor: col-resize;'      
+    style: 'position:fixed; display:block; top:30px; left:'+width+'%; height:100%; width:5px; background:transparent; border:none; z-index:9999999999999; cursor:col-resize;'      
   }))
 
 

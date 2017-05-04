@@ -11,18 +11,18 @@ function src(url) {
   document.documentElement.appendChild(createElement('script', {
     id: 'scoutScript',
     innerHTML: "\
-    setTimeout(function one(){                                                        \
-      document.getElementById('smartframe').contentWindow.name = 'smartframe';        \
-      setTimeout(function two(){                                                      \
-        document.getElementById('smartframe').contentWindow.location.href = '"+url+"';\
-        document.getElementById('smartframe').contentWindow.name = 'smartframe';      \
-        setTimeout(function three(){                                                  \
-          document.getElementById('smartframe').contentWindow.name = 'smartframe';    \
-          var ScoutScript = document.getElementById('scoutScript');                   \
-          ScoutScript.parentNode.removeChild(ScoutScript);                            \
-        }, 1);                                                                        \
-      }, 1);                                                                          \
-    }, 1);"
+      setTimeout(function one(){                                                        \
+        document.getElementById('smartframe').contentWindow.name = 'smartframe';        \
+        setTimeout(function two(){                                                      \
+          document.getElementById('smartframe').contentWindow.location.href = '"+url+"';\
+          document.getElementById('smartframe').contentWindow.name = 'smartframe';      \
+          setTimeout(function three(){                                                  \
+            document.getElementById('smartframe').contentWindow.name = 'smartframe';    \
+            var ScoutScript = document.getElementById('scoutScript');                   \
+            ScoutScript.parentNode.removeChild(ScoutScript);                            \
+          }, 1);                                                                        \
+        }, 1);                                                                          \
+      }, 1);"
   }))
 }
 
