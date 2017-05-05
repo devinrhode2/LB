@@ -1,3 +1,18 @@
+let documentReadyCalled = false;
+const documentReady = (readyCallback) => {
+  if (documentReadyCalled === true) {
+    throw new Error('documentReady called aleady. Only call once.');
+  }
+  documentReadyCalled = true
+  completed = () => {
+    document.removeEventListener('DOMContentLoaded', completed)
+    window.removeEventListener('load', completed)
+    readyCallback()
+  }
+  document.addEventListener('DOMContentLoaded', completed)
+  window.addEventListener('load', completed)
+};
+
 const isWebSearchUrl = (url) => {
   let returnValue = 'default'
   if (url.contains('?sourceid=chrome-instant') || 

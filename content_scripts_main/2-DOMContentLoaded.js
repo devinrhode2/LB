@@ -1,5 +1,17 @@
 //faster than polling for document.body https://gist.github.com/anonymous/5219254
-document.addEventListener('DOMContentLoaded', () => {
+documentReady(() => {
+  
+  //skeleton copied from:https://www.sitepoint.com/track-outbound-links-google-analytics/
+
+  //   // abandon if link already aborted or analytics is not available??
+  //   if ( e.isDefaultPrevented() ) return;
+
+  //   // abandon if no active link or link within domain
+  //   var link = $(e.target).closest("a");
+  //   if (link.length != 1 || baseURI == link[0].host) return;
+
+  //   // cancel event and record outbound link
+  //   e.preventDefault();
 
   //preview(links[0].href)
   //links[0].classList.add('scoutOpenedResult');
