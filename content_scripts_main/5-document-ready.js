@@ -1,3 +1,19 @@
+let documentReadyCalled = false;
+const documentReady = (readyCallback) => {
+  if (documentReadyCalled === true) {
+    throw new Error('documentReady called aleady. Only call once.');
+  }
+  documentReadyCalled = true
+  completed = () => {
+    document.removeEventListener('DOMContentLoaded', completed)
+    window.removeEventListener('load', completed)
+    readyCallback()
+  }
+  document.addEventListener('DOMContentLoaded', completed)
+  window.addEventListener('load', completed)
+};
+
+
 //faster than polling for document.body https://gist.github.com/anonymous/5219254
 documentReady(() => {
   
