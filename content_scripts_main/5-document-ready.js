@@ -4,7 +4,7 @@ const documentReady = (readyCallback) => {
     throw new Error('documentReady called aleady. Only call once.');
   }
   documentReadyCalled = true
-  completed = () => {
+  const completed = () => {
     document.removeEventListener('DOMContentLoaded', completed)
     window.removeEventListener('load', completed)
     readyCallback()
