@@ -2,19 +2,18 @@
 const root = document.documentElement;
 
 ////////////////////
-// SET WIDTH OF PAGE!
+// SET WIDTH OF ROOT ELEMENT (sidebar)
 /*
 If someone has a really large, wide display,
 we could make the sidebar larger,
 but I'm not sure that's very useful,
 unless they have the page zoomed in, but for now,
 I'm going to lock in the sidebar at 320,
-which is the width of the (now) ancient iphones 1-5, http://iosres.com/
+which is the width of the (now) ancient iphones (up to and including iphone 5), http://iosres.com/
 
 But, it might be better to set the width to
 something like 320/1024 (30%) or 38.2 (golden ratio)
 and with margins on left and right
-or maybe not actually do any of this?
 Maybe set it up to be 320 + 1024? or 320+1000? or 320+920?
 */
 let existingStyles = (root.getAttribute('style') || '')
@@ -25,6 +24,17 @@ root.setAttribute(
   existingStyles + ';' +
   newStyles
 )
+
+window.clickEventQ = []
+
+root.addEventListener('click', (clickEvent)=>{
+  clickEvent.preventDefault();
+  clickEvent.stopPropagation();
+  clickEvent.stopImmediatePropagation();
+  console.log('click:', clickEvent);
+  clickEventQ.push(clickEvent)
+}, true)
+
 // if (isWebSearchUrl(location.href)) {
 //   chrome.storage.get('on:'+DOMAIN, (on) => {
 //     if (on === 'yes' || on === 'true' ) {
