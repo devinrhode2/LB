@@ -26,8 +26,12 @@
         "node_modules/extension-include/extension-include.js",
         "node_modules/analytics.js/analytics.js",
         "content_scripts_main/0-definitions.js",
-        "content_scripts_main/1-pre-DOMContentLoaded.js",
-        "content_scripts_main/2-DOMContentLoaded.js"
+        "content_scripts_main/1-setSidebarWidth.js",
+        "content_scripts_main/2-initIframe.js",
+        "content_scripts_main/3-setIframeWidth.js",
+        "content_scripts_main/4-setIframeUrl.js",
+        "content_scripts_main/5-setupClickInterceptor.js",
+        "content_scripts_main/6-document-ready.js"
       ],
       "matches": [ "<all_urls>" ],
       "all_frames": false,

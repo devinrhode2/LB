@@ -1,7 +1,7 @@
 
-const root = document.documentElement;
+const root = document.documentElement
 
-function setSidebarWidth() {
+const setSidebarWidth = (width) => {
   ////////////////////
   // SET WIDTH OF ROOT ELEMENT (sidebar)
   /*
@@ -61,8 +61,8 @@ function setSidebarWidth() {
   320/1046 = 0.3059273423
   38.194444 = mobile/(target - mobile)
   */
-  let existingStyles = (root.getAttribute('style') || '')
-  let newWidth = 320 //smallerMobileWidth
+  let existingStyles = root.getAttribute('style') || ''
+  let newWidth = width || 320 //smallerMobileWidth
   let newStyles = 'width:' + newWidth + 'px !important;'
   root.setAttribute(
     'style',
@@ -74,10 +74,7 @@ function setSidebarWidth() {
 // if (isWebSearchUrl(location.href)) {
 //   chrome.storage.get('on:'+DOMAIN, (on) => {
 //     if (on === 'yes' || on === 'true' ) {
-
-setWidth();
-
-
+//setWidth();
 //     } else {
 //       console.log('Scout is off: ' + on);
 //       offScript();

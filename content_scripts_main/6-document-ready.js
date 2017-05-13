@@ -1,9 +1,11 @@
+//based on jquery document ready
 let documentReadyCalled = false;
 const documentReady = (readyCallback) => {
   if (documentReadyCalled === true) {
     throw new Error('documentReady called aleady. Only call once.');
   }
   documentReadyCalled = true
+
   const completed = () => {
     document.removeEventListener('DOMContentLoaded', completed)
     window.removeEventListener('load', completed)
@@ -11,19 +13,18 @@ const documentReady = (readyCallback) => {
   }
   document.addEventListener('DOMContentLoaded', completed)
   window.addEventListener('load', completed)
-};
+}
 
 
 //faster than polling for document.body https://gist.github.com/anonymous/5219254
 documentReady(() => {
   
   //skeleton copied from:https://www.sitepoint.com/track-outbound-links-google-analytics/
-
   //   // abandon if link already aborted or analytics is not available??
   //   if ( e.isDefaultPrevented() ) return;
 
   //   // abandon if no active link or link within domain
-  //   var link = $(e.target).closest("a");
+  //   let link = $(e.target).closest("a");
   //   if (link.length != 1 || baseURI == link[0].host) return;
 
   //   // cancel event and record outbound link
