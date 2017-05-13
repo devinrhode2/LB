@@ -49,7 +49,7 @@ function neif() {
 
 function rOnClick(e) {
   if (e.metaKey) {
-    console.log('cmd is down, do nothing different, follow browser default')
+    console.log('cmd is down, do nothing different, follow browser default (open in new tab')
   } else if(e.shiftKey) {
     console.log('shift is down, do nothing different, follow browser default.')
     
