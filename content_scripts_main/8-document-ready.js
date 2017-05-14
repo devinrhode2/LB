@@ -1,5 +1,5 @@
 //based on jquery document ready
-let documentReadyCalled = false;
+let documentReadyCalled = false
 const documentReady = (readyCallback) => {
   if (documentReadyCalled === true) {
     throw new Error('documentReady called aleady. Only call once.');

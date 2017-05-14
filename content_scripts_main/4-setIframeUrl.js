@@ -27,11 +27,11 @@ const setLoadingIndicator = (state) => {
 }
 
 const setIframeUrlCore = (url) => {
-  if (url.indexOf('http') === 0) {
-    if (url !== preview.url) {
-      alert('ERROR. Mixup with preview.url and the actually url being set. url: ' + url + ' preview.url: ' + preview.url)
-    }
-  }
+  // if (url.indexOf('http') === 0) {
+  //   if (url !== preview.url) {
+  //     alert('ERROR. Mixup with preview.url and the actually url being set. url: ' + url + ' preview.url: ' + preview.url)
+  //   }
+  // }
   //TASK: WHICH OF THESE ARE EFFECTIVE/INNEFFECTIVE??
   window.scoutIframe.name = 'smartframe'
   window.scoutIframe.setAttribute('name', 'smartframe')

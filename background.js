@@ -32,22 +32,22 @@ console.log('Scout started')
 //   })
 // }
 
-chrome.browserAction.onClicked.addListener(function(tab) {
-  //turn off or turn on for site actively being viewed, then reload tab
-  console.log('browser action clicked... tab:', tab);
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    if (!tabs || !tabs[0]) {return }
-    const activeTab = tabs[0];
+// chrome.browserAction.onClicked.addListener(function(tab) {
+//   //turn off or turn on for site actively being viewed, then reload tab
+//   console.log('browser action clicked... tab:', tab);
+//   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//     if (!tabs || !tabs[0]) {return }
+//     const activeTab = tabs[0];
 
-    chrome.storage.local.get('all_active_sites', function (all_active_sites) {
-      if (all_active_sites['reddit.com'] === 'true') {
-        //turn off
-      } else {
-        //turn on
-      }
-    })
-  })
-})
+//     chrome.storage.local.get('all_active_sites', function (all_active_sites) {
+//       if (all_active_sites['reddit.com'] === 'true') {
+//         //turn off
+//       } else {
+//         //turn on
+//       }
+//     })
+//   })
+// })
 
 //Allow iframes to load from any site, remove x-frame-options restrictions
 chrome.webRequest.onHeadersReceived.addListener(
@@ -90,16 +90,20 @@ Mozilla/5.0 (Linux; Android 4.4.4; SGH-M919 Build/KTU84Q) AppleWebKit/537.36 (KH
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
   function (req) {
-    console.log('onBeforeSendHeaders')
-    req.requestHeaders.forEach(function(header, index){
-      console.log(header.name, header.value)
-      if (header.name === 'User-Agent') {
-        if (header.value.indexOf('Mobile Safari') === -1) {
-          req.requestHeaders[index].value = 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Mobile/11D201'
-          console.log('fixed?', req.requestHeaders[index].value)
+    console.log('onBeforeSendHeaders', req)
+    var parser = document.createElement('a')
+    parser.href = req.url
+    //if (parser.host === 'www.reddit.com') {
+      req.requestHeaders.forEach(function(header, index){
+        console.log(header.name, header.value)
+        if (header.name === 'User-Agent') {
+          if (header.value.indexOf('Mobile Safari') === -1) {
+            req.requestHeaders[index].value = 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Mobile/11D201'
+            console.log('fixed?', req.requestHeaders[index].value)
+          }
         }
-      }
-    })
+      })
+    //}
     return {requestHeaders: req.requestHeaders}
   },
   {

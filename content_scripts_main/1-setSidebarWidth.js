@@ -62,8 +62,8 @@ const setSidebarWidth = (width) => {
   38.194444 = mobile/(target - mobile)
   */
   let existingStyles = root.getAttribute('style') || ''
-  let newWidth = width || 320 //smallerMobileWidth
-  let newStyles = 'width:' + newWidth + 'px !important;'
+  let newWidth = "38.1%" //(width || 320)+"px" //smallerMobileWidth
+  let newStyles = 'width:' + newWidth + ' !important;'
   root.setAttribute(
     'style',
     existingStyles + ';' +

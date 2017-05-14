@@ -13,6 +13,7 @@ window.inPageActivationSettings = {
   //Must be set to one of these two values. (Although technically won't crash if activationModifierKeys are set)
 }
 
+
 const shouldActivate = (event) => {
   //First, we will check the override:
   if (inPageActivationSettings.override) {
@@ -48,15 +49,29 @@ const shouldActivate = (event) => {
 }
 
 const setupClickInterceptor = () => {
-  window.clickEventQ = []
+  //window.clickEventQ = []
 
   document.documentElement.addEventListener('click', (clickEvent) => {
     console.log('click:', clickEvent)
-    if (shouldActivate(clickEvent)) {
-      clickEvent.preventDefault();
-      clickEvent.stopPropagation();
-      clickEvent.stopImmediatePropagation();
+    if (clickEvent.target.tagName.toLowerCase() === 'a' && clickEvent.target.href) {
+      //clicked a link with an actual href..
+
+      if (window.isActive) {//if scout is active
+        clickEvent.preventDefault()
+        clickEvent.stopPropagation()
+        clickEvent.stopImmediatePropagation()
+        setIframeUrl(clickEvent.target.href)
+      } else { //not active, but maybe they are holding
+        //the requisite modifier key(s) to activate it on this click..
+        //NOTE this will only ever run (currently) when scout is already on for the current domain... so quite useless
+        // if (shouldActivate(clickEvent)) {
+        //   clickEvent.preventDefault()
+        //   clickEvent.stopPropagation()
+        //   clickEvent.stopImmediatePropagation()
+        //   setIframeUrl(clickEvent.target.href)
+        // }
+      }
+      //clickEventQ.push(clickEvent)
     }
-    clickEventQ.push(clickEvent)
   }, true)
 }
