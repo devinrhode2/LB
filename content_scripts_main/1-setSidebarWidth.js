@@ -50,8 +50,6 @@ const setSidebarWidth = (width) => {
   target = (mobile + mobile*goldenRatio)/goldenRatio
   target = 1157.82px or 1158..
 
-  function calculateWidth(mobile=320, )
-
 
   320/desiredPageWidth = goldenRatio
   320 =  * desiredPageWidth
@@ -61,9 +59,9 @@ const setSidebarWidth = (width) => {
   320/1046 = 0.3059273423
   38.194444 = mobile/(target - mobile)
   */
-  let existingStyles = root.getAttribute('style') || ''
-  let newWidth = "38.1%" //(width || 320)+"px" //smallerMobileWidth
-  let newStyles = 'width:' + newWidth + ' !important;'
+  const existingStyles = root.getAttribute('style') || ''
+  const newWidth = width || (320 + 'px') //smallerMobileWidth
+  const newStyles = 'width:' + newWidth + ' !important;'
   root.setAttribute(
     'style',
     existingStyles + ';' +

@@ -3,9 +3,7 @@ const activateScout = () => {
   
   setSidebarWidth()
 
-  initIframe()
-
-  setIframeWidth()
+  //createIframe()
 
   setupClickInterceptor()
   //setIframeUrl()

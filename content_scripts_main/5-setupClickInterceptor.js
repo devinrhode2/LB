@@ -60,7 +60,7 @@ const setupClickInterceptor = () => {
         clickEvent.preventDefault()
         clickEvent.stopPropagation()
         clickEvent.stopImmediatePropagation()
-        setIframeUrl(clickEvent.target.href)
+        createIframe(clickEvent.target.href)
       } else { //not active, but maybe they are holding
         //the requisite modifier key(s) to activate it on this click..
         //NOTE this will only ever run (currently) when scout is already on for the current domain... so quite useless

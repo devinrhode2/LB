@@ -26,35 +26,6 @@ const setLoadingIndicator = (state) => {
   }
 }
 
-const setIframeUrlCore = (url) => {
-  // if (url.indexOf('http') === 0) {
-  //   if (url !== preview.url) {
-  //     alert('ERROR. Mixup with preview.url and the actually url being set. url: ' + url + ' preview.url: ' + preview.url)
-  //   }
-  // }
-  //TASK: WHICH OF THESE ARE EFFECTIVE/INNEFFECTIVE??
-  window.scoutIframe.name = 'smartframe'
-  window.scoutIframe.setAttribute('name', 'smartframe')
-  if (window.scoutIframe.contentWindow) window.scoutIframe.contentWindow.name = 'smartframe'
-  
-  document.documentElement.appendChild(createElement('script', {
-    id: 'scoutScript',
-    innerHTML: "\
-      setTimeout(function one(){                                                        \
-        document.getElementById('smartframe').contentWindow.name = 'smartframe';        \
-        setTimeout(function two(){                                                      \
-          document.getElementById('smartframe').contentWindow.location.href = '"+url+"';\
-          document.getElementById('smartframe').contentWindow.name = 'smartframe';      \
-          setTimeout(function three(){                                                  \
-            document.getElementById('smartframe').contentWindow.name = 'smartframe';    \
-            var ScoutScript = document.getElementById('scoutScript');                   \
-            ScoutScript.parentNode.removeChild(ScoutScript);                            \
-          }, 1);                                                                        \
-        }, 1);                                                                          \
-      }, 1);"
-  }))
-}
-
 //previous <li> that was loaded (needed for HIGHLIGHT logic)
 //var prevLi = ''
 
@@ -143,7 +114,7 @@ const setIframeUrl = (url/*,li(for highlight logic), wasAutoLoaded(for tracking 
   
   console.log('setIframeUrl: ' + url)
   
-  setIframeUrlCore(url)
+  createIframe(url) //should use previous width.
 
 }//end of setIframeUrl
 

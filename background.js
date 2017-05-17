@@ -32,26 +32,37 @@ console.log('Scout started')
 //   })
 // }
 
-// chrome.browserAction.onClicked.addListener(function(tab) {
-//   //turn off or turn on for site actively being viewed, then reload tab
-//   console.log('browser action clicked... tab:', tab);
-//   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-//     if (!tabs || !tabs[0]) {return }
-//     const activeTab = tabs[0];
+function getHost(url) {
+  //maybe not the most efficient technically speaking
+  var parser = document.createElement('a')
+  parser.href = url
+  return parser.host
+}
 
-//     chrome.storage.local.get('all_active_sites', function (all_active_sites) {
-//       if (all_active_sites['reddit.com'] === 'true') {
-//         //turn off
-//       } else {
-//         //turn on
-//       }
-//     })
-//   })
-// })
+chrome.browserAction.onClicked.addListener(function(tab) {
+  //turn off or turn on for site actively being viewed, then reload tab
+  console.log('browser action clicked... tab:', tab);
+  //only requires activeTab permission to get this here activeTab
+  //getting the url property from the tab passed into this listener
+  //..requires the tab permission.
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    if (!tabs || !tabs[0]) {return }
+    const activeTab = tabs[0]
+    const host = getHost(activeTab.url)
+    if (mapOfAllDomains[host] === undefined) {
+      mapOfAllDomains[host] = 'n' //default it's off..
+    }
+    var setting = {}
+    setting[host] = (mapOfAllDomains[host] === 'y' ? 'n' : 'y')
+    chrome.storage.local.set(setting, (successFailThing/*???*/) => {
+      
+    })
+  })
+})
 
 //Allow iframes to load from any site, remove x-frame-options restrictions
 chrome.webRequest.onHeadersReceived.addListener(
-  function (resp) {
+  (resp) => {
 
     //ONLY IF response is for site which scout is active on
     resp.responseHeaders.forEach(function(header, index) {
@@ -88,22 +99,44 @@ Mobile:
 Mozilla/5.0 (Linux; Android 4.4.4; SGH-M919 Build/KTU84Q) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.135 Mobile Safari/537.36
 */
 
+let mapOfAllDomains = {}
+
+//null gets all storage items.
+//We store domains individually instead of in one giant map
+//so that retrieval is faster on page loads
+chrome.storage.local.get(null, (mapOfAllStorage) => {
+  //remove nonDomainStorage
+  if (mapOfAllStorage['nonDomainStorage']) {
+    delete mapOfAllStorage['nonDomainStorage']
+  }
+  mapOfAllDomains = mapOfAllStorage
+})
+
+chrome.storage.onChanged.addListener((changes, storageAreaName) => {
+  //presumably storageAreaName is "local"
+  if (storageAreaName !== 'local') throw new Error('I thought we werent using non-local chrome.storage?')
+
+  const changedKeys = Object.keys(changes)
+  if (changedKeys.length < 1) throw new Error('like damnnnnn nigga wtf.. why you tellin me there changes if there aint no changes for!')
+  //iterate over each change in changes object and update mapOfAllDomains!
+  changedKeys.forEach((key) => {
+    if (key !== 'nonDomainStorage') {
+      mapOfAllDomains[key] = changes[key].newValue
+    }
+  })
+})
+
 chrome.webRequest.onBeforeSendHeaders.addListener(
-  function (req) {
+  (req) => {
     console.log('onBeforeSendHeaders', req)
-    var parser = document.createElement('a')
-    parser.href = req.url
-    //if (parser.host === 'www.reddit.com') {
-      req.requestHeaders.forEach(function(header, index){
-        console.log(header.name, header.value)
+    const host = getHost(req.url)
+    if (mapOfAllDomains[host] === 'y') {
+      req.requestHeaders.forEach((header, index) => {
         if (header.name === 'User-Agent') {
-          if (header.value.indexOf('Mobile Safari') === -1) {
-            req.requestHeaders[index].value = 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Mobile/11D201'
-            console.log('fixed?', req.requestHeaders[index].value)
-          }
+          req.requestHeaders[index].value = 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Mobile/11D201'
         }
       })
-    //}
+    }
     return {requestHeaders: req.requestHeaders}
   },
   {
@@ -112,7 +145,6 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   },
   ['blocking', 'requestHeaders']
 )
-
 
 // function sendData(port) {
 //   var settings = {};

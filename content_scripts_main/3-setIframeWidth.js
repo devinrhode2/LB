@@ -1,3 +1,0 @@
-const setIframeWidth = () => {
-  window.scoutIframe
-}
