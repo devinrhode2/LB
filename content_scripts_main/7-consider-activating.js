@@ -31,7 +31,7 @@ const considerActivating = () => {
     }
   })
 }
-considerActivating()
+activateScout()
 
 chrome.storage.onChanged.addListener((changes, storageAreaName) => {
   if (storageAreaName !== 'local') throw new Error('thought we were only working with chrome.storage.local')

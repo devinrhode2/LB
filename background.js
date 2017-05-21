@@ -130,18 +130,18 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   (req) => {
     console.log('onBeforeSendHeaders', req)
     const host = getHost(req.url)
-    if (mapOfAllDomains[host] === 'y') {
+    //if (mapOfAllDomains[host] === 'y') {
       req.requestHeaders.forEach((header, index) => {
         if (header.name === 'User-Agent') {
           req.requestHeaders[index].value = 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Mobile/11D201'
         }
       })
-    }
+    //}
     return {requestHeaders: req.requestHeaders}
   },
   {
     urls: ['<all_urls>'],
-    types:['main_frame']
+    types:['main_frame', 'sub_frame']
   },
   ['blocking', 'requestHeaders']
 )

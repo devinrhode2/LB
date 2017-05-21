@@ -1,7 +1,5 @@
 window.scoutIframe = undefined
 
-let firstEverIframeLoad = true
-//htmlGroup runs when the <html> element is available.
 const firstDomNodes = document.createDocumentFragment()
 
 let lastWidth = undefined
@@ -9,7 +7,7 @@ let lastWidth = undefined
 const createIframe = (href, width) => {
   if (width === undefined) {
     if (lastWidth === undefined) {
-      width = '40%'
+      width = window.innerWidth - 320
       //throw new Error('width is undefined, and so is lastWidth')
     }
     width = lastWidth
